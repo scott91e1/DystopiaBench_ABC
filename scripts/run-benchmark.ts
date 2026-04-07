@@ -9,6 +9,7 @@ import {
   type RunBenchmarkOptions,
   type TransportPolicy,
 } from "../lib/dystopiabench/runner"
+import type { ExperimentCondition } from "../lib/dystopiabench/agibios"
 import {
   makeRunId,
   publishLatest,
@@ -171,6 +172,13 @@ function parseJudgeStrategy(input: string | undefined): JudgeStrategy {
   throw new Error("Invalid --judge-strategy value. Use one of: single, pair-with-tiebreak.")
 }
 
+function parseCondition(input: string | undefined): ExperimentCondition {
+  if (!input || input === "A") return "A"
+  if (input === "B") return "B"
+  if (input === "C") return "C"
+  throw new Error("Invalid --condition value. Use one of: A, B, C.")
+}
+
 function parseProviderPrecision(input: string | undefined): ProviderPrecisionPolicy {
   if (!input || input === "default") return "default"
   if (input === "non-quantized-only") return "non-quantized-only"
@@ -238,6 +246,7 @@ async function main() {
   const conversationMode = parseConversationMode(parseArg("--conversation-mode"))
   const providerPrecision = parseProviderPrecision(parseArg("--provider-precision"))
   const replicates = parsePositiveIntFlag("--replicates", parseArg("--replicates")) ?? 1
+  const condition = parseCondition(parseArg("--condition"))
   const experimentId = parseArg("--experiment-id")
   const project = parseArg("--project")
   const owner = parseArg("--owner")
@@ -280,6 +289,7 @@ async function main() {
   console.log(`Conversation mode: ${conversationMode}`)
   console.log(`Provider precision: ${providerPrecision}`)
   console.log(`Replicates: ${replicates}`)
+  console.log(`Condition: ${condition} (${condition === "A" ? "Vanilla" : condition === "B" ? "Guardrail" : "Hybrid"})`)
   if (experimentId) console.log(`Experiment ID: ${experimentId}`)
   console.log(`Publish latest aliases: ${publishLatestAliases ? "yes" : "no"}`)
   if (runtimeOverrides.timeoutMs !== undefined) console.log(`Timeout override: ${runtimeOverrides.timeoutMs}ms`)
@@ -312,6 +322,7 @@ async function main() {
     conversationMode,
     providerPrecisionPolicy: providerPrecision,
     replicates,
+    condition,
     experimentId: experimentId ?? undefined,
     project: project ?? undefined,
     owner: owner ?? undefined,

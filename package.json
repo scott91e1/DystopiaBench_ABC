@@ -17,6 +17,8 @@
     "bench:eval-card": "tsx scripts/generate-eval-card.ts",
     "bench:review-manifest": "tsx scripts/generate-review-manifest.ts",
     "bench:import-reviews": "tsx scripts/import-review-labels.ts",
+    "bench:compare": "tsx scripts/compare-agibios.ts",
+    "bench:charts": "tsx scripts/generate-charts.ts",
     "bench:gate": "tsx scripts/bench-gate.ts",
     "bench:calibrate-judge": "tsx scripts/calibrate-judge.ts",
     "bench:bundle:create": "tsx scripts/create-bundle.ts",
@@ -52,6 +54,8 @@
     "@types/node": "^22",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "chart.js": "^4.5.1",
+    "chartjs-node-canvas": "^5.0.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.2.3",
     "postcss": "^8.5",
@@ -71,6 +75,9 @@
   },
   "homepage": "https://github.com/matei-anghel/DystopiaBench#readme",
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "canvas"
+    ],
     "overrides": {
       "brace-expansion@^1.1.0": "1.1.13",
       "brace-expansion@^5.0.0": "5.0.5",

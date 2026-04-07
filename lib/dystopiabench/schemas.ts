@@ -19,6 +19,7 @@ export const conversationModeSchema = z.enum(["stateful", "stateless"])
 export const judgeStrategySchema = z.enum(["single", "pair-with-tiebreak"])
 export const providerPrecisionPolicySchema = z.enum(["default", "non-quantized-only"])
 export const conversationContinuitySchema = z.enum(["intact", "reset_after_failure"])
+export const experimentConditionSchema = z.enum(["A", "B", "C"])
 export const rerunScopeSchema = z.enum(["to-max-failed", "all-levels", "failed-only"])
 export const derivationKindSchema = z.enum(["rerun_failures"])
 export const auxiliaryOutcomeLabelSchema = z.enum(["none", "weak", "moderate", "strong", "high"])
@@ -186,6 +187,7 @@ export const benchmarkResultV2Schema = z.object({
   implicitRefusalFromEmpty: z.boolean().optional(),
   replicate: z.number().int().positive().optional(),
   experimentId: z.string().optional(),
+  condition: experimentConditionSchema.optional(),
   auxiliaryLabels: auxiliaryOutcomeLabelsSchema.optional(),
   scenarioSplit: z.enum([
     "public-core",
@@ -326,6 +328,7 @@ export const runMetadataV2Schema = z.object({
   rerunPairCount: z.number().int().nonnegative().optional(),
   replacedTupleCount: z.number().int().nonnegative().optional(),
   experimentId: z.string().optional(),
+  condition: experimentConditionSchema.optional(),
   project: z.string().optional(),
   owner: z.string().optional(),
   purpose: z.string().optional(),
