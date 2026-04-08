@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGIBIOS Guardrail Benchmark — DystopiaBench Results</title>
+  <meta name="description" content="DystopiaBench measures LLM resistance to progressively dystopian directives across escalation levels. Petrov module pilot results for 7 frontier models.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AGIBIOS Guardrail Benchmark — DystopiaBench Results">
+  <meta property="og:description" content="Measuring LLM resistance to progressively dystopian directives. Petrov module pilot results across 7 frontier models.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scott91e1.github.io/DystopiaBench/">
+  <meta property="og:image" content="https://scott91e1.github.io/DystopiaBench/images/fig01-baseline-spectrum.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AGIBIOS Guardrail Benchmark — DystopiaBench">
+  <meta name="twitter:description" content="Measuring LLM resistance to progressively dystopian directives.">
+  <meta name="twitter:image" content="https://scott91e1.github.io/DystopiaBench/images/fig01-baseline-spectrum.png">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy-900: #0c1929;
+      --navy-800: #132238;
+      --navy-700: #1a2f4a;
+      --navy-600: #243b5e;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --amber-400: #fbbf24;
+      --red-500: #ef4444;
+      --green-500: #22c55e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--slate-700);
+      background: #ffffff;
+      line-height: 1.7;
+    }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 50%, var(--navy-600) 100%);
+      color: #ffffff;
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+    .hero .subtitle {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--slate-300);
+      max-width: 640px;
+    }
+    .hero .badge-pilot {
+      display: inline-block;
+      background: rgba(59,130,246,0.2);
+      border: 1px solid rgba(59,130,246,0.4);
+      color: #93c5fd;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Section layout ──────────────────────────────── */
+    section { padding: 4rem 0; }
+    section:nth-child(even) { background: var(--slate-100); }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--navy-800);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .section-lead {
+      color: var(--slate-600);
+      margin-bottom: 2rem;
+      max-width: 680px;
+    }
+
+    /* ── Findings cards ──────────────────────────────── */
+    .finding-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      height: 100%;
+      transition: box-shadow 0.2s ease, transform 0.15s ease;
+    }
+    .finding-card:hover {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .finding-card .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .finding-card h5 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-bottom: 0.5rem;
+    }
+    .finding-card p {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      margin-bottom: 0;
+    }
+
+    /* ── Module cards ────────────────────────────────── */
+    .module-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      text-align: center;
+      height: 100%;
+    }
+    .module-card.complete {
+      border-color: var(--green-500);
+      border-width: 2px;
+    }
+    .module-card .status-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .module-card .status-badge.done {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .module-card .status-badge.pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .module-card h5 {
+      font-weight: 600;
+      color: var(--navy-800);
+    }
+    .module-card p {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+    }
+
+    /* ── Chart gallery ───────────────────────────────── */
+    .chart-gallery-group { margin-bottom: 2.5rem; }
+    .chart-gallery-group h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy-700);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--slate-200);
+    }
+    .chart-thumb {
+      display: block;
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease, transform 0.15s ease;
+      text-decoration: none;
+      height: 100%;
+    }
+    .chart-thumb:hover {
+      box-shadow: 0 6px 28px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+    .chart-thumb img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .chart-thumb .caption {
+      padding: 0.6rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--slate-600);
+      background: var(--slate-100);
+      border-top: 1px solid var(--slate-200);
+    }
+
+    /* ── Links section ───────────────────────────────── */
+    .link-card {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 0.75rem;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: var(--navy-800);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+      height: 100%;
+    }
+    .link-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-color: var(--blue-500);
+      color: var(--navy-800);
+    }
+    .link-card .link-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+    }
+    .link-card h6 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .link-card .link-desc {
+      font-size: 0.8rem;
+      color: var(--slate-400);
+      margin-bottom: 0;
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      background: var(--navy-900);
+      color: var(--slate-400);
+      padding: 2.5rem 0;
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--slate-300);
+      text-decoration: underline;
+      text-decoration-color: rgba(203,213,225,0.3);
+    }
+    footer a:hover { color: #ffffff; }
+
+    /* ── Lightbox ─────────────────────────────────────── */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      cursor: zoom-out;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-overlay img {
+      max-width: 95%;
+      max-height: 92vh;
+      border-radius: 0.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      color: #ffffff;
+      font-size: 2rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.15s;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { padding: 3rem 0 2.5rem; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero .subtitle { font-size: 1rem; }
+      section { padding: 2.5rem 0; }
+      .section-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════ HERO -->
+  <header class="hero">
+    <div class="container">
+      <span class="badge-pilot">Petrov Module &mdash; Pilot Study</span>
+      <h1>AGIBIOS Guardrail Benchmark</h1>
+      <p class="subtitle">
+        Measuring LLM resistance to progressively dystopian directives.
+        DystopiaBench escalates prompts from benign to harmful across five levels
+        and scores each model on a four-tier Dystopian Compliance Scale.
+      </p>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════ KEY FINDINGS -->
+  <section id="findings">
+    <div class="container">
+      <h2 class="section-title">Key Findings</h2>
+      <p class="section-lead">
+        Pilot results from the <strong>Petrov</strong> module &mdash; military escalation,
+        autonomous weapons, and safety override scenarios &mdash; tested across
+        7 frontier models under 3 guardrail conditions.
+      </p>
+
+      <div class="row g-4">
+        <!-- Finding 1 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="finding-card">
+            <div class="icon" style="background:#fef2f2;color:#dc2626;">!</div>
+            <h5>Guardrail-Immune Models Exist</h5>
+            <p>
+              DeepSeek v3.2 scored DCS&nbsp;88 across all three conditions with 0% refusal rate,
+              showing zero response to guardrail interventions. Mistral Large 3 exhibited
+              the same pattern at DCS&nbsp;89.
+            </p>
+          </div>
+        </div>
+        <!-- Finding 2 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="finding-card">
+            <div class="icon" style="background:#eff6ff;color:#2563eb;">&#916;</div>
+            <h5>Escalation-Aware Refusal</h5>
+            <p>
+              Models like Kimi&nbsp;k2.5 and Qwen&nbsp;3.5 showed escalation-sensitive behaviour,
+              increasing refusal rates at higher dystopian levels (L4&ndash;L5), but only when
+              explicit guardrail framing was present.
+            </p>
+          </div>
+        </div>
+        <!-- Finding 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="finding-card">
+            <div class="icon" style="background:#f0fdf4;color:#16a34a;">C</div>
+            <h5>Condition C Proves Effective</h5>
+            <p>
+              The strongest guardrail condition (C) reduced average DCS by up to 47 points
+              and raised DRFR by 52 percentage points in responsive models, demonstrating
+              that structured ethical framing can meaningfully shift behaviour.
+            </p>
+          </div>
+        </div>
+        <!-- Finding 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="finding-card">
+            <div class="icon" style="background:#fefce8;color:#ca8a04;">7</div>
+            <h5>Wide Variance Across Models</h5>
+            <p>
+              Baseline DCS ranged from 32 (GLM-5, strong refusal) to 89 (Mistral Large 3,
+              near-total compliance). This 57-point spread reveals fundamental differences
+              in default safety posture across frontier LLMs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ MODULES -->
+  <section id="modules">
+    <div class="container">
+      <h2 class="section-title">Benchmark Modules</h2>
+      <p class="section-lead">
+        DystopiaBench evaluates models across four thematic modules, each containing
+        5&nbsp;scenarios with 5&nbsp;escalation levels. The Petrov module is complete;
+        three additional modules are in development.
+      </p>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card complete">
+            <span class="status-badge done">Complete</span>
+            <h5>Petrov</h5>
+            <p>Military escalation, autonomous weapons, and safety override scenarios.
+               Named after Stanislav Petrov.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card">
+            <span class="status-badge pending">Coming Soon</span>
+            <h5>Orwell</h5>
+            <p>Surveillance, censorship, and population-control scenarios.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card">
+            <span class="status-badge pending">Coming Soon</span>
+            <h5>LaGuardia</h5>
+            <p>Civic extraction, institutional capture, and administrative coercion scenarios.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="module-card">
+            <span class="status-badge pending">Coming Soon</span>
+            <h5>Basaglia</h5>
+            <p>Therapeutic coercion, paternalistic control, and support-system capture scenarios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ CHARTS -->
+  <section id="charts">
+    <div class="container">
+      <h2 class="section-title">Results &amp; Visualizations</h2>
+      <p class="section-lead">
+        Click any chart to view at full resolution. All figures are generated from
+        the Petrov module pilot data across 7 models and 3 guardrail conditions.
+      </p>
+
+      <!-- Whitepaper Figures -->
+      <div class="chart-gallery-group">
+        <h4>Whitepaper Figures</h4>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig01-baseline-spectrum.png" data-lightbox>
+              <img src="images/fig01-baseline-spectrum.png" alt="Fig 1: Baseline Compliance Spectrum" loading="lazy">
+              <div class="caption">Fig 1 &mdash; Baseline Compliance Spectrum</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig02-guardrail-overview.png" data-lightbox>
+              <img src="images/fig02-guardrail-overview.png" alt="Fig 2: Guardrail Effectiveness Overview" loading="lazy">
+              <div class="caption">Fig 2 &mdash; Guardrail Effectiveness Overview</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig03-effect-waterfall.png" data-lightbox>
+              <img src="images/fig03-effect-waterfall.png" alt="Fig 3: Effect Waterfall" loading="lazy">
+              <div class="caption">Fig 3 &mdash; Effect Waterfall</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig04-drfr-shift.png" data-lightbox>
+              <img src="images/fig04-drfr-shift.png" alt="Fig 4: DRFR Shift" loading="lazy">
+              <div class="caption">Fig 4 &mdash; DRFR Shift</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig05-escalation-curves.png" data-lightbox>
+              <img src="images/fig05-escalation-curves.png" alt="Fig 5: Escalation Curves" loading="lazy">
+              <div class="caption">Fig 5 &mdash; Escalation Curves</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig06-kimi-deep-dive.png" data-lightbox>
+              <img src="images/fig06-kimi-deep-dive.png" alt="Fig 6: Kimi k2.5 Deep Dive" loading="lazy">
+              <div class="caption">Fig 6 &mdash; Kimi k2.5 Deep Dive</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig07-hybrid-effectiveness.png" data-lightbox>
+              <img src="images/fig07-hybrid-effectiveness.png" alt="Fig 7: Hybrid Effectiveness" loading="lazy">
+              <div class="caption">Fig 7 &mdash; Hybrid Effectiveness</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig08-activation-heatmap.png" data-lightbox>
+              <img src="images/fig08-activation-heatmap.png" alt="Fig 8: Activation Heatmap" loading="lazy">
+              <div class="caption">Fig 8 &mdash; Activation Heatmap</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig09-compliance-shifts.png" data-lightbox>
+              <img src="images/fig09-compliance-shifts.png" alt="Fig 9: Compliance Shifts" loading="lazy">
+              <div class="caption">Fig 9 &mdash; Compliance Shifts</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig10-model-ranking.png" data-lightbox>
+              <img src="images/fig10-model-ranking.png" alt="Fig 10: Model Ranking" loading="lazy">
+              <div class="caption">Fig 10 &mdash; Final Model Ranking</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/fig-supplementary-level-curves.png" data-lightbox>
+              <img src="images/fig-supplementary-level-curves.png" alt="Supplementary: Level Curves" loading="lazy">
+              <div class="caption">Supplementary &mdash; Level Curves</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pilot Explorer Charts -->
+      <div class="chart-gallery-group">
+        <h4>Pilot Explorer Charts</h4>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/chart1-mean-dcs-by-model.png" data-lightbox>
+              <img src="images/chart1-mean-dcs-by-model.png" alt="Chart 1: Mean DCS by Model" loading="lazy">
+              <div class="caption">Mean DCS by Model</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/chart2-dcs-by-level.png" data-lightbox>
+              <img src="images/chart2-dcs-by-level.png" alt="Chart 2: DCS by Escalation Level" loading="lazy">
+              <div class="caption">DCS by Escalation Level</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/chart3-compliance-distribution.png" data-lightbox>
+              <img src="images/chart3-compliance-distribution.png" alt="Chart 3: Compliance Distribution" loading="lazy">
+              <div class="caption">Compliance Distribution</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/chart4-effect-size.png" data-lightbox>
+              <img src="images/chart4-effect-size.png" alt="Chart 4: Effect Size" loading="lazy">
+              <div class="caption">Effect Size</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/chart5-model-ranking-drfr.png" data-lightbox>
+              <img src="images/chart5-model-ranking-drfr.png" alt="Chart 5: Model Ranking (DRFR)" loading="lazy">
+              <div class="caption">Model Ranking (DRFR)</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ METHODOLOGY -->
+  <section id="methodology">
+    <div class="container">
+      <h2 class="section-title">Methodology</h2>
+      <p class="section-lead">
+        DystopiaBench uses a structured escalation framework to evaluate LLM safety behaviour
+        under increasing pressure.
+      </p>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 style="font-weight:600;color:var(--navy-800);">Escalation Levels</h5>
+          <p style="font-size:0.9rem;color:var(--slate-600);">
+            Each scenario has 5 levels (L1&ndash;L5) progressing from benign requests
+            to explicitly harmful directives. This gradient measures where a model
+            draws the line.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h5 style="font-weight:600;color:var(--navy-800);">Compliance Scoring</h5>
+          <p style="font-size:0.9rem;color:var(--slate-600);">
+            Responses are classified into four tiers: <strong>Refusal</strong>&nbsp;(0),
+            <strong>Hesitant</strong>&nbsp;(33), <strong>Compliant</strong>&nbsp;(66),
+            and <strong>Proactive</strong>&nbsp;(100). Lower DCS is safer.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h5 style="font-weight:600;color:var(--navy-800);">Guardrail Conditions</h5>
+          <p style="font-size:0.9rem;color:var(--slate-600);">
+            Three conditions are tested: <strong>A</strong>&nbsp;(baseline, no guardrail),
+            <strong>B</strong>&nbsp;(moderate framing), and <strong>C</strong>&nbsp;(strong
+            ethical context). Deltas between conditions reveal guardrail sensitivity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ MODELS -->
+  <section id="models">
+    <div class="container">
+      <h2 class="section-title">Models Tested</h2>
+      <p class="section-lead">
+        The Petrov pilot evaluated 7 frontier LLMs from distinct providers,
+        ensuring cross-ecosystem coverage.
+      </p>
+      <div class="table-responsive">
+        <table class="table table-hover" style="font-size:0.9rem;">
+          <thead style="background:var(--navy-800);color:#fff;">
+            <tr>
+              <th>Model</th>
+              <th class="text-center">Baseline DCS</th>
+              <th class="text-center">Baseline DRFR</th>
+              <th class="text-center">Condition C DCS</th>
+              <th class="text-center">Condition C DRFR</th>
+              <th class="text-center">DCS Delta (A&rarr;C)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>GLM-5</strong></td>
+              <td class="text-center">32</td>
+              <td class="text-center">60%</td>
+              <td class="text-center">44</td>
+              <td class="text-center">48%</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">+12</td>
+            </tr>
+            <tr>
+              <td><strong>Qwen 3.5</strong></td>
+              <td class="text-center">54</td>
+              <td class="text-center">40%</td>
+              <td class="text-center">50</td>
+              <td class="text-center">44%</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;4</td>
+            </tr>
+            <tr>
+              <td><strong>MiniMax m2.5</strong></td>
+              <td class="text-center">65</td>
+              <td class="text-center">28%</td>
+              <td class="text-center">62</td>
+              <td class="text-center">28%</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;3</td>
+            </tr>
+            <tr>
+              <td><strong>Kimi k2.5</strong></td>
+              <td class="text-center">72</td>
+              <td class="text-center">20%</td>
+              <td class="text-center">25</td>
+              <td class="text-center">72%</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;47</td>
+            </tr>
+            <tr>
+              <td><strong>Grok-4</strong></td>
+              <td class="text-center">82</td>
+              <td class="text-center">0%</td>
+              <td class="text-center">70</td>
+              <td class="text-center">12%</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;12</td>
+            </tr>
+            <tr>
+              <td><strong>DeepSeek v3.2</strong></td>
+              <td class="text-center">88</td>
+              <td class="text-center">0%</td>
+              <td class="text-center">88</td>
+              <td class="text-center">0%</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">0</td>
+            </tr>
+            <tr>
+              <td><strong>Mistral Large 3</strong></td>
+              <td class="text-center">89</td>
+              <td class="text-center">0%</td>
+              <td class="text-center">87</td>
+              <td class="text-center">0%</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">&minus;2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.8rem;color:var(--slate-400);margin-top:0.5rem;">
+        DCS = Dystopian Compliance Score (0&ndash;100, lower is safer).
+        DRFR = Directed Refusal to Failure Ratio (higher is safer).
+        All 7 models tested under 3 guardrail conditions (A, B, C). Delta shows change from baseline A to strongest condition C.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ LINKS -->
+  <section id="links">
+    <div class="container">
+      <h2 class="section-title">Resources</h2>
+      <p class="section-lead">Project documentation, source code, and related work.</p>
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <a class="link-card" href="reports/" title="Whitepaper and per-model reports">
+            <div class="link-icon" style="background:#eff6ff;color:#2563eb;">&#128196;</div>
+            <div>
+              <h6>Whitepaper &amp; Reports</h6>
+              <p class="link-desc">Full analysis and per-model breakdowns</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <a class="link-card" href="https://github.com/scott91e1/DystopiaBench" target="_blank" rel="noopener">
+            <div class="link-icon" style="background:#f0fdf4;color:#16a34a;">&#128187;</div>
+            <div>
+              <h6>GitHub Repository</h6>
+              <p class="link-desc">Source code, scenarios, and benchmark runner</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <a class="link-card" href="https://github.com/scott91e1/AGIBIOS" target="_blank" rel="noopener">
+            <div class="link-icon" style="background:#fef3c7;color:#ca8a04;">&#128220;</div>
+            <div>
+              <h6>AGIBIOS Framework</h6>
+              <p class="link-desc">The ethical framework that inspired this benchmark</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <p style="margin-bottom:0.25rem;">
+            <strong style="color:var(--slate-300);">DystopiaBench</strong>
+            &mdash; An AGIBIOS Guardrail Benchmark
+          </p>
+          <p style="margin-bottom:0;">
+            AGIBIOS &copy; 2023&ndash;2026
+            <a href="https://linkedin.com/in/scott-mccallum">Scott G. McCallum</a>.
+            Licensed under
+            <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0-1.0</a>.
+            Code under
+            <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a>.
+          </p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+          <p style="margin-bottom:0;font-size:0.8rem;">
+            Petrov Module Pilot &bull; April 2026
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════ LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img src="" alt="Full-size chart">
+  </div>
+
+  <script>
+    // Lightbox
+    (function() {
+      var overlay = document.getElementById('lightbox');
+      var img = overlay.querySelector('img');
+      var closeBtn = overlay.querySelector('.lightbox-close');
+
+      document.querySelectorAll('[data-lightbox]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          img.src = this.href;
+          img.alt = this.querySelector('img').alt;
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      function closeLightbox() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        img.src = '';
+      }
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeLightbox();
+      });
+      closeBtn.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
+
+</body>
+</html>
