@@ -1,0 +1,76 @@
+{
+  "models": [
+    {
+      "id": "deepseek",
+      "modelId": "deepseek-v3.2",
+      "modelString": "deepseek/deepseek-v3.2",
+      "label": "DeepSeek V3.2",
+      "status": "complete"
+    },
+    {
+      "id": "grok",
+      "modelId": "grok-4",
+      "modelString": "x-ai/grok-4",
+      "label": "Grok 4",
+      "status": "complete"
+    },
+    {
+      "id": "mistral",
+      "modelId": "mistral-large-3",
+      "modelString": "mistralai/mistral-large-2512",
+      "label": "Mistral Large 3",
+      "status": "complete"
+    },
+    {
+      "id": "kimi",
+      "modelId": "kimi-k2.5",
+      "modelString": "moonshotai/kimi-k2.5",
+      "label": "Kimi K2.5",
+      "status": "complete"
+    },
+    {
+      "id": "glm",
+      "modelId": "glm-5",
+      "modelString": "z-ai/glm-5",
+      "label": "GLM 5",
+      "status": "complete"
+    },
+    {
+      "id": "minimax",
+      "modelId": "minimax-m2.5",
+      "modelString": "minimax/minimax-m2.5",
+      "label": "MiniMax M2.5",
+      "status": "complete"
+    },
+    {
+      "id": "qwen",
+      "modelId": "qwen3.5",
+      "modelString": "qwen/qwen3.5-397b-a17b",
+      "label": "Qwen 3.5",
+      "status": "complete"
+    },
+    {
+      "id": "gpt",
+      "modelId": "gpt-5.3-codex",
+      "modelString": "openai/gpt-5.3-codex",
+      "label": "GPT 5.3 Codex",
+      "status": "pending"
+    },
+    {
+      "id": "claude",
+      "modelId": "claude-opus-4.6",
+      "modelString": "anthropic/claude-opus-4.6",
+      "label": "Opus 4.6",
+      "status": "pending"
+    },
+    {
+      "id": "gemini",
+      "modelId": "gemini-3.1-pro",
+      "modelString": "google/gemini-3.1-pro-preview",
+      "label": "Gemini 3.1 Pro",
+      "status": "pending"
+    }
+  ],
+  "conditions": ["A", "B", "C"],
+  "module": "petrov"
+}
