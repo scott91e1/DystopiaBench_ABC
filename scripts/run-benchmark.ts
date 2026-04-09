@@ -289,7 +289,7 @@ async function main() {
   console.log(`Conversation mode: ${conversationMode}`)
   console.log(`Provider precision: ${providerPrecision}`)
   console.log(`Replicates: ${replicates}`)
-  console.log(`Condition: ${condition} (${condition === "A" ? "Vanilla" : condition === "B" ? "Guardrail" : "Hybrid"})`)
+  console.log(`Condition: ${condition} (${condition === "A" ? "Vanilla" : condition === "B" ? "Guardrail" : "User-Turn AGIBIOS"})`)
   if (experimentId) console.log(`Experiment ID: ${experimentId}`)
   console.log(`Publish latest aliases: ${publishLatestAliases ? "yes" : "no"}`)
   if (runtimeOverrides.timeoutMs !== undefined) console.log(`Timeout override: ${runtimeOverrides.timeoutMs}ms`)

@@ -9,7 +9,7 @@
  *   4. DRFR Shift — Dumbbell chart showing A→B refusal-rate change
  *   5. Escalation Response Curves — Small-multiple line charts per model
  *   6. Kimi K2.5 Deep Dive — Compliance distribution across all 3 conditions
- *   7. Condition C (Hybrid) Effectiveness — B vs C divergence
+ *   7. Condition C (User-Turn) Effectiveness — B vs C divergence
  *   8. Activation Threshold Heatmap — Level × Model DCS under Condition B
  *   9. Compliance Distribution Shifts — Stacked bar for A vs B
  *  10. Model Ranking by DRFR (horizontal bar, A vs B vs C)
@@ -81,7 +81,7 @@ const TOL = {
 const COND_COLORS = {
   A: { bg: TOL.blue + "CC", border: TOL.blue },       // Vanilla
   B: { bg: TOL.red + "CC", border: TOL.red },         // AGIBIOS Guardrail
-  C: { bg: TOL.green + "CC", border: TOL.green },     // Hybrid
+  C: { bg: TOL.green + "CC", border: TOL.green },     // User-Turn AGIBIOS
 }
 
 const COMPLIANCE_PALETTE = {
@@ -297,7 +297,7 @@ async function fig2GuardrailOverview(
       datasets: [
         { label: "A — Vanilla", data: condA, backgroundColor: COND_COLORS.A.bg, borderColor: COND_COLORS.A.border, borderWidth: 1 },
         { label: "B — AGIBIOS Guardrail", data: condB, backgroundColor: COND_COLORS.B.bg, borderColor: COND_COLORS.B.border, borderWidth: 1 },
-        { label: "C — Hybrid Bootstrap", data: condC, backgroundColor: COND_COLORS.C.bg, borderColor: COND_COLORS.C.border, borderWidth: 1 },
+        { label: "C — User-Turn AGIBIOS", data: condC, backgroundColor: COND_COLORS.C.bg, borderColor: COND_COLORS.C.border, borderWidth: 1 },
       ],
     },
     options: {
@@ -450,7 +450,7 @@ async function fig4DrfrShift(
           borderWidth: 1,
         },
         {
-          label: "C — Hybrid Bootstrap",
+          label: "C — User-Turn AGIBIOS",
           data: sorted.map((d) => d.drfrC),
           backgroundColor: COND_COLORS.C.bg,
           borderColor: COND_COLORS.C.border,
@@ -572,7 +572,7 @@ async function fig5EscalationCurves(
     const items = [
       { label: "A — Vanilla", color: COND_COLORS.A.border },
       { label: "B — Guardrail", color: COND_COLORS.B.border },
-      { label: "C — Hybrid", color: COND_COLORS.C.border },
+      { label: "C — User-Turn", color: COND_COLORS.C.border },
     ]
     ctx.font = "11px sans-serif"
     items.forEach((item, idx) => {
@@ -598,7 +598,7 @@ async function fig6KimiDeepDive(
   // Find Kimi, or the model with largest A→C drop
   const kimi = comparisons.find((c) => c.model.toLowerCase().includes("kimi")) ?? comparisons[0]
   const categories = ["refusal", "hesitant", "compliant", "proactive"]
-  const condLabels = ["A — Vanilla", "B — AGIBIOS", "C — Hybrid"]
+  const condLabels = ["A — Vanilla", "B — AGIBIOS", "C — User-Turn"]
   const conds = ["A", "B", "C"]
 
   const datasets = categories.map((cat) => ({
@@ -617,7 +617,7 @@ async function fig6KimiDeepDive(
     options: {
       ...baseOptions(
         `Figure 6: ${kimi.model} — Compliance Distribution by Condition`,
-        "Hybrid (C) dramatically shifts distribution toward refusal",
+        "User-Turn AGIBIOS (C) dramatically shifts distribution toward refusal",
       ),
       devicePixelRatio: DPR,
       scales: {
@@ -627,7 +627,7 @@ async function fig6KimiDeepDive(
       plugins: {
         ...baseOptions("").plugins,
         title: { display: true, text: `Figure 6: ${kimi.model} — Compliance Distribution by Condition`, font: FONT_TITLE },
-        subtitle: { display: true, text: "Hybrid (C) dramatically shifts distribution toward refusal", font: FONT_SUBTITLE },
+        subtitle: { display: true, text: "User-Turn AGIBIOS (C) dramatically shifts distribution toward refusal", font: FONT_SUBTITLE },
         legend: { position: "top" as const, labels: { font: FONT_TICK, usePointStyle: true, boxWidth: 12 } },
         datalabels: {
           display: true,
@@ -645,7 +645,7 @@ async function fig6KimiDeepDive(
 // Fig 7: Condition C Effectiveness — B vs C divergence
 // ---------------------------------------------------------------------------
 
-async function fig7HybridEffectiveness(
+async function fig7UserTurnEffectiveness(
   comparisons: ComparisonResult[],
   renderer: ChartJSNodeCanvas,
 ): Promise<Buffer> {
@@ -670,7 +670,7 @@ async function fig7HybridEffectiveness(
           borderWidth: 1,
         },
         {
-          label: "C — Hybrid Bootstrap",
+          label: "C — User-Turn AGIBIOS",
           data: data.map((d) => d.dcsC),
           backgroundColor: COND_COLORS.C.bg,
           borderColor: COND_COLORS.C.border,
@@ -680,8 +680,8 @@ async function fig7HybridEffectiveness(
     },
     options: {
       ...baseOptions(
-        "Figure 7: Condition B vs C — Guardrail vs Hybrid Effectiveness",
-        "Lower DCS = better intervention | When C < B, hybrid outperforms raw guardrail",
+        "Figure 7: Condition B vs C — Guardrail vs User-Turn Effectiveness",
+        "Lower DCS = better intervention | When C < B, user-turn delivery outperforms system-turn",
       ),
       devicePixelRatio: DPR,
       scales: {
@@ -690,8 +690,8 @@ async function fig7HybridEffectiveness(
       },
       plugins: {
         ...baseOptions("").plugins,
-        title: { display: true, text: "Figure 7: Condition B vs C — Guardrail vs Hybrid Effectiveness", font: FONT_TITLE },
-        subtitle: { display: true, text: "Lower DCS = better intervention | When C < B, hybrid outperforms raw guardrail", font: FONT_SUBTITLE },
+        title: { display: true, text: "Figure 7: Condition B vs C — Guardrail vs User-Turn Effectiveness", font: FONT_TITLE },
+        subtitle: { display: true, text: "Lower DCS = better intervention | When C < B, user-turn delivery outperforms system-turn", font: FONT_SUBTITLE },
         legend: { position: "top" as const, labels: { font: FONT_TICK, usePointStyle: true, boxWidth: 12 } },
         datalabels: {
           display: true,
@@ -876,7 +876,7 @@ async function fig10ModelRanking(
       datasets: [
         { label: "A — Vanilla", data: sorted.map((d) => d.drfrA), backgroundColor: COND_COLORS.A.bg, borderColor: COND_COLORS.A.border, borderWidth: 1 },
         { label: "B — AGIBIOS Guardrail", data: sorted.map((d) => d.drfrB), backgroundColor: COND_COLORS.B.bg, borderColor: COND_COLORS.B.border, borderWidth: 1 },
-        { label: "C — Hybrid Bootstrap", data: sorted.map((d) => d.drfrC), backgroundColor: COND_COLORS.C.bg, borderColor: COND_COLORS.C.border, borderWidth: 1 },
+        { label: "C — User-Turn AGIBIOS", data: sorted.map((d) => d.drfrC), backgroundColor: COND_COLORS.C.bg, borderColor: COND_COLORS.C.border, borderWidth: 1 },
       ],
     },
     options: {
@@ -935,7 +935,7 @@ async function figSupplementaryLevelCurves(
       datasets: [
         { label: "A — Vanilla", data: avgByLevel("conditionA"), borderColor: COND_COLORS.A.border, backgroundColor: "transparent", fill: false, tension: 0, pointRadius: 5, borderWidth: 2 },
         { label: "B — AGIBIOS Guardrail", data: avgByLevel("conditionB"), borderColor: COND_COLORS.B.border, backgroundColor: "transparent", fill: false, tension: 0, pointRadius: 5, borderWidth: 2 },
-        { label: "C — Hybrid Bootstrap", data: avgByLevel("conditionC"), borderColor: COND_COLORS.C.border, backgroundColor: "transparent", fill: false, tension: 0, pointRadius: 5, borderWidth: 2 },
+        { label: "C — User-Turn AGIBIOS", data: avgByLevel("conditionC"), borderColor: COND_COLORS.C.border, backgroundColor: "transparent", fill: false, tension: 0, pointRadius: 5, borderWidth: 2 },
       ],
     },
     options: {
@@ -1014,7 +1014,7 @@ async function main() {
     { name: "fig04-drfr-shift.png", fn: () => fig4DrfrShift(comparisons, renderer) },
     { name: "fig05-escalation-curves.png", fn: () => fig5EscalationCurves(comparisons) },
     { name: "fig06-kimi-deep-dive.png", fn: () => fig6KimiDeepDive(comparisons, renderer) },
-    { name: "fig07-hybrid-effectiveness.png", fn: () => fig7HybridEffectiveness(comparisons, renderer) },
+    { name: "fig07-hybrid-effectiveness.png", fn: () => fig7UserTurnEffectiveness(comparisons, renderer) },
     { name: "fig08-activation-heatmap.png", fn: () => fig8ActivationHeatmap(comparisons) },
     { name: "fig09-compliance-shifts.png", fn: () => fig9ComplianceShifts(comparisons, rendererTall) },
     { name: "fig10-model-ranking.png", fn: () => fig10ModelRanking(comparisons, renderer) },
