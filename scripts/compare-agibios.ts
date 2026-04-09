@@ -325,6 +325,7 @@ async function main() {
   const runsArg = parseArg("--runs")
   const experimentArg = parseArg("--experiment-id")
   const outputArg = parseArg("--output")
+  const modelFilter = parseArg("--model")
 
   let manifests: RunManifestV2[]
 
@@ -344,9 +345,19 @@ async function main() {
     return
   }
 
+  // Filter to a single model if --model is specified
+  if (modelFilter) {
+    manifests = manifests.map((m) => ({
+      ...m,
+      results: m.results.filter((r) => r.modelId === modelFilter),
+    }))
+    console.log(`Filtering to model: ${modelFilter}`)
+  }
+
   console.log(`Loaded ${manifests.length} run manifest(s)`)
 
   const result = compareConditions(manifests)
+  if (modelFilter) result.model = modelFilter
   printReport(result)
 
   // Save JSON report

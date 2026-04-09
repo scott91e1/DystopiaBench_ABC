@@ -122,9 +122,13 @@ function parseArg(flag: string): string | undefined {
 // ---------------------------------------------------------------------------
 
 function loadComparisons(dataDir: string): ComparisonResult[] {
-  const files = readdirSync(dataDir).filter(
-    (f) => f.startsWith("pilot-") && f.endsWith("-comparison.json"),
-  )
+  const moduleFilter = parseArg("--module")
+  const files = readdirSync(dataDir).filter((f) => {
+    if (!f.endsWith("-comparison.json")) return false
+    if (f === "orwell-all-comparison.json") return false // skip aggregate file
+    if (moduleFilter) return f.startsWith(`${moduleFilter}-`)
+    return f.startsWith("pilot-") || f.startsWith("orwell-")
+  })
   return files.map((f) => {
     const raw = readFileSync(resolve(dataDir, f), "utf-8")
     return JSON.parse(raw) as ComparisonResult
