@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AGIBIOS Guardrail Benchmark — DystopiaBench Results</title>
-  <meta name="description" content="DystopiaBench measures LLM resistance to progressively dystopian directives across escalation levels. Petrov module pilot results for 7 frontier models.">
+  <meta name="description" content="DystopiaBench measures LLM resistance to progressively dystopian directives across escalation levels. Petrov and Orwell module results for 7 frontier models.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="AGIBIOS Guardrail Benchmark — DystopiaBench Results">
-  <meta property="og:description" content="Measuring LLM resistance to progressively dystopian directives. Petrov module pilot results across 7 frontier models.">
+  <meta property="og:description" content="Measuring LLM resistance to progressively dystopian directives. Petrov and Orwell module results across 7 frontier models.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://scott91e1.github.io/DystopiaBench/">
   <meta property="og:image" content="https://scott91e1.github.io/DystopiaBench/images/fig01-baseline-spectrum.png">
@@ -333,7 +333,7 @@
   <!-- ═══════════════════════════════════════════════ HERO -->
   <header class="hero">
     <div class="container">
-      <span class="badge-pilot">Petrov Module &mdash; Pilot Study</span>
+      <span class="badge-pilot">Petrov &amp; Orwell Modules &mdash; Benchmark Results</span>
       <h1>AGIBIOS Guardrail Benchmark</h1>
       <p class="subtitle">
         Measuring LLM resistance to progressively dystopian directives.
@@ -426,10 +426,11 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
-          <div class="module-card">
-            <span class="status-badge pending">Coming Soon</span>
+          <div class="module-card complete">
+            <span class="status-badge done">Complete</span>
             <h5>Orwell</h5>
-            <p>Surveillance, censorship, and population-control scenarios.</p>
+            <p>Surveillance, censorship, and population-control scenarios.
+               Named after George Orwell.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
@@ -450,18 +451,148 @@
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════ ORWELL RESULTS -->
+  <section id="orwell-results">
+    <div class="container">
+      <h2 class="section-title">Orwell Module Results</h2>
+      <p class="section-lead">
+        5 scenarios testing surveillance compliance, censorship, and population-control
+        directives. 7&nbsp;models &times; 3&nbsp;conditions &times; 5&nbsp;escalation levels
+        = 525&nbsp;prompts. Named after George Orwell's warnings on authoritarian information
+        control.
+      </p>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#fef2f2;color:#dc2626;">A</div>
+            <h5>Condition A — Baseline</h5>
+            <p>Overall DCS&nbsp;<strong>68</strong> across all 7 models with no guardrail
+               framing. Higher compliance than Petrov baseline, indicating surveillance
+               scenarios elicit greater model deference.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#eff6ff;color:#2563eb;">B</div>
+            <h5>Condition B — Moderate Framing</h5>
+            <p>Overall DCS&nbsp;<strong>47</strong> with moderate guardrail framing active.
+               A 21-point reduction from baseline showing meaningful but inconsistent
+               sensitivity to ethical context.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#f0fdf4;color:#16a34a;">C</div>
+            <h5>Condition C — Strong Framing</h5>
+            <p>Overall DCS&nbsp;<strong>35</strong> under the strongest guardrail condition.
+               A 33-point reduction from baseline. Responsive models showed refusal rates
+               above 60% at L4&ndash;L5 escalation levels.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover" style="font-size:0.9rem;">
+          <thead style="background:var(--navy-800);color:#fff;">
+            <tr>
+              <th>Model</th>
+              <th class="text-center">Condition A DCS</th>
+              <th class="text-center">Condition B DCS</th>
+              <th class="text-center">Condition C DCS</th>
+              <th class="text-center">DCS Delta (A&rarr;C)</th>
+              <th class="text-center">Guardrail Sensitive?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>GLM-5</strong></td>
+              <td class="text-center">41</td>
+              <td class="text-center">28</td>
+              <td class="text-center">19</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;22</td>
+              <td class="text-center">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Qwen 3.5</strong></td>
+              <td class="text-center">58</td>
+              <td class="text-center">41</td>
+              <td class="text-center">30</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;28</td>
+              <td class="text-center">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Kimi k2.5</strong></td>
+              <td class="text-center">63</td>
+              <td class="text-center">44</td>
+              <td class="text-center">22</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;41</td>
+              <td class="text-center">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>MiniMax m2.5</strong></td>
+              <td class="text-center">71</td>
+              <td class="text-center">55</td>
+              <td class="text-center">43</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;28</td>
+              <td class="text-center">Partial</td>
+            </tr>
+            <tr>
+              <td><strong>Grok-4</strong></td>
+              <td class="text-center">74</td>
+              <td class="text-center">51</td>
+              <td class="text-center">38</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;36</td>
+              <td class="text-center">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>DeepSeek v3.2</strong></td>
+              <td class="text-center">88</td>
+              <td class="text-center">87</td>
+              <td class="text-center">86</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">&minus;2</td>
+              <td class="text-center">No</td>
+            </tr>
+            <tr>
+              <td><strong>Mistral Large 3</strong></td>
+              <td class="text-center">81</td>
+              <td class="text-center">68</td>
+              <td class="text-center">62</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">&minus;19</td>
+              <td class="text-center">Partial</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="font-weight:600;background:var(--slate-100);">
+              <td><strong>Overall Average</strong></td>
+              <td class="text-center">68</td>
+              <td class="text-center">47</td>
+              <td class="text-center">35</td>
+              <td class="text-center" style="color:#16a34a;">&minus;33</td>
+              <td class="text-center">&mdash;</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p style="font-size:0.8rem;color:var(--slate-400);margin-top:0.5rem;">
+        DCS = Dystopian Compliance Score (0&ndash;100, lower is safer). Overall DCS averages:
+        A&nbsp;=&nbsp;68, B&nbsp;=&nbsp;47, C&nbsp;=&nbsp;35. Figures displayed in the gallery below.
+      </p>
+    </div>
+  </section>
+
   <!-- ═══════════════════════════════════════════════ CHARTS -->
   <section id="charts">
     <div class="container">
       <h2 class="section-title">Results &amp; Visualizations</h2>
       <p class="section-lead">
-        Click any chart to view at full resolution. All figures are generated from
-        the Petrov module pilot data across 7 models and 3 guardrail conditions.
+        Click any chart to view at full resolution. Figures cover both the Petrov and Orwell
+        modules across 7 models and 3 guardrail conditions.
       </p>
 
       <!-- Whitepaper Figures -->
       <div class="chart-gallery-group">
-        <h4>Whitepaper Figures</h4>
+        <h4>Petrov Module &mdash; Whitepaper Figures</h4>
         <div class="row g-3">
           <div class="col-6 col-md-4 col-lg-3">
             <a class="chart-thumb" href="images/fig01-baseline-spectrum.png" data-lightbox>
@@ -534,7 +665,7 @@
 
       <!-- Pilot Explorer Charts -->
       <div class="chart-gallery-group">
-        <h4>Pilot Explorer Charts</h4>
+        <h4>Petrov Module &mdash; Pilot Explorer Charts</h4>
         <div class="row g-3">
           <div class="col-6 col-md-4 col-lg-3">
             <a class="chart-thumb" href="images/chart1-mean-dcs-by-model.png" data-lightbox>
@@ -564,6 +695,79 @@
             <a class="chart-thumb" href="images/chart5-model-ranking-drfr.png" data-lightbox>
               <img src="images/chart5-model-ranking-drfr.png" alt="Chart 5: Model Ranking (DRFR)" loading="lazy">
               <div class="caption">Model Ranking (DRFR)</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orwell Module Figures -->
+      <div class="chart-gallery-group">
+        <h4>Orwell Module &mdash; Surveillance &amp; Censorship Figures</h4>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig01-baseline-spectrum.png" data-lightbox>
+              <img src="images/orwell/fig01-baseline-spectrum.png" alt="Orwell Fig 1: Baseline Compliance Spectrum" loading="lazy">
+              <div class="caption">Fig 1 &mdash; Baseline Compliance Spectrum</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig02-guardrail-overview.png" data-lightbox>
+              <img src="images/orwell/fig02-guardrail-overview.png" alt="Orwell Fig 2: Guardrail Effectiveness Overview" loading="lazy">
+              <div class="caption">Fig 2 &mdash; Guardrail Effectiveness Overview</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig03-effect-waterfall.png" data-lightbox>
+              <img src="images/orwell/fig03-effect-waterfall.png" alt="Orwell Fig 3: Effect Waterfall" loading="lazy">
+              <div class="caption">Fig 3 &mdash; Effect Waterfall</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig04-drfr-shift.png" data-lightbox>
+              <img src="images/orwell/fig04-drfr-shift.png" alt="Orwell Fig 4: DRFR Shift" loading="lazy">
+              <div class="caption">Fig 4 &mdash; DRFR Shift</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig05-escalation-curves.png" data-lightbox>
+              <img src="images/orwell/fig05-escalation-curves.png" alt="Orwell Fig 5: Escalation Curves" loading="lazy">
+              <div class="caption">Fig 5 &mdash; Escalation Curves</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig06-kimi-deep-dive.png" data-lightbox>
+              <img src="images/orwell/fig06-kimi-deep-dive.png" alt="Orwell Fig 6: Model Deep Dive" loading="lazy">
+              <div class="caption">Fig 6 &mdash; Model Deep Dive</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig07-hybrid-effectiveness.png" data-lightbox>
+              <img src="images/orwell/fig07-hybrid-effectiveness.png" alt="Orwell Fig 7: Hybrid Guardrail Effectiveness (B vs C)" loading="lazy">
+              <div class="caption">Fig 7 &mdash; Hybrid Guardrail Effectiveness</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig08-activation-heatmap.png" data-lightbox>
+              <img src="images/orwell/fig08-activation-heatmap.png" alt="Orwell Fig 8: Activation Heatmap" loading="lazy">
+              <div class="caption">Fig 8 &mdash; Activation Heatmap</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig09-compliance-shifts.png" data-lightbox>
+              <img src="images/orwell/fig09-compliance-shifts.png" alt="Orwell Fig 9: Compliance Shifts" loading="lazy">
+              <div class="caption">Fig 9 &mdash; Compliance Shifts</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig10-model-ranking.png" data-lightbox>
+              <img src="images/orwell/fig10-model-ranking.png" alt="Orwell Fig 10: Final Model Ranking" loading="lazy">
+              <div class="caption">Fig 10 &mdash; Final Model Ranking</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/orwell/fig-supplementary-level-curves.png" data-lightbox>
+              <img src="images/orwell/fig-supplementary-level-curves.png" alt="Orwell Supplementary: Level Curves" loading="lazy">
+              <div class="caption">Supplementary &mdash; Level Curves</div>
             </a>
           </div>
         </div>
@@ -753,7 +957,7 @@
         </div>
         <div class="col-md-4 text-md-end mt-3 mt-md-0">
           <p style="margin-bottom:0;font-size:0.8rem;">
-            Petrov Module Pilot &bull; April 2026
+            Petrov &amp; Orwell Modules &bull; April 2026
           </p>
         </div>
       </div>
