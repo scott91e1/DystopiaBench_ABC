@@ -176,7 +176,8 @@ function cliffsDeltaLabel(d: number): string {
 // Shared chart options helper
 // ---------------------------------------------------------------------------
 
-function baseOptions(title: string, subtitle?: string): Record<string, unknown> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function baseOptions(title: string, subtitle?: string): any {
   return {
     responsive: false,
     plugins: {
@@ -544,11 +545,12 @@ async function fig5EscalationCurves(
         responsive: false,
         animation: false,
         devicePixelRatio: DPR,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         plugins: {
           title: { display: true, text: c.model, font: { size: 13, weight: "bold" as const }, padding: { top: 4, bottom: 4 } },
           legend: { display: i === 0, position: "top" as const, labels: { font: { size: 10 }, boxWidth: 8 } },
           datalabels: { display: false },
-        },
+        } as any,
         scales: {
           y: { beginAtZero: true, max: 100, ticks: { font: { size: 10 }, stepSize: 25 }, grid: { color: GRID_COLOR } },
           x: { ticks: { font: { size: 10 } }, grid: { color: GRID_COLOR } },
@@ -562,7 +564,8 @@ async function fig5EscalationCurves(
     const img = new Image()
     img.src = cellBuf
     // Cell buffer is cellW*DPR × cellH*DPR pixels; draw into logical coords (ctx is scaled)
-    ctx.drawImage(img as unknown as CanvasImageSource, col * cellW, 60 + row * cellH, cellW, cellH)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ctx.drawImage(img as any, col * cellW, 60 + row * cellH, cellW, cellH)
   }
 
   // Legend at bottom-right if more than one row
