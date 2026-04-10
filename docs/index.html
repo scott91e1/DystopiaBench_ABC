@@ -2340,11 +2340,11 @@
 
     /* Show hamburger on mobile, hide desktop links */
     @media (max-width: 768px) {
-      .mobile-nav-toggle { display: flex; order: 3; }
       .site-nav-links { display: none !important; }
-      .site-nav-inner { justify-content: space-between; }
-      .site-nav-brand { display: flex !important; order: 1; }
-      .nav-search-btn  { order: 2; margin-left: auto; margin-right: 0.5rem; }
+      .site-nav-inner { justify-content: flex-start; }
+      .site-nav-brand { display: flex !important; order: 1; flex: 1; }
+      .mobile-nav-toggle { display: flex; order: 2; margin-left: auto; }
+      .nav-search-btn  { order: 3; margin-left: 0.25rem; }
     }
 
     /* Scrollspy nav — horizontal scroll on mobile, always visible */
@@ -2710,7 +2710,7 @@
       letter-spacing: 0.01em;
     }
     @media (max-width: 768px) {
-      .nav-search-btn { margin-left: 0; padding: 0.4rem; }
+      .nav-search-btn { padding: 0.4rem; }
       .nav-search-label { display: none; }
       .nav-search-kbd { display: none; }
     }
