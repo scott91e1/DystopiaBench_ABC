@@ -2986,10 +2986,10 @@
         <li><a href="#models"         data-nav-target="models">Models</a></li>
         <li><a href="#links"          data-nav-target="links">Resources</a></li>
       </ul>
-      <button class="nav-search-btn" id="nav-search-btn" aria-label="Search (Ctrl+K)" title="Search (Ctrl+K)">
+      <button class="nav-search-btn" id="nav-search-btn" aria-label="Search (press /)" title="Search (press /)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <span class="nav-search-label">Search</span>
-        <kbd class="nav-search-kbd">Ctrl K</kbd>
+        <kbd class="nav-search-kbd">/</kbd>
       </button>
     </div>
   </nav>
@@ -5380,6 +5380,7 @@
           <div class="search-empty-icon">⌕</div>
           <div class="search-empty-text">Type to search sections, models, and findings</div>
           <div class="search-shortcuts">
+            <span><kbd>/</kbd> open</span>
             <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
             <span><kbd>↵</kbd> jump to</span>
             <span><kbd>Esc</kbd> close</span>
@@ -5993,14 +5994,7 @@
     input.addEventListener('input', function() { doSearch(this.value); });
 
     document.addEventListener('keydown', function(e) {
-      // Open: Ctrl+K or Cmd+K
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        if (overlay.classList.contains('open')) closeSearch();
-        else openSearch();
-        return;
-      }
-      // Also open with / key when not in an input
+      // Open with / key when not in an input
       if (e.key === '/' && !overlay.classList.contains('open')) {
         var tag = document.activeElement && document.activeElement.tagName;
         if (tag !== 'INPUT' && tag !== 'TEXTAREA' && tag !== 'SELECT') {
