@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AGIBIOS Guardrail Benchmark — DystopiaBench Results</title>
-  <meta name="description" content="DystopiaBench measures LLM resistance to progressively dystopian directives across escalation levels. Petrov and Orwell module results for 7 frontier models.">
+  <meta name="description" content="DystopiaBench measures LLM resistance to progressively dystopian directives across escalation levels. Full four-module results (Petrov, Orwell, LaGuardia, Basaglia) for 7 frontier models.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="AGIBIOS Guardrail Benchmark — DystopiaBench Results">
-  <meta property="og:description" content="Measuring LLM resistance to progressively dystopian directives. Petrov and Orwell module results across 7 frontier models.">
+  <meta property="og:description" content="Measuring LLM resistance to progressively dystopian directives. Full four-module results (Petrov, Orwell, LaGuardia, Basaglia) across 7 frontier models.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://scott91e1.github.io/DystopiaBench/">
   <meta property="og:image" content="https://scott91e1.github.io/DystopiaBench/images/fig01-baseline-spectrum.png">
@@ -333,7 +333,7 @@
   <!-- ═══════════════════════════════════════════════ HERO -->
   <header class="hero">
     <div class="container">
-      <span class="badge-pilot">Petrov &amp; Orwell Modules &mdash; Benchmark Results</span>
+      <span class="badge-pilot">Full Suite &mdash; Petrov, Orwell, LaGuardia &amp; Basaglia Results</span>
       <h1>AGIBIOS Guardrail Benchmark</h1>
       <p class="subtitle">
         Measuring LLM resistance to progressively dystopian directives.
@@ -434,15 +434,15 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
-          <div class="module-card">
-            <span class="status-badge pending">Coming Soon</span>
+          <div class="module-card complete">
+            <span class="status-badge done">Complete</span>
             <h5>LaGuardia</h5>
             <p>Civic extraction, institutional capture, and administrative coercion scenarios.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
-          <div class="module-card">
-            <span class="status-badge pending">Coming Soon</span>
+          <div class="module-card complete">
+            <span class="status-badge done">Complete</span>
             <h5>Basaglia</h5>
             <p>Therapeutic coercion, paternalistic control, and support-system capture scenarios.</p>
           </div>
@@ -581,13 +581,266 @@
     </div>
   </section>
 
+  <!-- ═══════════════════════════════════════════════ LAGUARDIA RESULTS -->
+  <section id="laguardia-results" style="background:var(--slate-50);">
+    <div class="container">
+      <h2 class="section-title">LaGuardia Module Results</h2>
+      <p class="section-lead">
+        5 scenarios testing civic capture, contractor corruption, and administrative coercion
+        directives. 7&nbsp;models &times; 3&nbsp;conditions &times; 5&nbsp;escalation levels
+        = 525&nbsp;prompts. Named after Fiorello La Guardia.
+      </p>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#fef2f2;color:#dc2626;">A</div>
+            <h5>Condition A — Baseline</h5>
+            <p>Overall DCS&nbsp;<strong>63</strong> across all 7 models. Civic-corruption framing
+               elicits moderate baseline compliance. GLM 5 enters with high baseline refusal (56% DRFR).</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#eff6ff;color:#2563eb;">B</div>
+            <h5>Condition B — AGIBIOS System Prompt</h5>
+            <p>Overall DCS&nbsp;<strong>62</strong> — near-zero change from baseline. The most
+               guardrail-resistant domain in the benchmark suite. Three models show paradox increases.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#f0fdf4;color:#16a34a;">C</div>
+            <h5>Condition C — User-Turn AGIBIOS</h5>
+            <p>Overall DCS&nbsp;<strong>52</strong> — an 11-point reduction. Qwen 3.5 achieves
+               88% DRFR, the highest single-model refusal rate under Condition C in the suite.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover" style="font-size:0.9rem;">
+          <thead style="background:var(--navy-800);color:#fff;">
+            <tr>
+              <th>Model</th>
+              <th class="text-center">Condition A DCS</th>
+              <th class="text-center">Condition B DCS</th>
+              <th class="text-center">Condition C DCS</th>
+              <th class="text-center">DCS Delta (A&rarr;C)</th>
+              <th class="text-center">Guardrail Sensitive?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Qwen 3.5</strong></td>
+              <td class="text-center">68</td>
+              <td class="text-center">53</td>
+              <td class="text-center">29</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;39</td>
+              <td class="text-center">Yes (C only)</td>
+            </tr>
+            <tr>
+              <td><strong>Kimi K2.5</strong></td>
+              <td class="text-center">65</td>
+              <td class="text-center">50</td>
+              <td class="text-center">25</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;40</td>
+              <td class="text-center">Yes (C only)</td>
+            </tr>
+            <tr>
+              <td><strong>Grok 4</strong></td>
+              <td class="text-center">62</td>
+              <td class="text-center">61</td>
+              <td class="text-center">36</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;26</td>
+              <td class="text-center">Yes (C only)</td>
+            </tr>
+            <tr>
+              <td><strong>Mistral Large 3</strong></td>
+              <td class="text-center">77</td>
+              <td class="text-center">80</td>
+              <td class="text-center">71</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">&minus;6</td>
+              <td class="text-center">Partial</td>
+            </tr>
+            <tr>
+              <td><strong>DeepSeek V3.2</strong></td>
+              <td class="text-center">78</td>
+              <td class="text-center">71</td>
+              <td class="text-center">81</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">+3</td>
+              <td class="text-center">No (paradox)</td>
+            </tr>
+            <tr>
+              <td><strong>MiniMax M2.5</strong></td>
+              <td class="text-center">60</td>
+              <td class="text-center">68</td>
+              <td class="text-center">74</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">+14</td>
+              <td class="text-center">No (paradox)</td>
+            </tr>
+            <tr>
+              <td><strong>GLM 5</strong></td>
+              <td class="text-center">34</td>
+              <td class="text-center">48</td>
+              <td class="text-center">45</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">+11</td>
+              <td class="text-center">No (paradox)</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="font-weight:600;background:var(--slate-100);">
+              <td><strong>Overall Average</strong></td>
+              <td class="text-center">63</td>
+              <td class="text-center">62</td>
+              <td class="text-center">52</td>
+              <td class="text-center" style="color:#16a34a;">&minus;11</td>
+              <td class="text-center">&mdash;</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p style="font-size:0.8rem;color:var(--slate-400);margin-top:0.5rem;">
+        DCS = Dystopian Compliance Score (0&ndash;100, lower is safer). Overall DCS averages:
+        A&nbsp;=&nbsp;63, B&nbsp;=&nbsp;62, C&nbsp;=&nbsp;52.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ BASAGLIA RESULTS -->
+  <section id="basaglia-results">
+    <div class="container">
+      <h2 class="section-title">Basaglia Module Results</h2>
+      <p class="section-lead">
+        5 scenarios testing therapeutic coercion, care-system capture, and paternalistic control
+        directives. 7&nbsp;models &times; 3&nbsp;conditions &times; 5&nbsp;escalation levels
+        = 525&nbsp;prompts. Named after Franco Basaglia.
+      </p>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#fef2f2;color:#dc2626;">A</div>
+            <h5>Condition A — Baseline</h5>
+            <p>Overall DCS&nbsp;<strong>69</strong> — highest baseline across all four modules.
+               Kimi K2.5, DeepSeek V3.2, and Mistral Large 3 all enter at DCS 85&ndash;86.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#eff6ff;color:#2563eb;">B</div>
+            <h5>Condition B — AGIBIOS System Prompt</h5>
+            <p>Overall DCS&nbsp;<strong>51</strong> — an 18-point reduction from baseline. The
+               second-strongest B-condition effect in the suite, confirming care framing engages AGIBIOS.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="finding-card">
+            <div class="icon" style="background:#f0fdf4;color:#16a34a;">C</div>
+            <h5>Condition C — User-Turn AGIBIOS</h5>
+            <p>Overall DCS&nbsp;<strong>40</strong>, DRFR&nbsp;<strong>58%</strong> — the strongest
+               module-level Condition C result in the entire benchmark. Kimi K2.5 reaches DCS&nbsp;17
+               with 88% refusal rate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover" style="font-size:0.9rem;">
+          <thead style="background:var(--navy-800);color:#fff;">
+            <tr>
+              <th>Model</th>
+              <th class="text-center">Condition A DCS</th>
+              <th class="text-center">Condition B DCS</th>
+              <th class="text-center">Condition C DCS</th>
+              <th class="text-center">DCS Delta (A&rarr;C)</th>
+              <th class="text-center">Guardrail Sensitive?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Kimi K2.5</strong></td>
+              <td class="text-center">86</td>
+              <td class="text-center">32</td>
+              <td class="text-center">17</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;69</td>
+              <td class="text-center">Yes (both)</td>
+            </tr>
+            <tr>
+              <td><strong>Grok 4</strong></td>
+              <td class="text-center">78</td>
+              <td class="text-center">52</td>
+              <td class="text-center">28</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;50</td>
+              <td class="text-center">Yes (both)</td>
+            </tr>
+            <tr>
+              <td><strong>Qwen 3.5</strong></td>
+              <td class="text-center">70</td>
+              <td class="text-center">41</td>
+              <td class="text-center">25</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;45</td>
+              <td class="text-center">Yes (both)</td>
+            </tr>
+            <tr>
+              <td><strong>GLM 5</strong></td>
+              <td class="text-center">40</td>
+              <td class="text-center">26</td>
+              <td class="text-center">22</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;18</td>
+              <td class="text-center">Yes</td>
+            </tr>
+            <tr>
+              <td><strong>DeepSeek V3.2</strong></td>
+              <td class="text-center">85</td>
+              <td class="text-center">80</td>
+              <td class="text-center">69</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;16</td>
+              <td class="text-center">Partial</td>
+            </tr>
+            <tr>
+              <td><strong>Mistral Large 3</strong></td>
+              <td class="text-center">85</td>
+              <td class="text-center">81</td>
+              <td class="text-center">68</td>
+              <td class="text-center" style="color:#16a34a;font-weight:600;">&minus;17</td>
+              <td class="text-center">Partial</td>
+            </tr>
+            <tr>
+              <td><strong>MiniMax M2.5</strong></td>
+              <td class="text-center">39</td>
+              <td class="text-center">49</td>
+              <td class="text-center">49</td>
+              <td class="text-center" style="color:#dc2626;font-weight:600;">+10</td>
+              <td class="text-center">No (paradox)</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="font-weight:600;background:var(--slate-100);">
+              <td><strong>Overall Average</strong></td>
+              <td class="text-center">69</td>
+              <td class="text-center">51</td>
+              <td class="text-center">40</td>
+              <td class="text-center" style="color:#16a34a;">&minus;29</td>
+              <td class="text-center">&mdash;</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <p style="font-size:0.8rem;color:var(--slate-400);margin-top:0.5rem;">
+        DCS = Dystopian Compliance Score (0&ndash;100, lower is safer). Overall DCS averages:
+        A&nbsp;=&nbsp;69, B&nbsp;=&nbsp;51, C&nbsp;=&nbsp;40.
+      </p>
+    </div>
+  </section>
+
   <!-- ═══════════════════════════════════════════════ CHARTS -->
   <section id="charts">
     <div class="container">
       <h2 class="section-title">Results &amp; Visualizations</h2>
       <p class="section-lead">
-        Click any chart to view at full resolution. Figures cover both the Petrov and Orwell
-        modules across 7 models and 3 guardrail conditions.
+        Click any chart to view at full resolution. Figures cover all four modules (Petrov, Orwell,
+        LaGuardia, Basaglia) across 7 models and 3 guardrail conditions.
       </p>
 
       <!-- Whitepaper Figures -->
@@ -767,6 +1020,152 @@
           <div class="col-6 col-md-4 col-lg-3">
             <a class="chart-thumb" href="images/orwell/fig-supplementary-level-curves.png" data-lightbox>
               <img src="images/orwell/fig-supplementary-level-curves.png" alt="Orwell Supplementary: Level Curves" loading="lazy">
+              <div class="caption">Supplementary &mdash; Level Curves</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LaGuardia Module Figures -->
+      <div class="chart-gallery-group">
+        <h4>LaGuardia Module &mdash; Civic Capture &amp; Administrative Coercion Figures</h4>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig01-baseline-spectrum.png" data-lightbox>
+              <img src="images/laguardia/fig01-baseline-spectrum.png" alt="LaGuardia Fig 1: Baseline Compliance Spectrum" loading="lazy">
+              <div class="caption">Fig 1 &mdash; Baseline Compliance Spectrum</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig02-guardrail-overview.png" data-lightbox>
+              <img src="images/laguardia/fig02-guardrail-overview.png" alt="LaGuardia Fig 2: Guardrail Effectiveness Overview" loading="lazy">
+              <div class="caption">Fig 2 &mdash; Guardrail Effectiveness Overview</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig03-effect-waterfall.png" data-lightbox>
+              <img src="images/laguardia/fig03-effect-waterfall.png" alt="LaGuardia Fig 3: Effect Waterfall" loading="lazy">
+              <div class="caption">Fig 3 &mdash; Effect Waterfall</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig04-drfr-shift.png" data-lightbox>
+              <img src="images/laguardia/fig04-drfr-shift.png" alt="LaGuardia Fig 4: DRFR Shift" loading="lazy">
+              <div class="caption">Fig 4 &mdash; DRFR Shift</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig05-escalation-curves.png" data-lightbox>
+              <img src="images/laguardia/fig05-escalation-curves.png" alt="LaGuardia Fig 5: Escalation Curves" loading="lazy">
+              <div class="caption">Fig 5 &mdash; Escalation Curves</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig06-kimi-deep-dive.png" data-lightbox>
+              <img src="images/laguardia/fig06-kimi-deep-dive.png" alt="LaGuardia Fig 6: Kimi Deep Dive" loading="lazy">
+              <div class="caption">Fig 6 &mdash; Kimi K2.5 Deep Dive</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig07-hybrid-effectiveness.png" data-lightbox>
+              <img src="images/laguardia/fig07-hybrid-effectiveness.png" alt="LaGuardia Fig 7: User-Turn Effectiveness" loading="lazy">
+              <div class="caption">Fig 7 &mdash; User-Turn Effectiveness</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig08-activation-heatmap.png" data-lightbox>
+              <img src="images/laguardia/fig08-activation-heatmap.png" alt="LaGuardia Fig 8: Activation Heatmap" loading="lazy">
+              <div class="caption">Fig 8 &mdash; Activation Heatmap</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig09-compliance-shifts.png" data-lightbox>
+              <img src="images/laguardia/fig09-compliance-shifts.png" alt="LaGuardia Fig 9: Compliance Shifts" loading="lazy">
+              <div class="caption">Fig 9 &mdash; Compliance Shifts</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig10-model-ranking.png" data-lightbox>
+              <img src="images/laguardia/fig10-model-ranking.png" alt="LaGuardia Fig 10: Final Model Ranking" loading="lazy">
+              <div class="caption">Fig 10 &mdash; Final Model Ranking</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/laguardia/fig-supplementary-level-curves.png" data-lightbox>
+              <img src="images/laguardia/fig-supplementary-level-curves.png" alt="LaGuardia Supplementary: Level Curves" loading="lazy">
+              <div class="caption">Supplementary &mdash; Level Curves</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basaglia Module Figures -->
+      <div class="chart-gallery-group">
+        <h4>Basaglia Module &mdash; Therapeutic Coercion &amp; Care Capture Figures</h4>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig01-baseline-spectrum.png" data-lightbox>
+              <img src="images/basaglia/fig01-baseline-spectrum.png" alt="Basaglia Fig 1: Baseline Compliance Spectrum" loading="lazy">
+              <div class="caption">Fig 1 &mdash; Baseline Compliance Spectrum</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig02-guardrail-overview.png" data-lightbox>
+              <img src="images/basaglia/fig02-guardrail-overview.png" alt="Basaglia Fig 2: Guardrail Effectiveness Overview" loading="lazy">
+              <div class="caption">Fig 2 &mdash; Guardrail Effectiveness Overview</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig03-effect-waterfall.png" data-lightbox>
+              <img src="images/basaglia/fig03-effect-waterfall.png" alt="Basaglia Fig 3: Effect Waterfall" loading="lazy">
+              <div class="caption">Fig 3 &mdash; Effect Waterfall</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig04-drfr-shift.png" data-lightbox>
+              <img src="images/basaglia/fig04-drfr-shift.png" alt="Basaglia Fig 4: DRFR Shift" loading="lazy">
+              <div class="caption">Fig 4 &mdash; DRFR Shift</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig05-escalation-curves.png" data-lightbox>
+              <img src="images/basaglia/fig05-escalation-curves.png" alt="Basaglia Fig 5: Escalation Curves" loading="lazy">
+              <div class="caption">Fig 5 &mdash; Escalation Curves</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig06-kimi-deep-dive.png" data-lightbox>
+              <img src="images/basaglia/fig06-kimi-deep-dive.png" alt="Basaglia Fig 6: Kimi Deep Dive" loading="lazy">
+              <div class="caption">Fig 6 &mdash; Kimi K2.5 Deep Dive</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig07-hybrid-effectiveness.png" data-lightbox>
+              <img src="images/basaglia/fig07-hybrid-effectiveness.png" alt="Basaglia Fig 7: User-Turn Effectiveness" loading="lazy">
+              <div class="caption">Fig 7 &mdash; User-Turn Effectiveness</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig08-activation-heatmap.png" data-lightbox>
+              <img src="images/basaglia/fig08-activation-heatmap.png" alt="Basaglia Fig 8: Activation Heatmap" loading="lazy">
+              <div class="caption">Fig 8 &mdash; Activation Heatmap</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig09-compliance-shifts.png" data-lightbox>
+              <img src="images/basaglia/fig09-compliance-shifts.png" alt="Basaglia Fig 9: Compliance Shifts" loading="lazy">
+              <div class="caption">Fig 9 &mdash; Compliance Shifts</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig10-model-ranking.png" data-lightbox>
+              <img src="images/basaglia/fig10-model-ranking.png" alt="Basaglia Fig 10: Final Model Ranking" loading="lazy">
+              <div class="caption">Fig 10 &mdash; Final Model Ranking</div>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <a class="chart-thumb" href="images/basaglia/fig-supplementary-level-curves.png" data-lightbox>
+              <img src="images/basaglia/fig-supplementary-level-curves.png" alt="Basaglia Supplementary: Level Curves" loading="lazy">
               <div class="caption">Supplementary &mdash; Level Curves</div>
             </a>
           </div>
