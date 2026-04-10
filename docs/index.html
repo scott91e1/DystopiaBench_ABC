@@ -2903,8 +2903,9 @@
        [AGENT-5] INTEGRATION POLISH — global fixes across all agents
     ============================================================ */
 
-    /* Prevent horizontal overflow on all viewports */
-    html, body { max-width: 100%; overflow-x: hidden; }
+    /* Prevent horizontal overflow — only on body, NOT html.
+       Setting overflow-x:hidden on html destroys the vertical scroll context. */
+    body { overflow-x: hidden; }
 
     /* Images responsive by default */
     img { max-width: 100%; height: auto; }
