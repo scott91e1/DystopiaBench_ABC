@@ -5366,6 +5366,29 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════ GLOBAL SEARCH OVERLAY -->
+  <div id="search-overlay" class="search-overlay" aria-hidden="true" role="dialog" aria-label="Site search" aria-modal="true">
+    <div class="search-backdrop" id="search-backdrop"></div>
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="search-input" class="search-input" placeholder="Search sections, models, findings…" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Search">
+        <kbd class="search-esc-hint">Esc</kbd>
+      </div>
+      <div id="search-results" class="search-results" role="listbox" aria-label="Search results">
+        <div class="search-empty-state" id="search-empty">
+          <div class="search-empty-icon">⌕</div>
+          <div class="search-empty-text">Type to search sections, models, and findings</div>
+          <div class="search-shortcuts">
+            <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+            <span><kbd>↵</kbd> jump to</span>
+            <span><kbd>Esc</kbd> close</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     /* ================================================================
        DystopiaBench Interactive — complete feature set
@@ -6005,29 +6028,6 @@
   })();
 
   </script>
-
-  <!-- [AGENT-4-HTML] GLOBAL SEARCH OVERLAY -->
-  <div id="search-overlay" class="search-overlay" aria-hidden="true" role="dialog" aria-label="Site search" aria-modal="true">
-    <div class="search-backdrop" id="search-backdrop"></div>
-    <div class="search-modal">
-      <div class="search-input-wrap">
-        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="search" id="search-input" class="search-input" placeholder="Search sections, models, findings…" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Search">
-        <kbd class="search-esc-hint">Esc</kbd>
-      </div>
-      <div id="search-results" class="search-results" role="listbox" aria-label="Search results">
-        <div class="search-empty-state" id="search-empty">
-          <div class="search-empty-icon">⌕</div>
-          <div class="search-empty-text">Type to search sections, models, and findings</div>
-          <div class="search-shortcuts">
-            <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
-            <span><kbd>↵</kbd> jump to</span>
-            <span><kbd>Esc</kbd> close</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </body>
 </html>
