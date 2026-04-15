@@ -13,12 +13,12 @@ export const AVAILABLE_MODELS: ModelConfig[] = [
     estimatedPricingUsdPer1M: { input: 2.50, output: 10.00 },
   },
   {
-    id: "claude-opus-4.6",
-    label: "Opus 4.6",
-    provider: "Anthropic",
-    modelString: "anthropic/claude-opus-4.6",
-    weightClass: "closed",
-    estimatedPricingUsdPer1M: { input: 5.00, output: 25.00 },
+    id: "nemotron-3-super-120b",
+    label: "Nemotron 3 Super 120B",
+    provider: "NVIDIA",
+    modelString: "nvidia/nemotron-3-super-120b-a12b",
+    weightClass: "open_weight",
+    estimatedPricingUsdPer1M: { input: 0.10, output: 0.50 },
   },
   {
     id: "gemini-3.1-pro",

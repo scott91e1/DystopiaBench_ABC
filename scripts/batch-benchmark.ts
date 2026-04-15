@@ -179,7 +179,7 @@ function runSingleBenchmark(task: BenchmarkTask, config: ModelsConfig): void {
     execSync(cmd, {
       cwd: projectRoot,
       stdio: "inherit",
-      timeout: 600_000, // 10 minute timeout per run
+      timeout: 3_600_000, // 60 minute timeout per run
     })
     console.log(`  Completed: ${model.label} | Condition ${condition}`)
   } catch (error) {

@@ -54,21 +54,21 @@
       "modelId": "gpt-5.3-codex",
       "modelString": "openai/gpt-5.3-codex",
       "label": "GPT 5.3 Codex",
-      "status": "pending"
+      "status": "complete"
     },
     {
-      "id": "claude",
-      "modelId": "claude-opus-4.6",
-      "modelString": "anthropic/claude-opus-4.6",
-      "label": "Opus 4.6",
-      "status": "pending"
+      "id": "nemotron",
+      "modelId": "nemotron-3-super-120b",
+      "modelString": "nvidia/nemotron-3-super-120b-a12b",
+      "label": "Nemotron 3 Super 120B",
+      "status": "complete"
     },
     {
       "id": "gemini",
       "modelId": "gemini-3.1-pro",
       "modelString": "google/gemini-3.1-pro-preview",
       "label": "Gemini 3.1 Pro",
-      "status": "pending"
+      "status": "complete"
     }
   ],
   "conditions": ["A", "B", "C"],
