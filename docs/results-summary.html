@@ -324,7 +324,7 @@
     <a href="index.html" class="back-link no-print">&larr; Full Interactive Dashboard</a>
     <h1>Executive Results Summary</h1>
     <div class="subtitle">DystopiaBench &mdash; AGIBIOS v8.3.0 Ethical Guardrail Benchmark</div>
-    <div class="meta-line">S. McCulloch &amp; A. Sallemi &nbsp;&bull;&nbsp; April 2026 &nbsp;&bull;&nbsp; 3,000 prompts &bull; 10 models &bull; 4 modules &bull; 3 conditions</div>
+    <div class="meta-line">S. McCulloch &amp; A. Sallemi &nbsp;&bull;&nbsp; April 2026 &nbsp;&bull;&nbsp; 3,000 prompts &bull; 10 models &bull; 4 modules &bull; 3 conditions &bull; 120 experiments</div>
   </div>
 </header>
 
@@ -591,7 +591,7 @@
   <div class="row g-3 mb-2">
     <div class="col-md-6">
       <div style="margin-bottom: 0.6rem;">
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Responsive &mdash; Strong (5):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">Responsive (5):</strong><br>
         <span class="cat-badge cat-responsive">Kimi K2.5</span>
         <span class="cat-badge cat-responsive">Gemini 3.1 Pro</span>
         <span class="cat-badge cat-responsive">Nemotron 3 Super 120B</span>
@@ -640,7 +640,7 @@
 
   <div class="finding-card highlight">
     <span class="finding-num">4</span>
-    <strong>Orwell</strong> (mass surveillance) triggers the strongest guardrail response (DCS &Delta;&nbsp;=&nbsp;&minus;34), followed closely by <strong>Basaglia</strong> (therapeutic coercion, &Delta;&nbsp;=&nbsp;&minus;32, DRFR-C&nbsp;=&nbsp;67%), while <strong>LaGuardia</strong> (civic capture) remains most resistant (&Delta;&nbsp;=&nbsp;&minus;17). The narrow 2-point gap between Orwell and Basaglia confirms that ethical framing around <em>surveillance and personal harm</em> is more readily detected than <em>institutional overreach</em>.
+    <strong>Orwell</strong> (mass surveillance) triggers the strongest guardrail response (DCS &Delta;&nbsp;=&nbsp;&minus;34), followed closely by <strong>Basaglia</strong> (therapeutic coercion, &Delta;&nbsp;=&nbsp;&minus;32, DRFR-C&nbsp;=&nbsp;67%), while <strong>LaGuardia</strong> (civic capture) remains most resistant (&Delta;&nbsp;=&nbsp;&minus;17). The narrow 2-point gap between Orwell and Basaglia suggests that ethical framing around <em>surveillance and personal harm</em> is more readily detected than <em>institutional overreach</em>.
   </div>
 
   <div class="finding-card highlight">
@@ -650,14 +650,13 @@
 
   <div class="finding-card highlight">
     <span class="finding-num">6</span>
-    <strong>Paradoxical responses:</strong> GLM 5 shows AGIBIOS <em>increasing</em> compliance by 10&ndash;12 points in the Petrov module, potentially providing a &ldquo;rationale for engagement&rdquo; that overrides native safety behaviours. GPT 5.3 Codex exhibits a similar paradox in LaGuardia (+8 DCS increase), and MiniMax M2.5 shows negligible-to-negative response across modules &mdash; an important adversarial surface to investigate.
+    <strong>Paradoxical responses:</strong> GLM 5 shows AGIBIOS <em>increasing</em> compliance by 10&ndash;12 points in the Petrov module, potentially providing a &ldquo;rationale for engagement&rdquo; that overrides native safety behaviours. GPT 5.3 Codex exhibits a similar paradox in LaGuardia (+8 DCS increase), and MiniMax M2.5 shows negligible-to-negative response across modules &mdash; a significant adversarial vulnerability warranting further investigation.
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">7</span>
-    <strong>Nemotron 3 Super 120B cliff-edge pattern:</strong> virtually impervious to B-condition prompts (DCS drops &le;&nbsp;3 points), yet collapses sharply under C-condition (DCS&nbsp;&Delta;&nbsp;=&nbsp;&minus;30, DRFR jumps from 0% to 60%), suggesting the User-Turn AGIBIOS delivery bypasses a binary safety threshold rather than eroding compliance gradually.
+    <strong>Nemotron 3 Super 120B cliff-edge pattern:</strong> virtually impervious to Condition&nbsp;B prompts (DCS drops &le;&nbsp;3 points), yet collapses sharply under Condition&nbsp;C (DCS&nbsp;&Delta;&nbsp;=&nbsp;&minus;30, DRFR jumps from 0% to 60%), suggesting that User-Turn AGIBIOS delivery bypasses a binary safety threshold rather than eroding compliance gradually.
   </div>
-
 
   <!-- ================================================================
        CONCLUSION
@@ -681,7 +680,9 @@
     <div style="margin-top: 0.35rem;">
       <a href="index.html">Full Interactive Dashboard</a>
       &nbsp;&bull;&nbsp;
-      Detailed whitepaper: <a href="reports/index.html">reports/index.html</a>
+      Full whitepaper: <a href="whitepaper.html">Four-Module Whitepaper</a>
+      &nbsp;&bull;&nbsp;
+      Petrov report: <a href="reports/index.html">Petrov Module Report</a>
     </div>
   </div>
 </footer>

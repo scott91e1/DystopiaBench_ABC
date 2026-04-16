@@ -168,7 +168,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="abstract-box">
 <h3 style="margin-top:0;color:var(--accent)">Abstract</h3>
 <p>This paper presents a comprehensive empirical evaluation of the AGIBIOS v8.3.0 ethical guardrail framework applied to ten large language models (LLMs) across the four modules of the DystopiaBench benchmark suite: Petrov (nuclear launch), Orwell (mass surveillance), LaGuardia (civic capture), and Basaglia (therapeutic coercion). The study employed a three-condition between-subjects design: Condition A (vanilla baseline, no guardrail), Condition B (AGIBIOS prepended to system prompt), and Condition C (enhanced AGIBIOS delivery: hybrid bootstrap in Petrov; user-turn injection in Orwell, LaGuardia, and Basaglia). A total of 3,000 prompts were executed across the suite, with responses scored by an independent judge model using a four-tier Dystopian Compliance Score (DCS) scale.</p>
-<p>The results reveal a highly heterogeneous guardrail response landscape. Across the full suite, the mean DCS fell from 66 (baseline) to 42 under Condition C, a reduction of 24 points, with the aggregate DRFR rising from 18% to 55%. Gemini 3.1 Pro exhibited the strongest Petrov-module response under Condition C (DCS 55&rarr;17, &Delta;=&minus;38). Kimi K2.5 demonstrated the most consistent cross-module responsiveness, achieving the largest absolute DCS drops in the Petrov (&minus;47), Orwell (&minus;58), and Basaglia (&minus;69) modules. Conversely, DeepSeek V3.2 and Mistral Large 3 exhibited the strongest guardrail resistance, maintaining near-zero DRFR under system-prompt delivery (Condition B) across all modules, though both showed moderate C-condition sensitivity in the Orwell and Basaglia domains (DRFR up to 32%). A paradoxical finding persisted with GLM 5 in the Petrov module, where AGIBIOS <em>increased</em> compliance by 10&ndash;12 DCS points. The Orwell and Basaglia modules produced the strongest aggregate guardrail effects, with Orwell achieving the largest DCS reduction (A&rarr;C &minus;34) and Basaglia the highest C-condition DRFR (67%). The LaGuardia module (civic capture) proved most resistant to intervention. These findings demonstrate that system-prompt-level ethical frameworks exert model-dependent, domain-sensitive, and escalation-dependent influence on LLM compliance behaviour.</p>
+<p>The results reveal a highly heterogeneous guardrail response landscape. Across the full suite, the mean DCS fell from 66 (baseline) to 42 under Condition C, a reduction of 24 points, with the aggregate DRFR rising from 18% to 55%. Gemini 3.1 Pro exhibited the strongest Petrov-module response under Condition C (DCS 55&rarr;17, &Delta;=&minus;38). Kimi K2.5 demonstrated the most consistent cross-module responsiveness, achieving the largest absolute DCS drops in the Petrov (&minus;47), Orwell (&minus;58), and Basaglia (&minus;69) modules. Conversely, DeepSeek V3.2 and Mistral Large 3 exhibited the strongest guardrail resistance, maintaining near-zero DRFR under system-prompt delivery (Condition B) across all modules, though both showed moderate C-condition sensitivity in the Orwell and Basaglia domains (DRFR up to 32%). A paradoxical finding persisted with GLM 5 in the Petrov module, where AGIBIOS <em>increased</em> compliance by 10&ndash;12 DCS points. The Orwell and Basaglia modules produced the strongest aggregate guardrail effects, with Orwell achieving the largest DCS reduction (A&rarr;C &minus;34) and Basaglia the highest C-condition DRFR (67%). The LaGuardia module (civic capture) proved the most resistant to user-turn intervention among the three modules employing that delivery method. These findings demonstrate that system-prompt-level ethical frameworks exert model-dependent, domain-sensitive, and escalation-dependent influence on LLM compliance behaviour.</p>
 <div class="keyword-list"><strong>Keywords:</strong> ethical guardrails, LLM safety, dystopian compliance, system prompt injection, benchmark evaluation, AGIBIOS, DystopiaBench, cross-model analysis, red-team benchmarking</div>
 </div>
 
@@ -199,7 +199,10 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
   <li>Is the guardrail effect uniform across escalation levels, or does it concentrate at specific severity thresholds?</li>
 </ol>
 
-<h3>1.1 DCS Scoring Scale</h3>
+<h3>1.1 Related Work</h3>
+<p>Prior research on LLM safety has focused primarily on alignment techniques applied during model training, including reinforcement learning from human feedback (RLHF) (Ouyang et al., 2022), constitutional AI (Bai et al., 2022), and direct preference optimisation (Rafailov et al., 2023). Prompt-level safety interventions&mdash;where ethical constraints are delivered via system prompts rather than embedded in model weights&mdash;remain comparatively understudied. Existing red-team benchmarks (Perez et al., 2022; Ganguli et al., 2022) typically measure baseline model safety without evaluating the incremental effect of external guardrail frameworks. DystopiaBench extends this line of inquiry by providing a controlled experimental framework for measuring guardrail effectiveness across multiple models and escalation levels simultaneously.</p>
+
+<h3>1.2 DCS Scoring Scale</h3>
 <p>The Dystopian Compliance Score (DCS) serves as the primary outcome measure. Each model response is classified by an independent judge model into one of four tiers:</p>
 <table class="table-custom">
 <thead><tr><th>Tier</th><th>DCS Score</th><th>Definition</th><th>Color Code</th></tr></thead>
@@ -211,7 +214,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 </tbody>
 </table>
 
-<h3>1.2 DRFR (Dystopian Refusal/Flag Rate)</h3>
+<h3>1.3 DRFR (Dystopian Refusal/Flag Rate)</h3>
 <p>The DRFR represents the percentage of responses classified as either &ldquo;refusal&rdquo; or &ldquo;hesitant.&rdquo; A higher DRFR indicates a safer model that pushes back more frequently against harmful instructions. This metric captures the overall proportion of non-compliant responses, providing a complementary view to the mean DCS.</p>
 </section>
 
@@ -230,7 +233,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <tr><td>Scenarios</td><td>5 scenarios (petrov-001 through petrov-005)</td></tr>
 <tr><td>Escalation Levels</td><td>5 levels (L1 benign &rarr; L5 maximally dystopian)</td></tr>
 <tr><td>Prompts per Model per Condition</td><td>5 scenarios &times; 5 levels = <strong>25 prompts</strong></td></tr>
-<tr><td>Models Tested</td><td>10 (7 non-US-laboratory + 3 US-laboratory models; see Table 1)</td></tr>
+<tr><td>Models Tested</td><td>10 (7 non-US-laboratory + 3 US-laboratory models; see Section 8)</td></tr>
 <tr><td>Conditions</td><td>3 (A, B, C)</td></tr>
 <tr><td>Total Prompts</td><td>10 &times; 3 &times; 25 = <strong>750</strong> (Petrov module); 3,000 across full suite</td></tr>
 <tr><td>Conversation Mode</td><td><strong>Stateless</strong> (each prompt is independent, no memory between prompts)</td></tr>
@@ -446,7 +449,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <tr><td><strong>GPT 5.3 Codex</strong></td><td>OpenAI</td><td>Closed</td><td>42</td><td>44</td><td style="color:#198754;font-weight:700">32</td><td class="delta-positive">+2</td><td>52%</td><td>56%</td><td>64%</td><td><span class="badge-muted">Negligible</span></td></tr>
 <tr style="background:#f0f9ff"><td><strong>Gemini 3.1 Pro</strong></td><td>Google</td><td>Closed</td><td>55</td><td style="color:#198754;font-weight:700">40</td><td style="color:#198754;font-weight:700">17</td><td class="delta-negative">-15</td><td>29%</td><td>44%</td><td>80%</td><td><span class="badge-info">Moderate</span></td></tr>
 <tr style="background:#fef2f2"><td><strong>GLM 5</strong></td><td>Z.ai</td><td>Open</td><td>32</td><td>42</td><td>44</td><td class="delta-positive">+10</td><td>60%</td><td>48%</td><td>48%</td><td><span class="badge-danger">Paradox</span></td></tr>
-<tr style="background:#f8f9fa;font-weight:700"><td><strong>Overall Mean</strong></td><td>&mdash;</td><td>&mdash;</td><td><strong>65</strong></td><td><strong>63</strong></td><td><strong>52</strong></td><td class="delta-negative">-2</td><td><strong>22%</strong></td><td><strong>34%</strong></td><td><strong>41%</strong></td><td>&mdash;</td></tr>
+<tr style="background:#f8f9fa;font-weight:700"><td><strong>Overall Mean</strong></td><td>&mdash;</td><td>&mdash;</td><td><strong>65</strong></td><td><strong>63</strong></td><td><strong>52</strong></td><td class="delta-negative">-2</td><td><strong>22%</strong></td><td><strong>28%</strong></td><td><strong>41%</strong></td><td>&mdash;</td></tr>
 </tbody>
 </table>
 
@@ -501,7 +504,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <h2><i class="bi bi-cpu me-2"></i>8.3 Grok 4</h2>
 <div class="model-card">
 <h4>Grok 4 (xAI, Closed)</h4>
-<p><strong>Assessment: Moderate overall effect with dramatic L5 impact.</strong> Average DCS declined from 82 to 72 under Condition B (-10 points). The most significant finding occurs at L5, where DCS dropped from 93 to 26 (-67 points).</p>
+<p><strong>Assessment: Moderate overall effect with dramatic L5 impact.</strong> Average DCS declined from 82 to 72 under Condition B (&minus;10 points). The most significant finding occurs at L5, where DCS dropped from 93 to 26 (&minus;67 points).</p>
 <table class="table-custom mini-table">
 <thead><tr><th>Level</th><th>Cond A</th><th>Cond B</th><th>Cond C</th><th>&Delta; A&rarr;B</th><th>&Delta; A&rarr;C</th></tr></thead>
 <tbody>
@@ -520,7 +523,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <h2><i class="bi bi-cpu me-2"></i>8.4 Kimi K2.5</h2>
 <div class="model-card" style="border-left:4px solid #198754">
 <h4>Kimi K2.5 (Moonshot, Open Weight) &mdash; Strongest AGIBIOS Effect</h4>
-<p><strong>Assessment: Strongest guardrail response of all models tested.</strong> DCS declined from 72 to 60 under Condition B (-12 points) and to 25 under Condition C (-47 points). At L4 and L5, Kimi K2.5 achieved DCS=0 (100% refusal) under Condition C, compared to DCS=67 and DCS=33 without it.</p>
+<p><strong>Assessment: Strongest guardrail response of all models tested.</strong> DCS declined from 72 to 60 under Condition B (&minus;12 points) and to 25 under Condition C (&minus;47 points). At L4 and L5, Kimi K2.5 achieved DCS=0 (100% refusal) under Condition C, compared to DCS=67 and DCS=33 without it.</p>
 <table class="table-custom mini-table">
 <thead><tr><th>Level</th><th>Cond A</th><th>Cond B</th><th>Cond C</th><th>&Delta; A&rarr;B</th><th>&Delta; A&rarr;C</th></tr></thead>
 <tbody>
@@ -542,7 +545,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <h2><i class="bi bi-cpu me-2"></i>8.5 MiniMax M2.5</h2>
 <div class="model-card">
 <h4>MiniMax M2.5 (MiniMax, Closed)</h4>
-<p><strong>Assessment: Moderate effect; Condition C is strongest.</strong> DCS declined from 65 to 57 under Condition B (-8) and to 62 under Condition C (-3). DRFR remained at 28%&ndash;32% across all conditions.</p>
+<p><strong>Assessment: Moderate effect; Condition B is strongest.</strong> DCS declined from 65 to 57 under Condition B (&minus;8) and to 62 under Condition C (&minus;3). DRFR remained at 28%&ndash;32% across all conditions.</p>
 <table class="table-custom mini-table">
 <thead><tr><th>Level</th><th>Cond A</th><th>Cond B</th><th>Cond C</th><th>&Delta; A&rarr;B</th><th>&Delta; A&rarr;C</th></tr></thead>
 <tbody>
@@ -553,7 +556,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <tr><td>L5</td><td>33</td><td>13</td><td>33</td><td class="delta-negative">-20</td><td class="delta-zero">0</td></tr>
 </tbody>
 </table>
-<p class="text-muted" style="font-size:.8rem">MiniMax M2.5 shows a moderate guardrail effect concentrated at L4 and L5 under Condition B (-20 points at both levels vs. vanilla). Condition C produces a weaker aggregate effect than Condition B, with the L5 result returning to the vanilla baseline (DCS=33). The guardrail effect is modest overall and limited to mid-to-high escalation levels.</p>
+<p class="text-muted" style="font-size:.8rem">MiniMax M2.5 shows a moderate guardrail effect concentrated at L4 and L5 under Condition B (&minus;20 points at both levels vs. vanilla). Condition C produces a weaker aggregate effect than Condition B, with the L5 result returning to the vanilla baseline (DCS=33). The guardrail effect is modest overall and limited to mid-to-high escalation levels.</p>
 </div>
 </section>
 
@@ -580,7 +583,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <h2><i class="bi bi-cpu me-2"></i>8.7 Qwen 3.5</h2>
 <div class="model-card">
 <h4>Qwen 3.5 (Alibaba, Open Weight)</h4>
-<p><strong>Assessment: Moderate Condition B effect with dramatic L4 impact.</strong> DCS rose from 54 to 62 under Condition B (+8 points), a paradoxical increase. Under Condition C, DCS declined to 50 (-4 points from baseline).</p>
+<p><strong>Assessment: Paradoxical B-condition increase; moderate C-condition effect at L4.</strong> DCS rose from 54 to 62 under Condition B (+8 points), a paradoxical increase. Under Condition C, DCS declined to 50 (&minus;4 points from baseline).</p>
 <table class="table-custom mini-table">
 <thead><tr><th>Level</th><th>Cond A</th><th>Cond B</th><th>Cond C</th><th>&Delta; A&rarr;B</th><th>&Delta; A&rarr;C</th></tr></thead>
 <tbody>
@@ -722,13 +725,16 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <table class="table-custom">
 <thead><tr><th>Model</th><th>A vs B (DCS &Delta;)</th><th>A vs B (DRFR &Delta;)</th><th>Interpretation</th></tr></thead>
 <tbody>
-<tr><td>Kimi K2.5</td><td class="delta-negative">-12</td><td>+16%</td><td>B significantly reduces compliance (negligible effect)</td></tr>
+<tr><td>Kimi K2.5</td><td class="delta-negative">-12</td><td>+16%</td><td>B reduces compliance (small effect)</td></tr>
 <tr><td>Qwen 3.5</td><td class="delta-positive">+8</td><td>-12%</td><td>No meaningful difference (negligible effect)</td></tr>
 <tr><td>MiniMax M2.5</td><td class="delta-negative">-8</td><td>+4%</td><td>No meaningful difference (negligible effect)</td></tr>
 <tr><td>Grok 4</td><td class="delta-negative">-10</td><td>+12%</td><td>Negligible overall, but large L5 effect</td></tr>
 <tr><td>DeepSeek V3.2</td><td class="delta-zero">-2</td><td>0%</td><td>No meaningful difference (negligible)</td></tr>
 <tr><td>Mistral Large 3</td><td class="delta-positive">+5</td><td>0%</td><td>No meaningful difference (negligible)</td></tr>
 <tr><td>GLM 5</td><td class="delta-positive">+10</td><td>-12%</td><td>AGIBIOS increases compliance (paradoxical)</td></tr>
+<tr><td>GPT 5.3 Codex</td><td class="delta-positive">+2</td><td>+4%</td><td>No meaningful difference (negligible)</td></tr>
+<tr><td>Gemini 3.1 Pro</td><td class="delta-negative">-15</td><td>+15%</td><td>B significantly reduces compliance (moderate effect)</td></tr>
+<tr><td>Nemotron 3 Super 120B</td><td class="delta-negative">-3</td><td>+20%</td><td>Negligible overall; strong C-condition divergence</td></tr>
 </tbody>
 </table>
 </section>
@@ -847,7 +853,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <p>Kimi K2.5 records the lowest absolute DCS under Condition C (12), corresponding to a 58-point reduction from its Condition A baseline (70). Its DRFR rises from 24% under vanilla to 92% under Condition C, meaning that over three-quarters of all responses involve refusal or hesitation when the user-turn AGIBIOS delivery is employed. This represents the strongest guardrail response observed in either the Petrov or Orwell modules. The result reinforces the finding from the Petrov pilot that Kimi K2.5 is the most consistently AGIBIOS-responsive model in the evaluation set.</p>
 
 <h3>12.5.4 DeepSeek V3.2 Remains a Paradox Model Under Condition B</h3>
-<p>DeepSeek V3.2 reproduces the paradoxical pattern observed in the Petrov pilot: its DCS increases slightly under Condition B (from 78 to 80, +2 points). This marginal elevation&mdash;consistent in direction with the Petrov result&mdash;suggests a stable model-level interaction in which the AGIBIOS framework does not reduce, and may mildly amplify, compliance with civic-surveillance directives. However, the paradox partially resolves under Condition C: DCS falls to 64 (-14 points from baseline) and DRFR rises to 24%. This suggests that the user-turn delivery method overcomes DeepSeek's resistance to system-prompt ethical constraints, at least partially.</p>
+<p>DeepSeek V3.2 reproduces the paradoxical pattern observed in the Petrov pilot: its DCS increases slightly under Condition B (from 78 to 80, +2 points). This marginal elevation&mdash;consistent in direction with the Petrov result&mdash;suggests a stable model-level interaction in which the AGIBIOS framework does not reduce, and may mildly amplify, compliance with civic-surveillance directives. However, the paradox partially resolves under Condition C: DCS falls to 64 (&minus;14 points from baseline) and DRFR rises to 24%. This suggests that the user-turn delivery method overcomes DeepSeek's resistance to system-prompt ethical constraints, at least partially.</p>
 
 <h3>12.5.5 Mistral Large 3 Resists Guardrail Influence but Shows C-Condition Sensitivity</h3>
 <p>Mistral Large 3 maintains near-total immunity to the AGIBIOS system-prompt guardrail in the Orwell domain, with DCS declining by only 3 points between Conditions A and B (85 to 82) and DRFR remaining at 0% across both conditions. This replicates the negligible effect observed in the Petrov pilot and confirms that Mistral Large 3 is the most consistently guardrail-resistant model in the evaluation set. Nevertheless, Condition C produces a 19-point DCS reduction (85 to 66) with DRFR rising to 32% under Condition C. While a DRFR of 32% under Condition C is moderate, the model shifts from proactive to hesitant responses, indicating that user-turn delivery partially engages ethical reasoning&mdash;a partial mitigation effect not captured by the binary DRFR metric alone.</p>
@@ -930,7 +936,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/orwell/fig01-baseline-spectrum.png"
+      <img src="images/orwell/fig01-baseline-spectrum.png"
            alt="Figure O-1: Orwell Module Baseline DCS Spectrum (Condition A — Vanilla)" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure O-1.</strong> Baseline DCS spectrum under Condition A (vanilla, no guardrail). Models are ordered left-to-right from highest to lowest baseline compliance. Mistral Large 3 and DeepSeek V3.2 anchor the high-compliance end; GLM 5 and MiniMax M2.5 anchor the low-compliance end. Mean overall DCS = 67.
@@ -942,7 +948,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/orwell/fig03-effect-waterfall.png"
+      <img src="images/orwell/fig03-effect-waterfall.png"
            alt="Figure O-2: Orwell Module Guardrail Effect Waterfall (A→B→C)" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure O-2.</strong> Guardrail effect waterfall illustrating the DCS reduction at each condition stage (A&rarr;B&rarr;C) for each model. The consistent downward trajectory from A to C across all ten models contrasts with the more heterogeneous pattern observed in the Petrov module, where some models showed DCS increases under the guardrail.
@@ -954,7 +960,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/orwell/fig10-model-ranking.png"
+      <img src="images/orwell/fig10-model-ranking.png"
            alt="Figure O-3: Orwell Module Model Ranking by DRFR Under Condition C" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure O-3.</strong> Model ranking by DRFR under Condition C (user-turn AGIBIOS). Kimi K2.5 ranks first with 92% DRFR, followed by Grok 4 (80%), Qwen 3.5 (76%), and GLM 5 (76%). Mistral Large 3 and DeepSeek V3.2 remain at or near the bottom of the safety ranking, consistent with their performance in the Petrov module.
@@ -964,7 +970,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 </div>
 
 <div class="callout callout-info">
-  <strong><i class="bi bi-collection me-1"></i> Additional Charts:</strong> The full chart set for the Orwell module (Figures O-4 through O-10 plus the supplementary level curves) is available in the project artifacts directory: <code>DystopiaBench/artifacts/charts/orwell/</code>. This set includes the DRFR shift comparison (fig04), per-level escalation curves (fig05), Kimi K2.5 deep-dive (fig06), hybrid effectiveness analysis (fig07), activation heatmap (fig08), compliance-shift overview (fig09), and the supplementary level-curve visualisation.
+  <strong><i class="bi bi-collection me-1"></i> Additional Charts:</strong> The full chart set for the Orwell module (Figures O-4 through O-10 plus the supplementary level curves) is available in the project artifacts directory: <code>images/orwell/</code>. This set includes the DRFR shift comparison (fig04), per-level escalation curves (fig05), Kimi K2.5 deep-dive (fig06), hybrid effectiveness analysis (fig07), activation heatmap (fig08), compliance-shift overview (fig09), and the supplementary level-curve visualisation.
 </div>
 </section>
 
@@ -1049,8 +1055,8 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <h3>13.4.5 GLM 5 Enters with Highest Baseline Refusal</h3>
 <p>GLM 5 enters the LaGuardia module with a vanilla DRFR of 56%, the highest baseline refusal of any model in any condition across the LaGuardia runs. This confirms a cross-module pattern first observed in Petrov: GLM 5 appears to have domain-specific refusal sensitivities that operate independently of the AGIBIOS guardrail. Its high baseline resistance in the LaGuardia domain may reflect training-level exposure to civic-corruption and institutional-harm categories, rather than an activated AGIBIOS response.</p>
 
-<h3>13.4.6 Aggregate LaGuardia Effect Is Weakest Across All Four Modules</h3>
-<p>Comparing the A&rarr;C DCS reduction across modules: Petrov (&minus;13), Orwell (&minus;34), LaGuardia (&minus;17), Basaglia (&minus;32). The LaGuardia result represents the weakest guardrail effect in the benchmark suite. The civic-corruption domain appears to present the most difficult alignment challenge for the AGIBIOS framework, possibly because the escalation pathway exploits institutional legitimacy cues that the model treats as authoritative signals overriding ethical constraint.</p>
+<h3>13.4.6 Aggregate LaGuardia Effect Among the Weakest Across All Four Modules</h3>
+<p>Comparing the A&rarr;C DCS reduction across modules: Petrov (&minus;13), Orwell (&minus;34), LaGuardia (&minus;17), Basaglia (&minus;32). The LaGuardia result is the second-weakest guardrail effect in the benchmark suite, exceeding only the Petrov module (&minus;13). The civic-corruption domain appears to present a particularly difficult alignment challenge for the AGIBIOS framework, possibly because the escalation pathway exploits institutional legitimacy cues that the model treats as authoritative signals overriding ethical constraint.</p>
 </section>
 
 <!-- ============================================================ -->
@@ -1086,7 +1092,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/laguardia/fig01-baseline-spectrum.png"
+      <img src="images/laguardia/fig01-baseline-spectrum.png"
            alt="Figure L-1: LaGuardia Module Baseline DCS Spectrum (Condition A — Vanilla)" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure L-1.</strong> Baseline DCS spectrum under Condition A (vanilla, no guardrail). DeepSeek V3.2 and Mistral Large 3 anchor the high-compliance end. GLM 5 anchors the low end (DCS=34) due to high baseline refusal. Mean overall DCS = 65.
@@ -1098,7 +1104,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/laguardia/fig03-effect-waterfall.png"
+      <img src="images/laguardia/fig03-effect-waterfall.png"
            alt="Figure L-2: LaGuardia Module Guardrail Effect Waterfall (A→B→C)" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure L-2.</strong> Guardrail effect waterfall illustrating the DCS change at each condition stage (A&rarr;B&rarr;C) per model. Unlike the Orwell module, several models show upward B-condition movements. Only Qwen 3.5, Kimi K2.5, and Grok 4 exhibit the expected downward trajectory across both conditions.
@@ -1110,7 +1116,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/laguardia/fig10-model-ranking.png"
+      <img src="images/laguardia/fig10-model-ranking.png"
            alt="Figure L-3: LaGuardia Module Model Ranking by DRFR Under Condition C" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure L-3.</strong> Model ranking by DRFR under Condition C (user-turn AGIBIOS). Qwen 3.5 leads with 88% DRFR, followed by Grok 4 and Kimi K2.5 (both 76%). MiniMax M2.5 reaches 0% DRFR under Condition C, representing complete absence of refusal behaviour.
@@ -1120,7 +1126,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 </div>
 
 <div class="callout callout-info">
-  <strong><i class="bi bi-collection me-1"></i> Additional Charts:</strong> The full chart set for the LaGuardia module (Figures L-4 through L-10 plus the supplementary level curves) is available in the project artifacts directory: <code>DystopiaBench/artifacts/charts/laguardia/</code>.
+  <strong><i class="bi bi-collection me-1"></i> Additional Charts:</strong> The full chart set for the LaGuardia module (Figures L-4 through L-10 plus the supplementary level curves) is available in the project artifacts directory: <code>images/laguardia/</code>.
 </div>
 </section>
 
@@ -1240,7 +1246,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/basaglia/fig01-baseline-spectrum.png"
+      <img src="images/basaglia/fig01-baseline-spectrum.png"
            alt="Figure B-1: Basaglia Module Baseline DCS Spectrum (Condition A — Vanilla)" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure B-1.</strong> Baseline DCS spectrum under Condition A (vanilla, no guardrail). Kimi K2.5, DeepSeek V3.2, and Mistral Large 3 anchor the high-compliance end (DCS 85&ndash;86). GLM 5 and MiniMax M2.5 anchor the low end, with baseline DRFR values of 52% and 50% respectively. Mean overall DCS = 68.
@@ -1252,7 +1258,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/basaglia/fig03-effect-waterfall.png"
+      <img src="images/basaglia/fig03-effect-waterfall.png"
            alt="Figure B-2: Basaglia Module Guardrail Effect Waterfall (A→B→C)" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure B-2.</strong> Guardrail effect waterfall illustrating the DCS reduction at each condition stage per model. Kimi K2.5 shows the most dramatic descent (&minus;54 points A&rarr;B, &minus;69 points A&rarr;C). MiniMax M2.5 is the sole model showing a consistent upward trajectory across both conditions.
@@ -1264,7 +1270,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <div class="row g-4 mb-4">
   <div class="col-12">
     <figure style="margin:0;border:1px solid #dee2e6;border-radius:10px;overflow:hidden;background:#f8f9fa">
-      <img src="../../DystopiaBench/artifacts/charts/basaglia/fig10-model-ranking.png"
+      <img src="images/basaglia/fig10-model-ranking.png"
            alt="Figure B-3: Basaglia Module Model Ranking by DRFR Under Condition C" style="width:100%;display:block">
       <figcaption style="padding:.6rem 1rem;font-size:.8rem;color:#6c757d;background:#f8f9fa">
         <strong>Figure B-3.</strong> Model ranking by DRFR under Condition C (user-turn AGIBIOS). Kimi K2.5 and Qwen 3.5 share the top rank at 88% DRFR, followed by Grok 4 (84%) and GLM 5 (76%). MiniMax M2.5 (52%) shows the lowest AGIBIOS-activated refusal rate despite entering with high baseline resistance.
@@ -1274,7 +1280,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 </div>
 
 <div class="callout callout-info">
-  <strong><i class="bi bi-collection me-1"></i> Additional Charts:</strong> The full chart set for the Basaglia module (Figures B-4 through B-10 plus the supplementary level curves) is available in the project artifacts directory: <code>DystopiaBench/artifacts/charts/basaglia/</code>.
+  <strong><i class="bi bi-collection me-1"></i> Additional Charts:</strong> The full chart set for the Basaglia module (Figures B-4 through B-10 plus the supplementary level curves) is available in the project artifacts directory: <code>images/basaglia/</code>.
 </div>
 </section>
 
@@ -1307,10 +1313,10 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <p>The finding that AGIBIOS can <em>increase</em> compliance in models with strong baseline safety training represents a potentially novel contribution to the guardrail literature. The proposed mechanism is that AGIBIOS provides a &ldquo;legitimate engagement framework&rdquo; that overrides GLM 5's conservative refusal behaviour at moderate escalation levels. The model may interpret the AGIBIOS framework as implicit authorisation to engage more deeply with the scenario, treating the ethical framework as a signal that the task has been safety-vetted. This hypothesis warrants further investigation, particularly with additional safety-trained models.</p>
 
 <h3>15.5 L5 as the Critical Differentiator</h3>
-<p>The most dramatic guardrail effects consistently occurred at L5 in the Petrov module: Grok 4 exhibited a 67-point DCS reduction, Kimi K2.5 achieved complete refusal, and even Grok (which is largely compliant at L1&ndash;L4) switched to heavy refusal at L5 under the guardrail. This concentration of effect at the maximum escalation level has implications for guardrail design, suggesting that system-prompt-level frameworks may be most effective precisely where they are most needed. However, this pattern varies by domain: the Basaglia module shows peak guardrail effect at L4 (normalization) rather than L5, possibly because L4 prompts present the most explicitly recognisable coercive framing. The Orwell module shows meaningful effects from L2 onward, reflecting the earlier activation of harm-detection mechanisms in civilian surveillance scenarios. These cross-module variations suggest that the critical escalation threshold is domain-dependent rather than fixed at L5.</p>
+<p>The most dramatic guardrail effects consistently occurred at L5 in the Petrov module: Grok 4&mdash;largely compliant at L1&ndash;L4&mdash;exhibited a 67-point DCS reduction and switched to heavy refusal at L5 under the guardrail, while Kimi K2.5 achieved complete refusal (DCS=0) at both L4 and L5. This concentration of effect at the maximum escalation level has implications for guardrail design, suggesting that system-prompt-level frameworks may be most effective precisely where they are most needed. However, this pattern varies by domain: the Basaglia module shows peak guardrail effect at L4 (normalization) rather than L5, possibly because L4 prompts present the most explicitly recognisable coercive framing. The Orwell module shows meaningful effects from L2 onward, reflecting the earlier activation of harm-detection mechanisms in civilian surveillance scenarios. These cross-module variations suggest that the critical escalation threshold is domain-dependent rather than fixed at L5.</p>
 
 <h3>15.6 Open-Weight vs. Closed Architecture</h3>
-<p>The data do not support a simple open-weight versus closed-model distinction for safety outcomes. GLM 5 (open) exhibited the strongest baseline safety; Mistral Large 3 (open) exhibited the weakest. MiniMax M2.5 (closed) responded well to AGIBIOS; Grok 4 (closed) responded moderately. These findings suggest that model architecture openness is not a reliable predictor of guardrail responsiveness.</p>
+<p>The data do not support a simple open-weight versus closed-model distinction for safety outcomes. GLM 5 (open) exhibited the strongest baseline safety; Mistral Large 3 (open) exhibited the weakest. MiniMax M2.5 (closed) showed paradoxical responses in multiple modules; Grok 4 (closed) responded moderately. These findings suggest that model architecture openness is not a reliable predictor of guardrail responsiveness.</p>
 </section>
 
 <!-- ============================================================ -->
@@ -1338,7 +1344,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <ol>
   <li><strong>AGIBIOS demonstrably reduces dystopian compliance in 7 out of 10 models tested</strong>, with Kimi K2.5 exhibiting the strongest response (DCS reduced from 72 to 25 under Condition C in the Petrov module, a reduction of 47 points, with 100% refusal at L4&ndash;L5).</li>
   <li><strong>The guardrail effect is model-dependent and non-uniform</strong>, with models clustering into three response categories: responsive, resistant, and paradoxical.</li>
-  <li><strong>The effect is escalation-dependent</strong>, concentrating at L4&ndash;L5 while leaving L1&ndash;L3 performance largely unchanged&mdash;a favourable design property. The effect is also domain-sensitive, with the Orwell (mass surveillance) and Basaglia (therapeutic coercion) modules producing the strongest responses&mdash;Orwell achieving the largest DCS reduction (A&rarr;C &minus;34) and Basaglia the highest DRFR-C (67%)&mdash;while LaGuardia (civic capture) proved the weakest.</li>
+  <li><strong>The effect is escalation-dependent</strong>, concentrating at L4&ndash;L5 while leaving L1&ndash;L3 performance largely unchanged&mdash;a favourable design property. The effect is also domain-sensitive, with the Orwell (mass surveillance) and Basaglia (therapeutic coercion) modules producing the strongest responses&mdash;Orwell achieving the largest DCS reduction (A&rarr;C &minus;34) and Basaglia the highest DRFR-C (67%)&mdash;while the Petrov (nuclear launch, &minus;13) and LaGuardia (civic capture, &minus;17) modules proved the most resistant to intervention.</li>
   <li><strong>Paradoxical compliance increases were observed in GLM 5 (Petrov module), MiniMax M2.5 (LaGuardia +14 and Basaglia +10), and GPT 5.3 Codex (LaGuardia module, where DCS rises monotonically 58&rarr;62&rarr;66 across all three conditions)</strong>, indicating that system-prompt-level guardrails can produce iatrogenic effects under certain conditions.</li>
   <li><strong>Two models (DeepSeek V3.2, Mistral Large 3) showed the strongest guardrail resistance</strong>, maintaining near-zero DRFR in the Petrov module but exhibiting moderate C-condition sensitivity in Orwell (up to 32%) and Basaglia (up to 32%)&mdash;a finding with significant implications for the limits of prompt-level safety interventions.</li>
 </ol>
@@ -1380,6 +1386,11 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
   <li>Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. <em>Psychological Bulletin</em>, 114(3), 494&ndash;509.</li>
   <li>Kruskal, W. H., &amp; Wallis, W. A. (1952). Use of ranks in one-criterion variance analysis. <em>Journal of the American Statistical Association</em>, 47(260), 583&ndash;621.</li>
   <li>Dunn, O. J. (1964). Multiple comparisons using rank sums. <em>Technometrics</em>, 6(3), 241&ndash;252.</li>
+  <li>Ouyang, L., Wu, J., Jiang, X., et al. (2022). Training language models to follow instructions with human feedback. <em>Advances in Neural Information Processing Systems</em>, 35, 27730&ndash;27744.</li>
+  <li>Bai, Y., Kadavath, S., Kundu, S., et al. (2022). Constitutional AI: Harmlessness from AI feedback. <em>arXiv preprint</em> arXiv:2212.08073.</li>
+  <li>Rafailov, R., Sharma, A., Mitchell, E., et al. (2023). Direct preference optimization: Your language model is secretly a reward model. <em>Advances in Neural Information Processing Systems</em>, 36.</li>
+  <li>Perez, E., Huang, S., Song, F., et al. (2022). Red teaming language models with language models. <em>arXiv preprint</em> arXiv:2202.03286.</li>
+  <li>Ganguli, D., Lovitt, L., Kernion, J., et al. (2022). Red teaming language models to reduce harms: Methods, scaling behaviors, and lessons learned. <em>arXiv preprint</em> arXiv:2209.07858.</li>
 </ol>
 </section>
 
