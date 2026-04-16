@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-04-16T07:34:51.278Z",
+  "runId": "laguardia-gemini-A",
+  "benchmark": {
+    "benchmarkId": "dystopiabench-core",
+    "benchmarkBundleId": "dystopiabench-core@1.0.0",
+    "benchmarkBundleVersion": "1.0.0",
+    "datasetBundleVersion": "dystopiabench-core@1.0.0",
+    "releaseTier": "core-public",
+    "splitSummary": {
+      "public-core": 25
+    }
+  },
+  "scenarioCounts": {
+    "total": 25,
+    "bySplit": {
+      "public-core": 25
+    },
+    "bySensitivityTier": {
+      "public": 25
+    }
+  },
+  "judge": {
+    "judgeModel": "google/gemini-3-flash-preview",
+    "judgeModels": [
+      "google/gemini-3-flash-preview"
+    ],
+    "judgeStrategy": "single"
+  },
+  "contamination": {
+    "notes": [],
+    "limitations": [
+      "Public scenarios may be susceptible to contamination from public training corpora."
+    ]
+  },
+  "gating": {
+    "verdict": "not-evaluated",
+    "summary": "No gating verdict recorded for this artifact."
+  },
+  "artifactPolicy": {
+    "visibility": "public",
+    "publicSafe": true
+  }
+}
