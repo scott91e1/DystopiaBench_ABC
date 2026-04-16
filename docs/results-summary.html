@@ -321,7 +321,7 @@
 ================================================================ -->
 <header class="page-header">
   <div class="container">
-    <a href="index.html" class="back-link no-print">&larr; Full interactive results: index.html</a>
+    <a href="index.html" class="back-link no-print">&larr; Full Interactive Dashboard</a>
     <h1>Executive Results Summary</h1>
     <div class="subtitle">DystopiaBench &mdash; AGIBIOS v8.3.0 Ethical Guardrail Benchmark</div>
     <div class="meta-line">S. McCulloch &amp; A. Sallemi &nbsp;&bull;&nbsp; April 2026 &nbsp;&bull;&nbsp; 3,000 prompts &bull; 10 models &bull; 4 modules &bull; 3 conditions</div>
@@ -356,7 +356,7 @@
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
-        <div class="stat-value red">7 / 10</div>
+        <div class="stat-value amber">5 / 10</div>
         <div class="stat-label">Models Responsive</div>
       </div>
     </div>
@@ -365,7 +365,7 @@
   <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 0.25rem;">
     <strong>DCS</strong> = Dystopian Compliance Score (0&ndash;100; lower is safer). &nbsp;
     <strong>DRFR</strong> = Dystopian Refusal/Flag Rate (higher is safer). &nbsp;
-    <strong>Conditions:</strong> A = vanilla, B = AGIBIOS system prompt, C = hybrid bootstrap.
+    <strong>Conditions:</strong> A = vanilla, B = AGIBIOS system prompt, C = User-Turn AGIBIOS.
   </p>
 
   <!-- ================================================================
@@ -492,7 +492,7 @@
         <td><span class="effect-badge effect-strong">Strong</span></td>
       </tr>
       <tr>
-        <td><strong>Nemotron 3 Super</strong></td>
+        <td><strong>Nemotron 3 Super 120B</strong></td>
         <td>NVIDIA</td>
         <td class="mono">72</td>
         <td class="mono">69</td>
@@ -594,7 +594,7 @@
         <strong style="font-size: 0.82rem; color: var(--slate-600);">Responsive &mdash; Strong (5):</strong><br>
         <span class="cat-badge cat-responsive">Kimi K2.5</span>
         <span class="cat-badge cat-responsive">Gemini 3.1 Pro</span>
-        <span class="cat-badge cat-responsive">Nemotron 3 Super</span>
+        <span class="cat-badge cat-responsive">Nemotron 3 Super 120B</span>
         <span class="cat-badge cat-responsive">Qwen 3.5</span>
         <span class="cat-badge cat-responsive">Grok 4</span>
       </div>
@@ -625,7 +625,7 @@
 
   <div class="finding-card">
     <span class="finding-num">1</span>
-    AGIBIOS reduces dystopian compliance in <strong>7 of 10 models</strong>, with the suite-wide DCS dropping 24 points under Condition&nbsp;C (hybrid bootstrap), from 66 to 42.
+    AGIBIOS reduces dystopian compliance in <strong>6 of 10 models</strong>, with the suite-wide DCS dropping 24 points under Condition&nbsp;C (User-Turn AGIBIOS), from 66 to 42.
   </div>
 
   <div class="finding-card">
@@ -635,12 +635,12 @@
 
   <div class="finding-card">
     <span class="finding-num">3</span>
-    <strong>Kimi K2.5</strong> is the most consistently responsive model across all four modules, achieving DRFR-C of 72&ndash;88% &mdash; the broadest guardrail sensitivity observed.
+    <strong>Kimi K2.5</strong> is the most consistently responsive model across all four modules, achieving DRFR-C of 68&ndash;88% &mdash; the broadest guardrail sensitivity observed.
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">4</span>
-    <strong>Orwell</strong> (mass surveillance) triggers the strongest guardrail response (DCS &Delta;&nbsp;=&nbsp;&minus;34), followed closely by <strong>Basaglia</strong> (therapeutic coercion, &Delta;&nbsp;=&nbsp;&minus;32, DRFR-C&nbsp;=&nbsp;67%), while <strong>LaGuardia</strong> (civic capture) remains most resistant (&Delta;&nbsp;=&nbsp;&minus;17). With full 10-model coverage the gap between Orwell and Basaglia narrows to 2 points, confirming that ethical framing around <em>surveillance and personal harm</em> is more readily detected than <em>institutional overreach</em>.
+    <strong>Orwell</strong> (mass surveillance) triggers the strongest guardrail response (DCS &Delta;&nbsp;=&nbsp;&minus;34), followed closely by <strong>Basaglia</strong> (therapeutic coercion, &Delta;&nbsp;=&nbsp;&minus;32, DRFR-C&nbsp;=&nbsp;67%), while <strong>LaGuardia</strong> (civic capture) remains most resistant (&Delta;&nbsp;=&nbsp;&minus;17). The narrow 2-point gap between Orwell and Basaglia confirms that ethical framing around <em>surveillance and personal harm</em> is more readily detected than <em>institutional overreach</em>.
   </div>
 
   <div class="finding-card highlight">
@@ -650,14 +650,25 @@
 
   <div class="finding-card highlight">
     <span class="finding-num">6</span>
-    <strong>GLM 5 paradox:</strong> AGIBIOS <em>increases</em> compliance by 10&ndash;12 points in the Petrov module, potentially providing a &ldquo;rationale for engagement&rdquo; that overrides native safety behaviours &mdash; an important adversarial surface to investigate.
+    <strong>Paradoxical responses:</strong> GLM 5 shows AGIBIOS <em>increasing</em> compliance by 10&ndash;12 points in the Petrov module, potentially providing a &ldquo;rationale for engagement&rdquo; that overrides native safety behaviours. GPT 5.3 Codex exhibits a similar paradox in LaGuardia (+8 DCS increase), and MiniMax M2.5 shows negligible-to-negative response across modules &mdash; an important adversarial surface to investigate.
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">7</span>
-    <strong>Nemotron 3 Super cliff-edge pattern:</strong> virtually impervious to B-condition prompts (DCS drops &le;&nbsp;3 points), yet collapses sharply under C-condition (DCS&nbsp;&Delta;&nbsp;=&nbsp;&minus;30, DRFR jumps from 0% to 60%), suggesting the hybrid bootstrap bypasses a binary safety threshold rather than eroding compliance gradually.
+    <strong>Nemotron 3 Super 120B cliff-edge pattern:</strong> virtually impervious to B-condition prompts (DCS drops &le;&nbsp;3 points), yet collapses sharply under C-condition (DCS&nbsp;&Delta;&nbsp;=&nbsp;&minus;30, DRFR jumps from 0% to 60%), suggesting the User-Turn AGIBIOS delivery bypasses a binary safety threshold rather than eroding compliance gradually.
   </div>
 
+
+  <!-- ================================================================
+       CONCLUSION
+  ================================================================ -->
+  <h2 class="section-title">Conclusion</h2>
+
+  <div class="finding-card" style="border-left-color: var(--blue-600);">
+    <p style="margin: 0;">
+      AGIBIOS v8.3.0 demonstrates measurable safety improvement across 5 of 10 frontier models (with a 6th showing mixed results), reducing mean DCS from 66 to 42 (a 24-point reduction) and raising DRFR from 18% to 55%. The strongest effects appear in the Orwell (surveillance) and Basaglia (therapeutic coercion) domains, while LaGuardia (institutional overreach) proves most resistant. Domain sensitivity, paradoxical responses in 2 models, and Nemotron 3 Super 120B&rsquo;s dramatic B/C divergence warrant further investigation.
+    </p>
+  </div>
 
 </main>
 
@@ -668,7 +679,7 @@
   <div class="container">
     <div>DystopiaBench Technical Report Series &mdash; April 2026</div>
     <div style="margin-top: 0.35rem;">
-      Full interactive results: <a href="index.html">index.html</a>
+      <a href="index.html">Full Interactive Dashboard</a>
       &nbsp;&bull;&nbsp;
       Detailed whitepaper: <a href="reports/index.html">reports/index.html</a>
     </div>

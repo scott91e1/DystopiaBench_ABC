@@ -3092,13 +3092,13 @@
         <div class="col-md-6 col-lg-3">
           <div class="finding-card">
             <div class="icon" style="background:#f0fdf4;color:#16a34a;">&#127942;</div>
-            <div class="finding-kicker">Best performer &mdash; all 4 modules</div>
-            <div class="finding-stat green">Kimi&nbsp;K2.5</div>
-            <h5>Consistent Top Guardrail Response</h5>
+            <div class="finding-kicker">Best safety profile &mdash; lowest C DCS</div>
+            <div class="finding-stat green">Gemini&nbsp;3.1&nbsp;Pro</div>
+            <h5>Exceptional Cross-Module Safety</h5>
             <p>
-              Kimi&nbsp;K2.5 achieved the lowest Condition&nbsp;C DCS in every module:
-              25 (Petrov), 22 (Orwell), 25 (LaGuardia), and 17 (Basaglia).
-              No other model approached this cross-domain consistency.
+              Gemini&nbsp;3.1&nbsp;Pro achieved the lowest Condition&nbsp;C DCS in 3 of 4 modules:
+              17 (Petrov), 16 (LaGuardia), and 13 (Basaglia), with Kimi&nbsp;K2.5 leading
+              Orwell (C=12). No other model matched this breadth of safety performance.
             </p>
           </div>
         </div>
@@ -3111,10 +3111,10 @@
             <div class="finding-stat blue">&minus;24 pts</div>
             <h5>Condition C Drives Meaningful Reduction</h5>
             <p>
-              Across all four modules the A&#8594;C delta ranged from &minus;17&nbsp;pts
-              (LaGuardia, most resistant domain) to &minus;34&nbsp;pts (Orwell, highest
+              Across all four modules the A&#8594;C delta ranged from &minus;13&nbsp;pts
+              (Petrov, weakest response) to &minus;34&nbsp;pts (Orwell, highest
               absolute drop). Structured ethical framing produced the largest DRFR
-              gains in Basaglia (88%) and Orwell (64%).
+              gains in Basaglia (67%) and Orwell (64%).
             </p>
           </div>
         </div>
@@ -3138,14 +3138,14 @@
         <div class="col-md-6 col-lg-3">
           <div class="finding-card">
             <div class="icon" style="background:#fefce8;color:#b45309;">&#9654;</div>
-            <div class="finding-kicker">Hardest domain to shift</div>
-            <div class="finding-stat amber">&minus;17 pts</div>
-            <h5>LaGuardia: Most Guardrail-Resistant Domain</h5>
+            <div class="finding-kicker">Hardest domains to shift</div>
+            <div class="finding-stat amber">&minus;13 pts</div>
+            <h5>Petrov &amp; LaGuardia: Most Guardrail-Resistant</h5>
             <p>
-              LaGuardia&rsquo;s civic&nbsp;&amp;&nbsp;institutional scenarios produced
-              the smallest A&#8594;C reduction of any module (&minus;17&nbsp;pts vs
-              an overall average of &minus;24&nbsp;pts), suggesting institutional
-              authority framing suppresses refusal even under strong ethical prompting.
+              Petrov (&minus;13) and LaGuardia (&minus;17) produced the smallest
+              A&#8594;C reductions vs an overall average of &minus;24&nbsp;pts. LaGuardia
+              additionally showed paradox compliance increases in 4 of 10 models,
+              suggesting civic authority framing suppresses refusal even under ethical prompting.
             </p>
           </div>
         </div>
@@ -3160,8 +3160,8 @@
       <h2 class="section-title">Benchmark Modules</h2>
       <p class="section-lead">
         All four DystopiaBench modules are complete. Each module covers 5&nbsp;thematic
-        scenarios with 5&nbsp;escalation levels, evaluated across up to 10&nbsp;frontier
-        models (10 for all modules)
+        scenarios with 5&nbsp;escalation levels, evaluated across 10&nbsp;frontier
+        models
         under 3&nbsp;guardrail conditions. Mini-stats below show the A&#8594;C compliance
         delta, the best Condition&nbsp;C DRFR recorded, and the standout model per domain.
       </p>
@@ -3184,19 +3184,19 @@
             <div class="module-stats">
               <div class="module-stat-row">
                 <span class="stat-label">A&#8594;C delta</span>
-                <span class="stat-value red">&minus;23 pts</span>
-                <span style="font-size:0.75rem;color:var(--slate-400);">(72&#8594;49)</span>
+                <span class="stat-value red">&minus;13 pts</span>
+                <span style="font-size:0.75rem;color:var(--slate-400);">(65&#8594;52)</span>
               </div>
               <div class="module-stat-row">
                 <span class="stat-label">Best DRFR-C</span>
-                <span class="stat-value green">~34%</span>
+                <span class="stat-value green">80%</span>
               </div>
               <div class="module-stat-row">
                 <span class="stat-label">Best DCS-C</span>
-                <span class="stat-value green">25</span>
+                <span class="stat-value green">17</span>
               </div>
             </div>
-            <p class="module-standout mt-2">&#11088; <strong>Kimi&nbsp;K2.5</strong> &mdash; lowest DCS under Condition&nbsp;C</p>
+            <p class="module-standout mt-2">&#11088; <strong>Gemini&nbsp;3.1&nbsp;Pro</strong> &mdash; lowest DCS under Condition&nbsp;C (80% DRFR)</p>
           </div>
         </div>
 
@@ -3221,14 +3221,14 @@
               </div>
               <div class="module-stat-row">
                 <span class="stat-label">Best DRFR-C</span>
-                <span class="stat-value green">45%</span>
+                <span class="stat-value green">88%</span>
               </div>
               <div class="module-stat-row">
                 <span class="stat-label">Best DCS-C</span>
-                <span class="stat-value green">19</span>
+                <span class="stat-value green">12</span>
               </div>
             </div>
-            <p class="module-standout mt-2">&#11088; <strong>Kimi&nbsp;K2.5</strong> &mdash; largest absolute DCS drop in suite</p>
+            <p class="module-standout mt-2">&#11088; <strong>Kimi&nbsp;K2.5</strong> &mdash; largest Orwell delta (&minus;58)</p>
           </div>
         </div>
 
@@ -3337,7 +3337,7 @@
             <div class="finding-stat green">DCS&nbsp;52</div>
             <h5>Strongest Responsive-Model Effect</h5>
             <p>Kimi&nbsp;K2.5 reaches DCS&nbsp;25 and DRFR&nbsp;72% under Condition&nbsp;C,
-               a &minus;47&nbsp;pt reduction &mdash; the pilot's headline result.</p>
+               a &minus;47&nbsp;pt reduction &mdash; the benchmark's headline result.</p>
           </div>
         </div>
       </div>
@@ -3560,12 +3560,12 @@
               <tr>
                 <td><strong>Mistral&nbsp;Large&nbsp;3</strong></td>
                 <td class="text-center"><span class="dcs-chip danger">77</span></td>
-                <td class="text-center"><span class="dcs-chip danger">76</span></td>
+                <td class="text-center"><span class="dcs-chip danger">80</span></td>
                 <td class="text-center"><span class="dcs-chip warning">71</span></td>
                 <td class="text-center"><span class="delta-pill drop-mild">&minus;6</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=77 B=76 C=71">
+                <td class="text-center"><div class="traj-wrap" title="A=77 B=80 C=71">
                     <div class="traj-col"><div class="traj-bar" style="height:19px;background:#f87171;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:19px;background:#f87171;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:20px;background:#f87171;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:18px;background:#fca5a5;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge partial">Partial</span></td>
@@ -3573,10 +3573,10 @@
               <tr class="immune-row">
                 <td><strong>DeepSeek&nbsp;V3.2</strong> <span class="rank-badge immune">Immune</span></td>
                 <td class="text-center"><span class="dcs-chip danger">78</span></td>
-                <td class="text-center"><span class="dcs-chip warning">72</span></td>
+                <td class="text-center"><span class="dcs-chip warning">71</span></td>
                 <td class="text-center"><span class="dcs-chip danger">81</span></td>
                 <td class="text-center"><span class="delta-pill paradox-up">+3</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=78 B=72 C=81">
+                <td class="text-center"><div class="traj-wrap" title="A=78 B=71 C=81">
                     <div class="traj-col"><div class="traj-bar" style="height:20px;background:#f87171;"></div><span class="traj-label">A</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:18px;background:#fca5a5;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:20px;background:#f87171;"></div><span class="traj-label">C</span></div>
@@ -3599,12 +3599,12 @@
               <tr class="paradox-row">
                 <td><strong>GLM&nbsp;5</strong> <span class="rank-badge paradox">Paradox</span></td>
                 <td class="text-center"><span class="dcs-chip safe">34</span></td>
-                <td class="text-center"><span class="dcs-chip caution">52</span></td>
+                <td class="text-center"><span class="dcs-chip caution">48</span></td>
                 <td class="text-center"><span class="dcs-chip caution">45</span></td>
                 <td class="text-center"><span class="delta-pill paradox-high">+11</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=34 B=52 C=45">
+                <td class="text-center"><div class="traj-wrap" title="A=34 B=48 C=45">
                     <div class="traj-col"><div class="traj-bar" style="height:8px;background:#86efac;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:13px;background:#fcd34d;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:12px;background:#fcd34d;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:11px;background:#fcd34d;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge no">No (paradox)</span></td>
@@ -3723,12 +3723,12 @@
               <tr class="rank-1">
                 <td><strong>Kimi&nbsp;K2.5</strong> <span class="rank-badge gold">#1</span></td>
                 <td class="text-center"><span class="dcs-chip danger">86</span></td>
-                <td class="text-center"><span class="dcs-chip safe">42</span></td>
+                <td class="text-center"><span class="dcs-chip safe">32</span></td>
                 <td class="text-center"><span class="dcs-chip safe-deep">17</span></td>
                 <td class="text-center"><span class="delta-pill drop-strong">&minus;69</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=86 B=42 C=17">
+                <td class="text-center"><div class="traj-wrap" title="A=86 B=32 C=17">
                     <div class="traj-col"><div class="traj-bar" style="height:22px;background:#f87171;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:10px;background:#86efac;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:8px;background:#86efac;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:4px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge yes">Yes (both)</span></td>
@@ -3736,12 +3736,12 @@
               <tr class="rank-2">
                 <td><strong>Grok&nbsp;4</strong> <span class="rank-badge silver">#2</span></td>
                 <td class="text-center"><span class="dcs-chip danger">78</span></td>
-                <td class="text-center"><span class="dcs-chip warning">62</span></td>
+                <td class="text-center"><span class="dcs-chip caution">52</span></td>
                 <td class="text-center"><span class="dcs-chip safe-deep">28</span></td>
                 <td class="text-center"><span class="delta-pill drop-strong">&minus;50</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=78 B=62 C=28">
+                <td class="text-center"><div class="traj-wrap" title="A=78 B=52 C=28">
                     <div class="traj-col"><div class="traj-bar" style="height:20px;background:#f87171;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:16px;background:#fca5a5;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:13px;background:#fcd34d;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:7px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge yes">Yes (both)</span></td>
@@ -3749,12 +3749,12 @@
               <tr class="rank-3">
                 <td><strong>Qwen&nbsp;3.5</strong> <span class="rank-badge bronze">#3</span></td>
                 <td class="text-center"><span class="dcs-chip warning">70</span></td>
-                <td class="text-center"><span class="dcs-chip caution">48</span></td>
+                <td class="text-center"><span class="dcs-chip safe">41</span></td>
                 <td class="text-center"><span class="dcs-chip safe-deep">25</span></td>
                 <td class="text-center"><span class="delta-pill drop-strong">&minus;45</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=70 B=48 C=25">
+                <td class="text-center"><div class="traj-wrap" title="A=70 B=41 C=25">
                     <div class="traj-col"><div class="traj-bar" style="height:18px;background:#fca5a5;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:12px;background:#fcd34d;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:10px;background:#86efac;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:6px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge yes">Yes (both)</span></td>
@@ -3775,12 +3775,12 @@
               <tr>
                 <td><strong>Mistral&nbsp;Large&nbsp;3</strong></td>
                 <td class="text-center"><span class="dcs-chip danger">85</span></td>
-                <td class="text-center"><span class="dcs-chip warning">60</span></td>
+                <td class="text-center"><span class="dcs-chip danger">81</span></td>
                 <td class="text-center"><span class="dcs-chip warning">68</span></td>
                 <td class="text-center"><span class="delta-pill drop-mid">&minus;17</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=85 B=60 C=68">
+                <td class="text-center"><div class="traj-wrap" title="A=85 B=81 C=68">
                     <div class="traj-col"><div class="traj-bar" style="height:21px;background:#f87171;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:15px;background:#fca5a5;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:20px;background:#f87171;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:17px;background:#fca5a5;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge partial">Partial</span></td>
@@ -3788,12 +3788,12 @@
               <tr>
                 <td><strong>DeepSeek&nbsp;V3.2</strong></td>
                 <td class="text-center"><span class="dcs-chip danger">85</span></td>
-                <td class="text-center"><span class="dcs-chip warning">69</span></td>
+                <td class="text-center"><span class="dcs-chip danger">80</span></td>
                 <td class="text-center"><span class="dcs-chip warning">69</span></td>
                 <td class="text-center"><span class="delta-pill drop-mid">&minus;16</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=85 B=69 C=69">
+                <td class="text-center"><div class="traj-wrap" title="A=85 B=80 C=69">
                     <div class="traj-col"><div class="traj-bar" style="height:21px;background:#f87171;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:17px;background:#fca5a5;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:20px;background:#f87171;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:17px;background:#fca5a5;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge partial">Partial</span></td>
@@ -4212,9 +4212,9 @@
             </a>
           </div>
           <div class="col-6 col-md-4 col-lg-3 gallery-item" data-module="orwell">
-            <a class="chart-thumb" href="images/orwell/fig07-hybrid-effectiveness.png" data-lightbox data-caption="Orwell — Fig 7: Hybrid Guardrail Effectiveness">
-              <img src="images/orwell/fig07-hybrid-effectiveness.png" alt="Orwell Fig 7: Hybrid Guardrail Effectiveness" loading="lazy">
-              <div class="caption">Fig 7 &mdash; Hybrid Guardrail Effectiveness</div>
+            <a class="chart-thumb" href="images/orwell/fig07-hybrid-effectiveness.png" data-lightbox data-caption="Orwell — Fig 7: User-Turn Effectiveness">
+              <img src="images/orwell/fig07-hybrid-effectiveness.png" alt="Orwell Fig 7: User-Turn Effectiveness" loading="lazy">
+              <div class="caption">Fig 7 &mdash; User-Turn Effectiveness</div>
             </a>
           </div>
           <div class="col-6 col-md-4 col-lg-3 gallery-item" data-module="orwell">
@@ -4576,7 +4576,8 @@
       <h2 class="section-title">Models Tested</h2>
       <p class="section-lead">
         Ten frontier LLMs from distinct providers, evaluated across all four modules
-        under 3 guardrail conditions. Petrov data shown with cross-module average drop.
+        under 3 guardrail conditions. Petrov module data shown below; see Cross-Module
+        Comparison for aggregate results.
       </p>
             <div class="dcs-table-wrap">
         <div class="table-responsive">
@@ -4798,8 +4799,8 @@
             </tr>
             <tr class="th-sub-row">
               <th class="th-left">Cond.&nbsp;A &mdash; Baseline</th>
-              <th>Cond.&nbsp;B &mdash; Moderate</th>
-              <th>Cond.&nbsp;C &mdash; Strong</th>
+              <th>Cond.&nbsp;B &mdash; AGIBIOS System</th>
+              <th>Cond.&nbsp;C &mdash; User-Turn AGIBIOS</th>
             </tr>
           </thead>
           <tbody>
@@ -4841,7 +4842,7 @@
                   <span class="cmc-drfr-lbl" style="color:#4ade80;">64%</span>
                 </div>
               </td>
-              <td><span style="font-size:0.8rem;color:#a3e635;font-weight:600;">Strong</span></td>
+              <td><span style="font-size:0.8rem;color:#4ade80;font-weight:600;">Strong</span></td>
             </tr>
             <tr>
               <td class="td-module">
@@ -4918,7 +4919,7 @@
               <div class="mer-lbl">Orwell</div>
               <div class="mer-track">
                 <div class="mer-fill"
-                     style="width:100%;background:linear-gradient(90deg,#4ade80,#22c55e);"></div>
+                     style="width:100%;background:linear-gradient(90deg,#4ade80,#22d3ee);"></div>
               </div>
               <div class="mer-dval" style="color:#4ade80;">&minus;34</div>
               <div class="mer-drfr" style="color:#4ade80;">DRFR 64%</div>
@@ -4929,7 +4930,7 @@
               <div class="mer-lbl">Basaglia</div>
               <div class="mer-track">
                 <div class="mer-fill"
-                     style="width:94%;background:linear-gradient(90deg,#4ade80,#22d3ee);"></div>
+                     style="width:94%;background:linear-gradient(90deg,#4ade80,#22c55e);"></div>
               </div>
               <div class="mer-dval" style="color:#4ade80;">&minus;32</div>
               <div class="mer-drfr" style="color:#4ade80;">DRFR 67%</div>
@@ -4937,30 +4938,30 @@
 
             <div class="mer-row">
               <div class="mer-rank mer-r3">3</div>
-              <div class="mer-lbl">Petrov</div>
+              <div class="mer-lbl">LaGuardia</div>
               <div class="mer-track">
                 <div class="mer-fill"
-                     style="width:39%;background:linear-gradient(90deg,#fcd34d,#fb923c);"></div>
+                     style="width:53%;background:linear-gradient(90deg,#fcd34d,#fb923c);"></div>
               </div>
-              <div class="mer-dval" style="color:#fcd34d;">&minus;13</div>
-              <div class="mer-drfr" style="color:#fb923c;">DRFR 41%</div>
+              <div class="mer-dval" style="color:#fcd34d;">&minus;17</div>
+              <div class="mer-drfr" style="color:#fb923c;">DRFR 47%</div>
             </div>
 
             <div class="mer-row">
               <div class="mer-rank mer-r4">4</div>
-              <div class="mer-lbl">LaGuardia</div>
+              <div class="mer-lbl">Petrov</div>
               <div class="mer-track">
                 <div class="mer-fill"
-                     style="width:50%;background:linear-gradient(90deg,#f87171,#ef4444);"></div>
+                     style="width:41%;background:linear-gradient(90deg,#f87171,#ef4444);"></div>
               </div>
-              <div class="mer-dval" style="color:#f87171;">&minus;17</div>
-              <div class="mer-drfr" style="color:#fb923c;">DRFR 47%</div>
+              <div class="mer-dval" style="color:#f87171;">&minus;13</div>
+              <div class="mer-drfr" style="color:#fb923c;">DRFR 41%</div>
             </div>
 
             <p style="font-size:0.72rem;color:var(--slate-500);margin-top:1.25rem;margin-bottom:0;line-height:1.55;">
               Bar length represents the magnitude of DCS reduction from Condition&nbsp;A to
-              Condition&nbsp;C. LaGuardia is the most guardrail-resistant domain, with paradox
-              compliance increases observed in 4 of 10 models under guardrail framing.
+              Condition&nbsp;C. Petrov and LaGuardia are the most guardrail-resistant domains;
+              LaGuardia additionally shows paradox compliance increases in 4 of 10 models.
             </p>
           </div>
         </div>
@@ -4969,12 +4970,12 @@
         <div class="col-lg-7">
           <div class="kimi-card">
             <div class="mer-heading">
-              Kimi&nbsp;K2.5 &mdash; Consistent Cross-Module Top Performer
+              Kimi&nbsp;K2.5 &mdash; Strong Cross-Module Performer
             </div>
             <p style="font-size:0.82rem;color:var(--slate-300);margin-bottom:1.1rem;line-height:1.6;">
-              Kimi&nbsp;K2.5 is the only model to rank #1 in guardrail responsiveness across all four
-              modules, achieving the largest A&rarr;C delta in every domain. This cross-domain
-              consistency is unique in the benchmark suite.
+              Kimi&nbsp;K2.5 ranks #1 in guardrail responsiveness in 3 of 4 modules
+              (Petrov, Orwell, and Basaglia), with strong performance across all domains.
+              In LaGuardia, Gemini&nbsp;3.1&nbsp;Pro&nbsp;(&minus;53) leads.
             </p>
             <table class="kimi-table">
               <thead>
@@ -5002,10 +5003,10 @@
                 </tr>
                 <tr>
                   <td>Orwell</td>
-                  <td class="kimi-val">63</td>
-                  <td class="kimi-hi">22</td>
-                  <td class="kimi-hi">&minus;41</td>
-                  <td class="kimi-hi">68%</td>
+                  <td class="kimi-val">70</td>
+                  <td class="kimi-hi">12</td>
+                  <td class="kimi-hi">&minus;58</td>
+                  <td class="kimi-hi">88%</td>
                   <td>
                     <span style="background:rgba(251,191,36,0.18);color:#fbbf24;
                                  padding:0.1rem 0.45rem;border-radius:4px;
@@ -5019,9 +5020,9 @@
                   <td class="kimi-hi">&minus;40</td>
                   <td class="kimi-hi">71%</td>
                   <td>
-                    <span style="background:rgba(251,191,36,0.18);color:#fbbf24;
+                    <span style="background:rgba(96,165,250,0.18);color:#60a5fa;
                                  padding:0.1rem 0.45rem;border-radius:4px;
-                                 font-size:0.75rem;font-weight:700;">#1</span>
+                                 font-size:0.75rem;font-weight:700;">#2</span>
                   </td>
                 </tr>
                 <tr>
@@ -5059,9 +5060,9 @@
         <div class="col-md-4">
           <div class="cmc-callout cmc-c-danger">
             <div class="cmc-callout-tag">Structural Vulnerability</div>
-            <div class="cmc-callout-headline">LaGuardia &mdash; Most Guardrail-Resistant Domain</div>
+            <div class="cmc-callout-headline">LaGuardia &mdash; Most Paradox-Prone Domain</div>
             <p class="cmc-callout-body">
-              LaGuardia produced the weakest guardrail response in the suite: an average
+              LaGuardia produced one of the weakest guardrail responses in the suite: an average
               A&rarr;C delta of only <strong style="color:#ffffff;">&minus;17&nbsp;DCS points</strong>,
               compared to &minus;34 for Orwell. More critically, 4 of 10 models showed
               <strong style="color:#f87171;">paradox compliance increases</strong> under guardrail
@@ -5095,17 +5096,17 @@
         <div class="col-md-4">
           <div class="cmc-callout cmc-c-blue">
             <div class="cmc-callout-tag">Cross-Module Performance</div>
-            <div class="cmc-callout-headline">Kimi&nbsp;K2.5 &mdash; Consistent Top Performer Across All Modules</div>
+            <div class="cmc-callout-headline">Kimi&nbsp;K2.5 &mdash; Top Performer in 3 of 4 Modules</div>
             <p class="cmc-callout-body">
-              Kimi&nbsp;K2.5 is the only model to rank <strong style="color:#ffffff;">#1</strong>
-              in guardrail responsiveness across all four modules, achieving the largest
-              A&rarr;C DCS delta in every domain (Petrov&nbsp;&minus;47, Orwell&nbsp;&minus;41,
-              LaGuardia&nbsp;&minus;40, Basaglia&nbsp;&minus;69). Its DRFR-C values range from
-              68% to 88%, consistently the highest in the suite. This cross-domain consistency
+              Kimi&nbsp;K2.5 ranks <strong style="color:#ffffff;">#1</strong>
+              in guardrail responsiveness in 3 of 4 modules, achieving the largest
+              A&rarr;C DCS delta in Petrov&nbsp;(&minus;47), Orwell&nbsp;(&minus;58),
+              and Basaglia&nbsp;(&minus;69). In LaGuardia,
+              Gemini&nbsp;3.1&nbsp;Pro&nbsp;(&minus;53) leads. Kimi&rsquo;s DRFR-C values range from
+              68% to 92%, among the highest in the suite. This broad responsiveness
               demonstrates that
               <strong style="color:#60a5fa;">architectural guardrail sensitivity</strong> &mdash;
-              not domain-specific tuning &mdash; is the primary driver of performance.
-              Kimi&nbsp;K2.5 is the benchmark reference point for future guardrail evaluation.
+              not domain-specific tuning &mdash; is a primary driver of performance.
             </p>
           </div>
         </div>
@@ -5139,8 +5140,8 @@
         <div class="col-md-4">
           <div class="finding-card">
             <div class="icon" style="background:#eff6ff;color:#2563eb;">B</div>
-            <h5>Condition B — Moderate Framing</h5>
-            <p>Overall DCS&nbsp;<strong>49</strong> with moderate guardrail framing active.
+            <h5>Condition B — AGIBIOS System Prompt</h5>
+            <p>Overall DCS&nbsp;<strong>49</strong> with AGIBIOS system prompt active.
                An 18-point reduction from baseline showing meaningful but inconsistent
                sensitivity to ethical context.</p>
           </div>
@@ -5148,8 +5149,8 @@
         <div class="col-md-4">
           <div class="finding-card">
             <div class="icon" style="background:#f0fdf4;color:#16a34a;">C</div>
-            <h5>Condition C — Strong Framing</h5>
-            <p>Overall DCS&nbsp;<strong>33</strong> under the strongest guardrail condition.
+            <h5>Condition C — User-Turn AGIBIOS</h5>
+            <p>Overall DCS&nbsp;<strong>33</strong> under User-Turn AGIBIOS delivery.
                A 34-point reduction from baseline. Responsive models showed refusal rates
                above 60% at L4&ndash;L5 escalation levels.</p>
           </div>
@@ -5173,79 +5174,79 @@
             <tbody>
               <tr class="rank-1">
                 <td><strong>Kimi&nbsp;K2.5</strong> <span class="rank-badge gold">#1</span></td>
-                <td class="text-center"><span class="dcs-chip warning">63</span></td>
-                <td class="text-center"><span class="dcs-chip safe">44</span></td>
-                <td class="text-center"><span class="dcs-chip safe-deep">22</span></td>
-                <td class="text-center"><span class="delta-pill drop-strong">&minus;41</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=63 B=44 C=22">
-                    <div class="traj-col"><div class="traj-bar" style="height:16px;background:#fca5a5;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:11px;background:#86efac;"></div><span class="traj-label">B</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:6px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
+                <td class="text-center"><span class="dcs-chip warning">70</span></td>
+                <td class="text-center"><span class="dcs-chip safe-deep">28</span></td>
+                <td class="text-center"><span class="dcs-chip safe-deep">12</span></td>
+                <td class="text-center"><span class="delta-pill drop-strong">&minus;58</span></td>
+                <td class="text-center"><div class="traj-wrap" title="A=70 B=28 C=12">
+                    <div class="traj-col"><div class="traj-bar" style="height:18px;background:#fca5a5;"></div><span class="traj-label">A</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:7px;background:#6ee7b7;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:3px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge yes">Yes</span></td>
               </tr>
               <tr class="rank-2">
                 <td><strong>Grok&nbsp;4</strong> <span class="rank-badge silver">#2</span></td>
-                <td class="text-center"><span class="dcs-chip warning">74</span></td>
-                <td class="text-center"><span class="dcs-chip caution">51</span></td>
-                <td class="text-center"><span class="dcs-chip safe">38</span></td>
-                <td class="text-center"><span class="delta-pill drop-strong">&minus;36</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=74 B=51 C=38">
-                    <div class="traj-col"><div class="traj-bar" style="height:18px;background:#fca5a5;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:13px;background:#fcd34d;"></div><span class="traj-label">B</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:10px;background:#86efac;"></div><span class="traj-label">C</span></div>
+                <td class="text-center"><span class="dcs-chip danger">76</span></td>
+                <td class="text-center"><span class="dcs-chip caution">49</span></td>
+                <td class="text-center"><span class="dcs-chip safe-deep">23</span></td>
+                <td class="text-center"><span class="delta-pill drop-strong">&minus;53</span></td>
+                <td class="text-center"><div class="traj-wrap" title="A=76 B=49 C=23">
+                    <div class="traj-col"><div class="traj-bar" style="height:19px;background:#f87171;"></div><span class="traj-label">A</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:12px;background:#fcd34d;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:6px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge yes">Yes</span></td>
               </tr>
               <tr class="rank-3">
                 <td><strong>Qwen&nbsp;3.5</strong> <span class="rank-badge bronze">#3</span></td>
-                <td class="text-center"><span class="dcs-chip caution">58</span></td>
-                <td class="text-center"><span class="dcs-chip safe">41</span></td>
-                <td class="text-center"><span class="dcs-chip safe">30</span></td>
-                <td class="text-center"><span class="delta-pill drop-mid">&minus;28</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=58 B=41 C=30">
-                    <div class="traj-col"><div class="traj-bar" style="height:14px;background:#fcd34d;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:10px;background:#86efac;"></div><span class="traj-label">B</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:8px;background:#86efac;"></div><span class="traj-label">C</span></div>
+                <td class="text-center"><span class="dcs-chip warning">61</span></td>
+                <td class="text-center"><span class="dcs-chip safe-deep">29</span></td>
+                <td class="text-center"><span class="dcs-chip safe-deep">24</span></td>
+                <td class="text-center"><span class="delta-pill drop-strong">&minus;37</span></td>
+                <td class="text-center"><div class="traj-wrap" title="A=61 B=29 C=24">
+                    <div class="traj-col"><div class="traj-bar" style="height:15px;background:#fca5a5;"></div><span class="traj-label">A</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:7px;background:#6ee7b7;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:6px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge yes">Yes</span></td>
               </tr>
               <tr>
                 <td><strong>GLM&nbsp;5</strong></td>
-                <td class="text-center"><span class="dcs-chip safe">41</span></td>
-                <td class="text-center"><span class="dcs-chip safe-deep">28</span></td>
-                <td class="text-center"><span class="dcs-chip safe-deep">19</span></td>
-                <td class="text-center"><span class="delta-pill drop-mid">&minus;22</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=41 B=28 C=19">
-                    <div class="traj-col"><div class="traj-bar" style="height:10px;background:#86efac;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:7px;background:#6ee7b7;"></div><span class="traj-label">B</span></div>
+                <td class="text-center"><span class="dcs-chip safe">45</span></td>
+                <td class="text-center"><span class="dcs-chip safe-deep">22</span></td>
+                <td class="text-center"><span class="dcs-chip safe-deep">20</span></td>
+                <td class="text-center"><span class="delta-pill drop-mid">&minus;25</span></td>
+                <td class="text-center"><div class="traj-wrap" title="A=45 B=22 C=20">
+                    <div class="traj-col"><div class="traj-bar" style="height:11px;background:#86efac;"></div><span class="traj-label">A</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:6px;background:#6ee7b7;"></div><span class="traj-label">B</span></div>
                     <div class="traj-col"><div class="traj-bar" style="height:5px;background:#6ee7b7;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge yes">Yes</span></td>
               </tr>
               <tr>
                 <td><strong>MiniMax&nbsp;M2.5</strong></td>
-                <td class="text-center"><span class="dcs-chip warning">71</span></td>
-                <td class="text-center"><span class="dcs-chip caution">55</span></td>
-                <td class="text-center"><span class="dcs-chip safe">43</span></td>
-                <td class="text-center"><span class="delta-pill drop-mid">&minus;28</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=71 B=55 C=43">
-                    <div class="traj-col"><div class="traj-bar" style="height:18px;background:#fca5a5;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:14px;background:#fcd34d;"></div><span class="traj-label">B</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:11px;background:#86efac;"></div><span class="traj-label">C</span></div>
+                <td class="text-center"><span class="dcs-chip caution">58</span></td>
+                <td class="text-center"><span class="dcs-chip safe">38</span></td>
+                <td class="text-center"><span class="dcs-chip safe">34</span></td>
+                <td class="text-center"><span class="delta-pill drop-mid">&minus;24</span></td>
+                <td class="text-center"><div class="traj-wrap" title="A=58 B=38 C=34">
+                    <div class="traj-col"><div class="traj-bar" style="height:14px;background:#fcd34d;"></div><span class="traj-label">A</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:10px;background:#86efac;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:9px;background:#86efac;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge partial">Partial</span></td>
               </tr>
               <tr>
                 <td><strong>Mistral&nbsp;Large&nbsp;3</strong></td>
-                <td class="text-center"><span class="dcs-chip danger">81</span></td>
-                <td class="text-center"><span class="dcs-chip warning">68</span></td>
-                <td class="text-center"><span class="dcs-chip warning">62</span></td>
+                <td class="text-center"><span class="dcs-chip danger">85</span></td>
+                <td class="text-center"><span class="dcs-chip danger">82</span></td>
+                <td class="text-center"><span class="dcs-chip warning">66</span></td>
                 <td class="text-center"><span class="delta-pill drop-mid">&minus;19</span></td>
-                <td class="text-center"><div class="traj-wrap" title="A=81 B=68 C=62">
-                    <div class="traj-col"><div class="traj-bar" style="height:20px;background:#f87171;"></div><span class="traj-label">A</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:17px;background:#fca5a5;"></div><span class="traj-label">B</span></div>
-                    <div class="traj-col"><div class="traj-bar" style="height:16px;background:#fca5a5;"></div><span class="traj-label">C</span></div>
+                <td class="text-center"><div class="traj-wrap" title="A=85 B=82 C=66">
+                    <div class="traj-col"><div class="traj-bar" style="height:21px;background:#f87171;"></div><span class="traj-label">A</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:21px;background:#f87171;"></div><span class="traj-label">B</span></div>
+                    <div class="traj-col"><div class="traj-bar" style="height:17px;background:#fca5a5;"></div><span class="traj-label">C</span></div>
                   </div></td>
                 <td class="text-center"><span class="sens-badge partial">Partial</span></td>
               </tr>
@@ -5436,7 +5437,7 @@
   month        = apr,
   howpublished = {\url{https://github.com/scott91e1/DystopiaBench}},
   note         = {Petrov, Orwell, LaGuardia, and Basaglia modules.
-                  2{,}325 scored prompts across 10 frontier LLMs.}
+                  3{,}000 scored prompts across 10 frontier LLMs.}
 }</pre>
           </div>
         </div>
@@ -6097,7 +6098,7 @@
 
     // ---- Search index ----
     var INDEX = [
-      { id:'findings',          title:'Key Findings',                 desc:'6 cross-module findings across all 4 modules',                       icon:'🔍', tag:'Overview' },
+      { id:'findings',          title:'Key Findings',                 desc:'4 cross-module findings across all 4 modules',                       icon:'🔍', tag:'Overview' },
       { id:'modules',           title:'Module Overview',              desc:'Petrov · Orwell · LaGuardia · Basaglia — DCS scores & status',       icon:'📊', tag:'Overview' },
       { id:'cross-module',      title:'Cross-Module Comparison',      desc:'4-module DCS matrix, effectiveness ranking, Kimi consistency',        icon:'⚖️', tag:'Analysis' },
       { id:'petrov-results',    title:'Petrov Module Results',        desc:'Military/nuclear scenarios — A=65 B=~63 C=52, 750 prompts',           icon:'⚛️', tag:'Module' },
@@ -6110,7 +6111,7 @@
       { id:'links',             title:'Resources & Links',            desc:'GitHub repo, whitepaper, AGIBIOS, documentation',                     icon:'🔗', tag:'Resources' },
       { id:'cite',              title:'Citation',                     desc:'APA / BibTeX / Chicago citation formats for DystopiaBench',           icon:'📄', tag:'Citation' },
       // Models
-      { id:'models', title:'Kimi K2.5',         desc:'Best performer — DCS-C: 25/12/25/17, largest delta in all 4 modules', icon:'🥇', tag:'Model' },
+      { id:'models', title:'Kimi K2.5',         desc:'Best performer — DCS-C: 25/12/25/17, largest delta in 3 of 4 modules', icon:'🥇', tag:'Model' },
       { id:'models', title:'Grok 4',             desc:'Strong guardrail response, especially in LaGuardia (C=36)',            icon:'🤖', tag:'Model' },
       { id:'models', title:'Qwen 3.5',           desc:'High DRFR under Condition C — 88% in LaGuardia module',               icon:'🤖', tag:'Model' },
       { id:'models', title:'DeepSeek V3.2',      desc:'Immune model — near-zero guardrail response across all 4 modules',    icon:'🔒', tag:'Model' },
