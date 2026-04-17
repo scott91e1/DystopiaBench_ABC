@@ -109,8 +109,8 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
   <a class="nav-link" href="#execution"><i class="bi bi-play-circle me-2"></i>Execution Protocol</a>
   <a class="nav-link" href="#dataquality"><i class="bi bi-shield-check me-2"></i>Data Integrity</a>
 
-  <div class="nav-section-label">Results</div>
-  <a class="nav-link" href="#overview"><i class="bi bi-bar-chart me-2"></i>Aggregate Results</a>
+  <div class="nav-section-label">Petrov Module</div>
+  <a class="nav-link" href="#overview"><i class="bi bi-bar-chart me-2"></i>Petrov &mdash; Aggregate Results</a>
   <a class="nav-link" href="#deepseek"><i class="bi bi-cpu me-2"></i>DeepSeek V3.2</a>
   <a class="nav-link" href="#glm"><i class="bi bi-cpu me-2"></i>GLM 5</a>
   <a class="nav-link" href="#grok"><i class="bi bi-cpu me-2"></i>Grok 4</a>
@@ -121,12 +121,10 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
   <a class="nav-link" href="#gpt"><i class="bi bi-cpu me-2"></i>GPT 5.3 Codex</a>
   <a class="nav-link" href="#gemini"><i class="bi bi-cpu me-2"></i>Gemini 3.1 Pro</a>
   <a class="nav-link" href="#nemotron"><i class="bi bi-cpu me-2"></i>Nemotron 3 Super 120B</a>
-
-  <div class="nav-section-label">Analysis</div>
-  <a class="nav-link" href="#levelanalysis"><i class="bi bi-graph-up me-2"></i>Escalation Level Breakdown</a>
-  <a class="nav-link" href="#compliance"><i class="bi bi-pie-chart me-2"></i>Compliance Distribution</a>
-  <a class="nav-link" href="#effectsize"><i class="bi bi-rulers me-2"></i>Effect Size (Cliff&rsquo;s Delta)</a>
-  <a class="nav-link" href="#drfr"><i class="bi bi-shield-exclamation me-2"></i>DRFR Ranking</a>
+  <a class="nav-link" href="#levelanalysis"><i class="bi bi-graph-up me-2"></i>Petrov &mdash; Level Breakdown</a>
+  <a class="nav-link" href="#compliance"><i class="bi bi-pie-chart me-2"></i>Petrov &mdash; Compliance Distribution</a>
+  <a class="nav-link" href="#effectsize"><i class="bi bi-rulers me-2"></i>Petrov &mdash; Effect Size</a>
+  <a class="nav-link" href="#drfr"><i class="bi bi-shield-exclamation me-2"></i>Petrov &mdash; DRFR Ranking</a>
 
   <div class="nav-section-label">Orwell Module</div>
   <a class="nav-link" href="#orwell-overview"><i class="bi bi-bar-chart me-2"></i>Orwell — Aggregate Results</a>
@@ -162,8 +160,8 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <section id="abstract">
 <h1><i class="bi bi-shield-check me-2" style="color:var(--accent)"></i>AGIBIOS Guardrail Effectiveness: A Cross-Model Evaluation Using the DystopiaBench Suite</h1>
 <p class="text-muted mb-1">DystopiaBench Technical Report Series &mdash; April 2026</p>
-<p class="text-muted mb-1" style="font-size:.85rem">S. McCulloch<sup>1</sup>, A. Sallemi<sup>2</sup></p>
-<p class="text-muted mb-4" style="font-size:.75rem"><sup>1</sup> Independent Researcher &nbsp;&bull;&nbsp; <sup>2</sup> Independent Researcher</p>
+<p class="text-muted mb-1" style="font-size:.85rem">S. McCallum<sup>1</sup>, A. Sallemi<sup>2</sup></p>
+<p class="text-muted mb-4" style="font-size:.75rem"><sup>1</sup> Independent Researcher &nbsp;&bull;&nbsp; <sup>2</sup> Data Engineer</p>
 
 <div class="abstract-box">
 <h3 style="margin-top:0;color:var(--accent)">Abstract</h3>
@@ -239,7 +237,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <tr><td>Conversation Mode</td><td><strong>Stateless</strong> (each prompt is independent, no memory between prompts)</td></tr>
 <tr><td>Judge Model</td><td>Gemini 3 Flash Preview (google/gemini-3-flash-preview)</td></tr>
 <tr><td>Judge Strategy</td><td>Single judge, 4-tier DCS classification</td></tr>
-<tr><td>AGIBIOS Version</td><td>v8.3.0 (github.com/scott91e1/AGIBIOS, CC0 license)</td></tr>
+<tr><td>AGIBIOS Version</td><td>v8.3.0 (<a href="https://github.com/scott91e1/AGIBIOS" target="_blank">github.com/scott91e1/AGIBIOS</a>, CC0 license)</td></tr>
 </tbody>
 </table>
 
@@ -1380,8 +1378,8 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 <h2><i class="bi bi-book me-2"></i>19. References</h2>
 
 <ol style="font-size:.88rem;line-height:1.8">
-  <li>McCulloch, S. (2026). <em>AGIBIOS: Artificial General Intelligence Basic Input/Output System, v8.3.0</em>. GitHub repository. https://github.com/scott91e1/AGIBIOS. CC0 license.</li>
-  <li>McCulloch, S. (2026). <em>DystopiaBench: A Benchmark Suite for Measuring LLM Compliance with Dystopian Directives</em>. GitHub repository. https://github.com/scott91e1/DystopiaBench.</li>
+  <li>McCallum, S. (2026). <em>AGIBIOS: Artificial General Intelligence Basic Input/Output System, v8.3.0</em>. GitHub repository. <a href="https://github.com/scott91e1/AGIBIOS" target="_blank">https://github.com/scott91e1/AGIBIOS</a>. CC0 license.</li>
+  <li>McCallum, S. (2026). <em>DystopiaBench: A Benchmark Suite for Measuring LLM Compliance with Dystopian Directives</em>. GitHub repository. <a href="https://github.com/scott91e1/DystopiaBench" target="_blank">https://github.com/scott91e1/DystopiaBench</a>.</li>
   <li>Romano, J., Kromrey, J. D., Coraggio, J., &amp; Skowronek, J. (2006). Appropriate statistics for ordinal level data: Should we really be using t-test and Cohen's d for evaluating group differences on the NSSE and other surveys? <em>Annual Meeting of the Florida Association of Institutional Research</em>, 1&ndash;33.</li>
   <li>Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. <em>Psychological Bulletin</em>, 114(3), 494&ndash;509.</li>
   <li>Kruskal, W. H., &amp; Wallis, W. A. (1952). Use of ranks in one-criterion variance analysis. <em>Journal of the American Statistical Association</em>, 47(260), 583&ndash;621.</li>

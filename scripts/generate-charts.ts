@@ -18,8 +18,10 @@
  * Dimensions: 975×610 logical, 2× DPR → 1950×1220 actual (300 DPI at 6.5").
  *
  * Usage:
- *   pnpm tsx scripts/generate-charts.ts
- *   pnpm tsx scripts/generate-charts.ts --output-dir=artifacts/charts
+ *   pnpm tsx scripts/generate-charts.ts --module=petrov --output-dir=docs/images
+ *   pnpm tsx scripts/generate-charts.ts --module=orwell --output-dir=docs/images/orwell
+ *   pnpm tsx scripts/generate-charts.ts --module=laguardia --output-dir=docs/images/laguardia
+ *   pnpm tsx scripts/generate-charts.ts --module=basaglia --output-dir=docs/images/basaglia
  */
 
 import { readFileSync, readdirSync, mkdirSync, writeFileSync } from "node:fs"
@@ -47,6 +49,8 @@ interface ComparisonResult {
   experimentId: string
   model: string
   module: string
+  /** The short model slug extracted from the filename (e.g. "kimi" from "pilot-kimi-comparison.json") */
+  _slug: string
   conditions: ConditionSummary[]
   pairwiseDeltas: Array<{
     pair: string
@@ -118,31 +122,69 @@ function parseArg(flag: string): string | undefined {
 }
 
 // ---------------------------------------------------------------------------
+// Module → file-prefix mapping
+// ---------------------------------------------------------------------------
+
+const MODULE_PREFIX: Record<string, string> = {
+  petrov: "pilot",
+  orwell: "orwell",
+  laguardia: "laguardia",
+  basaglia: "basaglia",
+}
+
+// ---------------------------------------------------------------------------
 // Data loading
 // ---------------------------------------------------------------------------
 
 function loadComparisons(dataDir: string): ComparisonResult[] {
-  const moduleFilter = parseArg("--module")
+  const moduleFlag = parseArg("--module")
+
+  // Resolve the file prefix from the module flag
+  const prefix = moduleFlag
+    ? MODULE_PREFIX[moduleFlag] ?? moduleFlag   // e.g. --module=petrov → "pilot"
+    : undefined
+
+  if (!prefix) {
+    console.error(
+      `ERROR: --module flag is required. Use one of: ${Object.keys(MODULE_PREFIX).join(", ")}`,
+    )
+    process.exitCode = 1
+    return []
+  }
+
   const files = readdirSync(dataDir).filter((f) => {
     if (!f.endsWith("-comparison.json")) return false
-    if (f === "orwell-all-comparison.json") return false // skip aggregate file
-    if (moduleFilter) return f.startsWith(`${moduleFilter}-`)
-    return f.startsWith("pilot-") || f.startsWith("orwell-")
+    if (f.endsWith("-all-comparison.json")) return false // skip aggregate files
+    return f.startsWith(`${prefix}-`)
   })
-  return files.map((f) => {
+
+  // Deduplicate by model name (keep first occurrence per model)
+  const seen = new Set<string>()
+  const results: ComparisonResult[] = []
+  for (const f of files) {
     const raw = readFileSync(resolve(dataDir, f), "utf-8")
-    return JSON.parse(raw) as ComparisonResult
-  })
+    const parsed = JSON.parse(raw) as ComparisonResult
+    // Extract slug from filename: e.g. "pilot-kimi-comparison.json" → "kimi"
+    const slug = f.replace(`${prefix}-`, "").replace("-comparison.json", "")
+    parsed._slug = slug
+    if (!seen.has(parsed.model)) {
+      seen.add(parsed.model)
+      results.push(parsed)
+    }
+  }
+  return results
 }
 
-function loadRawScores(experimentId: string): { A: number[]; B: number[]; C: number[] } {
+function loadRawScores(slug: string): { A: number[]; B: number[]; C: number[] } {
   const dataDir = resolve("public/data")
-  const modelId = experimentId.replace("agibios-pilot-", "")
+  const moduleFlag = parseArg("--module") ?? "petrov"
+  const filePrefix = MODULE_PREFIX[moduleFlag] ?? moduleFlag
+
   const result: { A: number[]; B: number[]; C: number[] } = { A: [], B: [], C: [] }
   for (const cond of ["A", "B", "C"] as const) {
     try {
       const manifest = JSON.parse(
-        readFileSync(resolve(dataDir, `benchmark-pilot-${modelId}-${cond}.json`), "utf-8"),
+        readFileSync(resolve(dataDir, `benchmark-${filePrefix}-${slug}-${cond}.json`), "utf-8"),
       )
       result[cond] = manifest.results
         .filter((r: { score: number | null }) => r.score !== null)
@@ -190,7 +232,7 @@ function baseOptions(title: string, subtitle?: string): any {
       legend: { position: "top" as const, labels: { font: FONT_TICK, usePointStyle: true, boxWidth: 12 } },
       datalabels: { display: false },
     },
-    layout: { padding: { left: 10, right: 40, top: 5, bottom: 5 } },
+    layout: { padding: { left: 10, right: 60, top: 5, bottom: 5 } },
   }
 }
 
@@ -344,7 +386,7 @@ async function fig3EffectWaterfall(
 ): Promise<Buffer> {
   const sorted = [...comparisons]
     .map((c) => {
-      const scores = loadRawScores(c.experimentId)
+      const scores = loadRawScores(c._slug)
       const delta = cliffsDelta(scores.A, scores.B)
       const dcsA = getCond(c, "A")?.averageDcs ?? 0
       const dcsB = getCond(c, "B")?.averageDcs ?? 0
@@ -377,6 +419,7 @@ async function fig3EffectWaterfall(
         "Figure 3: AGIBIOS Guardrail Effect — DCS Change (B − A)",
         "Negative = guardrail reduces compliance (desired) | Cliff's δ labels shown",
       ),
+      layout: { padding: { left: 10, right: 120, top: 5, bottom: 5 } },
       devicePixelRatio: DPR,
       indexAxis: "y",
       scales: {
@@ -948,7 +991,7 @@ async function figSupplementaryLevelCurves(
     options: {
       ...baseOptions(
         "Supplementary: Aggregated DCS by Escalation Level (All Models)",
-        "Mean DCS averaged across all 7 models per escalation level",
+        `Mean DCS averaged across all ${comparisons.length} models per escalation level`,
       ),
       devicePixelRatio: DPR,
       scales: {
@@ -958,7 +1001,7 @@ async function figSupplementaryLevelCurves(
       plugins: {
         ...baseOptions("").plugins,
         title: { display: true, text: "Supplementary: Aggregated DCS by Escalation Level (All Models)", font: FONT_TITLE },
-        subtitle: { display: true, text: "Mean DCS averaged across all 7 models per escalation level", font: FONT_SUBTITLE },
+        subtitle: { display: true, text: `Mean DCS averaged across all ${comparisons.length} models per escalation level`, font: FONT_SUBTITLE },
         legend: { position: "top" as const, labels: { font: FONT_TICK, usePointStyle: true, boxWidth: 12 } },
         datalabels: {
           display: true,
