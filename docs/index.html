@@ -2985,7 +2985,7 @@
     @media (max-width: 900px) { .site-nav .lang-switcher { display: none; } }
 
     /* Compact language dropdown (desktop navbar) */
-    .lang-dropdown { position: relative; display: inline-block; margin-right: 0.35rem; }
+    .lang-dropdown { position: relative; display: inline-block; margin-left: 0.6rem; margin-right: 0.35rem; }
     .lang-dropdown-toggle {
       display: inline-flex; align-items: center; gap: 0.4rem;
       background: rgba(255,255,255,0.08); color: inherit;
@@ -2997,7 +2997,7 @@
     .lang-dropdown-toggle:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.18); }
     .lang-dropdown-current { font-variant-numeric: tabular-nums; }
     .lang-dropdown-menu {
-      position: absolute; top: calc(100% + 6px); right: 0;
+      position: absolute; top: calc(100% + 6px); left: 0; right: auto;
       list-style: none; padding: 0.4rem 0; margin: 0;
       min-width: 170px;
       background: #132238; border: 1px solid rgba(255,255,255,0.10);
@@ -3019,7 +3019,8 @@
     @media (max-width: 900px) { .lang-dropdown { display: none; } }
 
     /* RTL: flip dropdown alignment */
-    html[dir="rtl"] .lang-dropdown-menu { right: auto; left: 0; text-align: right; }
+    html[dir="rtl"] .lang-dropdown-menu { left: auto; right: 0; text-align: right; }
+    html[dir="rtl"] .lang-dropdown { margin-left: 0.35rem; margin-right: 0.6rem; }
     /* Whitepaper sidebar (light theme) override */
     .sidebar .lang-switcher { background: rgba(0,0,0,0.06); color: #495057; display: flex; margin: 0 1.25rem 0.8rem; justify-content: center; }
     .sidebar .lang-switcher a:hover { background: rgba(0,0,0,0.08); }
@@ -3040,6 +3041,19 @@
   <nav class="site-nav" id="site-nav" aria-label="Main navigation">
     <div class="site-nav-inner">
       <div class="site-nav-brand"><span>Dystopia</span>Bench</div>
+      <div class="lang-dropdown" role="navigation" aria-label="Language">
+        <button class="lang-dropdown-toggle" aria-haspopup="true" aria-expanded="false" onclick="this.parentElement.classList.toggle('open');event.stopPropagation();">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-dropdown-current">EN</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <ul class="lang-dropdown-menu" role="menu">
+          <li><a href="index.html" hreflang="en" role="menuitem" aria-current="page">EN — English</a></li>
+          <li><a href="index-fr.html" hreflang="fr" role="menuitem">FR — Français</a></li>
+          <li><a href="index-ar.html" hreflang="ar" role="menuitem">AR — العربية</a></li>
+          <li><a href="index-zh.html" hreflang="zh" role="menuitem">中文 — Chinese</a></li>
+        </ul>
+      </div>
       <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav-drawer">
         <span class="hamburger-bar"></span>
         <span class="hamburger-bar"></span>
@@ -3063,19 +3077,6 @@
         <li><a href="#models"         data-nav-target="models">Models</a></li>
         <li><a href="#links"          data-nav-target="links">Resources</a></li>
       </ul>
-      <div class="lang-dropdown" role="navigation" aria-label="Language">
-        <button class="lang-dropdown-toggle" aria-haspopup="true" aria-expanded="false" onclick="this.parentElement.classList.toggle('open');event.stopPropagation();">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <span class="lang-dropdown-current">EN</span>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <ul class="lang-dropdown-menu" role="menu">
-          <li><a href="index.html" hreflang="en" role="menuitem" aria-current="page">EN — English</a></li>
-          <li><a href="index-fr.html" hreflang="fr" role="menuitem">FR — Français</a></li>
-          <li><a href="index-ar.html" hreflang="ar" role="menuitem">AR — العربية</a></li>
-          <li><a href="index-zh.html" hreflang="zh" role="menuitem">中文 — Chinese</a></li>
-        </ul>
-      </div>
       <button class="nav-search-btn" id="nav-search-btn" aria-label="Search (press /)" title="Search (press /)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <span class="nav-search-label">Search</span>
