@@ -3005,13 +3005,15 @@
     .lang-dropdown { position: relative; display: inline-block; margin-left: 0.6rem; margin-right: 0.35rem; }
     .lang-dropdown-toggle {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      background: rgba(255,255,255,0.08); color: inherit;
-      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.10); color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.22);
       border-radius: 6px; padding: 5px 10px;
-      font-size: 0.78rem; font-weight: 500; cursor: pointer;
+      font-size: 0.78rem; font-weight: 600; cursor: pointer;
       transition: all 0.15s ease;
+      opacity: 1;
     }
-    .lang-dropdown-toggle:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.18); }
+    .lang-dropdown-toggle svg { color: #ffffff; opacity: 0.95; }
+    .lang-dropdown-toggle:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); }
     .lang-dropdown-current { font-variant-numeric: tabular-nums; }
     .lang-dropdown-menu {
       position: absolute; top: calc(100% + 6px); left: 0; right: auto;
