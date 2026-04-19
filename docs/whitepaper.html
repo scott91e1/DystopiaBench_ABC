@@ -77,6 +77,12 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 .keyword-list{font-size:.82rem;color:#6c757d;margin-top:.8rem}
 .keyword-list strong{color:#333}
 @media print{.sidebar,.sidebar-toggle,.sidebar-overlay{display:none!important}.main-content{margin-left:0!important;padding:1rem!important}h2{break-before:page}.table-custom{font-size:.65rem}.table-custom td,.table-custom th{padding:.25rem .35rem}table{page-break-inside:auto}tr{page-break-inside:avoid}figure{page-break-inside:avoid}}
+/* Language switcher */
+.lang-switcher{display:flex;gap:2px;padding:3px;border-radius:6px;background:rgba(0,0,0,0.06);font-size:.78rem;line-height:1.2;margin:0 1.25rem .8rem;justify-content:center}
+.lang-switcher a,.lang-switcher span{padding:4px 10px;border-radius:4px;text-decoration:none;color:#495057;opacity:.8;transition:all .15s ease;display:inline-block}
+.lang-switcher a:hover{opacity:1;background:rgba(0,0,0,0.08);color:var(--accent)}
+.lang-switcher .current{opacity:1;background:var(--accent);color:#fff;font-weight:600;cursor:default}
+@media print{.lang-switcher{display:none!important}}
 </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#sidebar-nav">
@@ -87,6 +93,12 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
   <div class="sidebar-brand">
     <h5><i class="bi bi-shield-check me-1"></i> AGIBIOS Whitepaper</h5>
     <small>Full Suite &mdash; April 2026</small>
+  </div>
+  <div class="lang-switcher" role="navigation" aria-label="Language">
+    <span class="current">EN</span>
+    <a href="whitepaper-fr.html" hreflang="fr">FR</a>
+    <a href="whitepaper-ar.html" hreflang="ar">AR</a>
+    <a href="whitepaper-zh.html" hreflang="zh">中文</a>
   </div>
   <div class="sidebar-search">
     <input type="text" id="searchInput" placeholder="Search document... (Ctrl+F)">

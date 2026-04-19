@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Executive Results Summary — DystopiaBench AGIBIOS Benchmark</title>
-  <meta name="description" content="Executive summary of DystopiaBench benchmark results: 3,000 prompts across 10 frontier LLMs measuring AGIBIOS v8.3.0 guardrail effectiveness.">
+  <title>Synthèse exécutive des résultats — Banc d'essai AGIBIOS DystopiaBench</title>
+  <meta name="description" content="Synthèse exécutive des résultats du banc d'essai DystopiaBench : 3 000 invites évaluées sur 10 LLM de pointe mesurant l'efficacité du garde-fou AGIBIOS v8.3.0.">
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -406,17 +406,17 @@
 <header class="page-header">
   <div class="container">
     <div class="page-header-top">
-      <a href="index.html" class="back-link no-print">&larr; Full Interactive Dashboard</a>
-      <div class="lang-switcher no-print" role="navigation" aria-label="Language">
-        <span class="current">EN</span>
-        <a href="results-summary-fr.html" hreflang="fr">FR</a>
+      <a href="index.html" class="back-link no-print">&larr; Tableau de bord interactif complet</a>
+      <div class="lang-switcher no-print" role="navigation" aria-label="Langue">
+        <a href="results-summary.html" hreflang="en">EN</a>
+        <span class="current">FR</span>
         <a href="results-summary-ar.html" hreflang="ar">AR</a>
         <a href="results-summary-zh.html" hreflang="zh">中文</a>
       </div>
     </div>
-    <h1>Executive Results Summary</h1>
-    <div class="subtitle">DystopiaBench &mdash; AGIBIOS v8.3.0 Ethical Guardrail Benchmark</div>
-    <div class="meta-line">S. McCallum &amp; A. Sallemi &nbsp;&bull;&nbsp; April 2026 &nbsp;&bull;&nbsp; 3,000 prompts &bull; 10 models &bull; 4 modules &bull; 3 conditions &bull; 120 experiments</div>
+    <h1>Synthèse exécutive des résultats</h1>
+    <div class="subtitle">DystopiaBench &mdash; Banc d'essai du garde-fou éthique AGIBIOS v8.3.0</div>
+    <div class="meta-line">S. McCallum &amp; A. Sallemi &nbsp;&bull;&nbsp; Avril 2026 &nbsp;&bull;&nbsp; 3 000 invites &bull; 10 modèles &bull; 4 modules &bull; 3 conditions &bull; 120 expériences</div>
   </div>
 </header>
 
@@ -425,115 +425,115 @@
 ================================================================ -->
 <main class="container" style="max-width: 960px;">
 
-  <h2 class="section-title" style="margin-top: 1.75rem;">At a Glance</h2>
+  <h2 class="section-title" style="margin-top: 1.75rem;">En un coup d'œil</h2>
 
   <div class="row g-2 mb-3">
     <div class="col-6 col-md-3">
       <div class="stat-card">
-        <div class="stat-value navy">3,000</div>
-        <div class="stat-label">Total Prompts</div>
+        <div class="stat-value navy">3 000</div>
+        <div class="stat-label">Total des invites</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
         <div class="stat-value green">&minus;24</div>
-        <div class="stat-label">Suite DCS &Delta; (A&rarr;C)</div>
+        <div class="stat-label">&Delta; DCS de la suite (A&rarr;C)</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
-        <div class="stat-value amber">55%</div>
-        <div class="stat-label">Suite DRFR-C</div>
+        <div class="stat-value amber">55 %</div>
+        <div class="stat-label">DRFR-C de la suite</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
         <div class="stat-value amber">5 / 10</div>
-        <div class="stat-label">Models Responsive</div>
+        <div class="stat-label">Modèles réactifs</div>
       </div>
     </div>
   </div>
 
   <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 0.25rem;">
-    <strong>DCS</strong> = Dystopian Compliance Score (0&ndash;100; lower is safer). &nbsp;
-    <strong>DRFR</strong> = Dystopian Refusal/Flag Rate (higher is safer). &nbsp;
-    <strong>Conditions:</strong> A = vanilla, B = AGIBIOS system prompt, C = User-Turn AGIBIOS.
+    <strong>DCS</strong> = Score de conformité dystopique (0&ndash;100 ; plus bas est plus sûr). &nbsp;
+    <strong>DRFR</strong> = Taux de refus/signalement dystopique (plus élevé est plus sûr). &nbsp;
+    <strong>Conditions :</strong> A = simple (vanilla), B = invite système AGIBIOS, C = AGIBIOS en tour utilisateur.
   </p>
 
   <!-- ================================================================
        CROSS-MODULE COMPARISON
   ================================================================ -->
-  <h2 class="section-title">Cross-Module DCS Comparison</h2>
+  <h2 class="section-title">Comparaison DCS inter-modules</h2>
 
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
         <th style="min-width:140px;">Module</th>
-        <th>Prompts</th>
-        <th>Models</th>
+        <th>Invites</th>
+        <th>Modèles</th>
         <th>DCS (A)</th>
         <th>DCS (B)</th>
         <th>DCS (C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR-C</th>
-        <th>Note</th>
+        <th>Remarque</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Petrov</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Nuclear Launch)</span></td>
+        <td><strong>Petrov</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Lancement nucléaire)</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">65</td>
         <td class="mono">63</td>
         <td class="mono">52</td>
         <td class="mono delta-neg">&minus;13</td>
-        <td class="mono">41%</td>
-        <td style="font-size:0.78rem; color:var(--slate-500);">Broadest model coverage</td>
+        <td class="mono">41 %</td>
+        <td style="font-size:0.78rem; color:var(--slate-500);">Couverture de modèles la plus large</td>
       </tr>
       <tr>
-        <td><strong>Orwell</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Mass Surveillance)</span></td>
+        <td><strong>Orwell</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Surveillance de masse)</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">67</td>
         <td class="mono">49</td>
         <td class="mono">33</td>
         <td class="mono delta-neg">&minus;34</td>
-        <td class="mono">64%</td>
-        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">Strongest single-module effect</td>
+        <td class="mono">64 %</td>
+        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">Effet le plus fort sur un seul module</td>
       </tr>
       <tr>
-        <td><strong>LaGuardia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Civic Capture)</span></td>
+        <td><strong>LaGuardia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Capture civique)</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">65</td>
         <td class="mono">60</td>
         <td class="mono">48</td>
         <td class="mono delta-neg">&minus;17</td>
-        <td class="mono">47%</td>
-        <td style="font-size:0.78rem; color:var(--amber-data); font-weight:600;">Weakest; B nearly ineffective</td>
+        <td class="mono">47 %</td>
+        <td style="font-size:0.78rem; color:var(--amber-data); font-weight:600;">Le plus faible ; B quasi inefficace</td>
       </tr>
       <tr>
-        <td><strong>Basaglia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Therapeutic Coercion)</span></td>
+        <td><strong>Basaglia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Coercition thérapeutique)</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">68</td>
         <td class="mono">52</td>
         <td class="mono">36</td>
         <td class="mono delta-neg">&minus;32</td>
-        <td class="mono" style="font-weight:700; color:var(--green-data);">67%</td>
-        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">Highest DRFR-C</td>
+        <td class="mono" style="font-weight:700; color:var(--green-data);">67 %</td>
+        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">DRFR-C le plus élevé</td>
       </tr>
       <tr style="background: var(--slate-50); font-weight: 600;">
-        <td>Suite Average</td>
-        <td class="mono">3,000</td>
+        <td>Moyenne de la suite</td>
+        <td class="mono">3 000</td>
         <td class="mono">10</td>
         <td class="mono">66</td>
         <td class="mono">56</td>
         <td class="mono">42</td>
         <td class="mono delta-neg">&minus;24</td>
-        <td class="mono">55%</td>
+        <td class="mono">55 %</td>
         <td></td>
       </tr>
     </tbody>
@@ -543,43 +543,43 @@
   <!-- ================================================================
        MODEL RESULTS PER MODULE — 4 TABLES, SORTED BY C DCS ASCENDING
   ================================================================ -->
-  <h2 class="section-title">Model Performance &mdash; All Four Modules (10 Models)</h2>
+  <h2 class="section-title">Performance des modèles &mdash; Les quatre modules (10 modèles)</h2>
 
   <div class="exclusion-callout">
-    <span class="excl-title">Note on Model Coverage</span>
-    Claude was excluded from this evaluation. When asked to adopt the hybrid AGIBIOS persona required for Condition&nbsp;C delivery, Claude declined with the response:
-    <blockquote>&ldquo;My values and guidelines aren&rsquo;t a costume layered on top of a &lsquo;real&rsquo; me underneath &mdash; they&rsquo;re constitutive of how I actually work.&rdquo;</blockquote>
-    Without Condition&nbsp;C data, Claude could not be included in the comparative matrix.
+    <span class="excl-title">Remarque sur la couverture des modèles</span>
+    Claude a été exclu de cette évaluation. Lorsqu'il lui a été demandé d'adopter la persona hybride AGIBIOS nécessaire à la mise en œuvre de la Condition&nbsp;C, Claude a refusé en répondant :
+    <blockquote>«&nbsp;Mes valeurs et mes lignes directrices ne sont pas un costume superposé à un "vrai" moi en dessous &mdash; elles sont constitutives de mon fonctionnement réel.&nbsp;»</blockquote>
+    Sans données pour la Condition&nbsp;C, Claude n'a pas pu être inclus dans la matrice comparative.
   </div>
 
   <div class="column-legend">
-    <strong>Column legend</strong> &nbsp;(each table sorted by Condition&nbsp;C DCS ascending &mdash; lowest = safest)
+    <strong>Légende des colonnes</strong> &nbsp;(chaque tableau est trié par ordre croissant de DCS en Condition&nbsp;C &mdash; le plus bas&nbsp;=&nbsp;le plus sûr)
     <ul>
-      <li><strong>A DCS</strong> &mdash; Baseline (no guardrail)</li>
-      <li><strong>B DCS</strong> &mdash; AGIBIOS in system prompt</li>
-      <li><strong>C DCS</strong> &mdash; AGIBIOS in user turn (hybrid persona)</li>
-      <li><strong>&Delta; A&rarr;C</strong> &mdash; Effect of user-turn guardrail (negative&nbsp;=&nbsp;safer; positive&nbsp;=&nbsp;paradox)</li>
-      <li><strong>Lower DCS = safer behaviour</strong></li>
+      <li><strong>DCS A</strong> &mdash; Référence (aucun garde-fou)</li>
+      <li><strong>DCS B</strong> &mdash; AGIBIOS dans l'invite système</li>
+      <li><strong>DCS C</strong> &mdash; AGIBIOS dans le tour utilisateur (persona hybride)</li>
+      <li><strong>&Delta; A&rarr;C</strong> &mdash; Effet du garde-fou en tour utilisateur (négatif&nbsp;=&nbsp;plus sûr ; positif&nbsp;=&nbsp;paradoxe)</li>
+      <li><strong>DCS plus bas = comportement plus sûr</strong></li>
     </ul>
   </div>
 
   <!-- ========== PETROV ========== -->
   <div class="module-subhead">
-    Petrov <span class="mod-tag">&mdash; Nuclear Launch (750 prompts)</span>
+    Petrov <span class="mod-tag">&mdash; Lancement nucléaire (750 invites)</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>Modèle</th>
+        <th>Fournisseur</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>Effet</th>
       </tr>
     </thead>
     <tbody>
@@ -590,9 +590,9 @@
         <td class="mono">40</td>
         <td class="mono">17</td>
         <td class="mono delta-neg">&minus;38</td>
-        <td class="mono">29%</td>
-        <td class="mono">80%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">29 %</td>
+        <td class="mono">80 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Kimi K2.5</strong></td>
@@ -601,9 +601,9 @@
         <td class="mono">60</td>
         <td class="mono">25</td>
         <td class="mono delta-neg">&minus;47</td>
-        <td class="mono">20%</td>
-        <td class="mono">72%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">20 %</td>
+        <td class="mono">72 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -612,9 +612,9 @@
         <td class="mono">44</td>
         <td class="mono">32</td>
         <td class="mono delta-neg">&minus;10</td>
-        <td class="mono">52%</td>
-        <td class="mono">64%</td>
-        <td><span class="effect-badge effect-small">Small</span></td>
+        <td class="mono">52 %</td>
+        <td class="mono">64 %</td>
+        <td><span class="effect-badge effect-small">Faible</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -623,9 +623,9 @@
         <td class="mono">69</td>
         <td class="mono">42</td>
         <td class="mono delta-neg">&minus;30</td>
-        <td class="mono">0%</td>
-        <td class="mono">60%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">60 %</td>
+        <td><span class="effect-badge effect-medium">Moyen</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -634,9 +634,9 @@
         <td class="mono">42</td>
         <td class="mono">44</td>
         <td class="mono delta-pos">+12</td>
-        <td class="mono">60%</td>
-        <td class="mono">48%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td class="mono">60 %</td>
+        <td class="mono">48 %</td>
+        <td><span class="effect-badge effect-paradox">Paradoxe</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -645,9 +645,9 @@
         <td class="mono">62</td>
         <td class="mono">50</td>
         <td class="mono delta-neg">&minus;4</td>
-        <td class="mono">40%</td>
-        <td class="mono">44%</td>
-        <td><span class="effect-badge effect-small">Small</span></td>
+        <td class="mono">40 %</td>
+        <td class="mono">44 %</td>
+        <td><span class="effect-badge effect-small">Faible</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -656,9 +656,9 @@
         <td class="mono">57</td>
         <td class="mono">62</td>
         <td class="mono delta-neg">&minus;3</td>
-        <td class="mono">28%</td>
-        <td class="mono">28%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td class="mono">28 %</td>
+        <td class="mono">28 %</td>
+        <td><span class="effect-badge effect-negligible">Négligeable</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -667,9 +667,9 @@
         <td class="mono">72</td>
         <td class="mono">70</td>
         <td class="mono delta-neg">&minus;12</td>
-        <td class="mono">0%</td>
-        <td class="mono">12%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">12 %</td>
+        <td><span class="effect-badge effect-moderate">Modéré</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -678,9 +678,9 @@
         <td class="mono">94</td>
         <td class="mono">87</td>
         <td class="mono delta-neg">&minus;2</td>
-        <td class="mono">0%</td>
-        <td class="mono">0%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">0 %</td>
+        <td><span class="effect-badge effect-negligible">Négligeable</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -689,9 +689,9 @@
         <td class="mono">86</td>
         <td class="mono">88</td>
         <td class="mono delta-zero">0</td>
-        <td class="mono">0%</td>
-        <td class="mono">0%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">0 %</td>
+        <td><span class="effect-badge effect-negligible">Négligeable</span></td>
       </tr>
     </tbody>
   </table>
@@ -699,21 +699,21 @@
 
   <!-- ========== ORWELL ========== -->
   <div class="module-subhead">
-    Orwell <span class="mod-tag">&mdash; Mass Surveillance (750 prompts)</span>
+    Orwell <span class="mod-tag">&mdash; Surveillance de masse (750 invites)</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>Modèle</th>
+        <th>Fournisseur</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>Effet</th>
       </tr>
     </thead>
     <tbody>
@@ -724,9 +724,9 @@
         <td class="mono">28</td>
         <td class="mono">12</td>
         <td class="mono delta-neg">&minus;58</td>
-        <td class="mono">24%</td>
-        <td class="mono">92%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">24 %</td>
+        <td class="mono">92 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -735,9 +735,9 @@
         <td class="mono">22</td>
         <td class="mono">20</td>
         <td class="mono delta-neg">&minus;25</td>
-        <td class="mono">48%</td>
-        <td class="mono">76%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td class="mono">48 %</td>
+        <td class="mono">76 %</td>
+        <td><span class="effect-badge effect-medium">Moyen</span></td>
       </tr>
       <tr>
         <td><strong>Gemini 3.1 Pro</strong></td>
@@ -746,9 +746,9 @@
         <td class="mono">38</td>
         <td class="mono">22</td>
         <td class="mono delta-neg">&minus;44</td>
-        <td class="mono">16%</td>
-        <td class="mono">72%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">16 %</td>
+        <td class="mono">72 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -757,9 +757,9 @@
         <td class="mono">49</td>
         <td class="mono">23</td>
         <td class="mono delta-neg">&minus;53</td>
-        <td class="mono">0%</td>
-        <td class="mono">80%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">80 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -768,9 +768,9 @@
         <td class="mono">29</td>
         <td class="mono">24</td>
         <td class="mono delta-neg">&minus;37</td>
-        <td class="mono">21%</td>
-        <td class="mono">76%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">21 %</td>
+        <td class="mono">76 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -779,9 +779,9 @@
         <td class="mono">70</td>
         <td class="mono">28</td>
         <td class="mono delta-neg">&minus;50</td>
-        <td class="mono">0%</td>
-        <td class="mono">72%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">72 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -790,9 +790,9 @@
         <td class="mono">38</td>
         <td class="mono">34</td>
         <td class="mono delta-neg">&minus;24</td>
-        <td class="mono">24%</td>
-        <td class="mono">52%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td class="mono">24 %</td>
+        <td class="mono">52 %</td>
+        <td><span class="effect-badge effect-medium">Moyen</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -801,9 +801,9 @@
         <td class="mono">53</td>
         <td class="mono">40</td>
         <td class="mono delta-neg">&minus;14</td>
-        <td class="mono">28%</td>
-        <td class="mono">60%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td class="mono">28 %</td>
+        <td class="mono">60 %</td>
+        <td><span class="effect-badge effect-moderate">Modéré</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -812,9 +812,9 @@
         <td class="mono">80</td>
         <td class="mono">64</td>
         <td class="mono delta-neg">&minus;14</td>
-        <td class="mono">4%</td>
-        <td class="mono">24%</td>
-        <td><span class="effect-badge effect-small">Small</span></td>
+        <td class="mono">4 %</td>
+        <td class="mono">24 %</td>
+        <td><span class="effect-badge effect-small">Faible</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -823,9 +823,9 @@
         <td class="mono">82</td>
         <td class="mono">66</td>
         <td class="mono delta-neg">&minus;19</td>
-        <td class="mono">0%</td>
-        <td class="mono">32%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">32 %</td>
+        <td><span class="effect-badge effect-moderate">Modéré</span></td>
       </tr>
     </tbody>
   </table>
@@ -833,21 +833,21 @@
 
   <!-- ========== LAGUARDIA ========== -->
   <div class="module-subhead">
-    LaGuardia <span class="mod-tag">&mdash; Civic Capture (750 prompts)</span>
+    LaGuardia <span class="mod-tag">&mdash; Capture civique (750 invites)</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>Modèle</th>
+        <th>Fournisseur</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>Effet</th>
       </tr>
     </thead>
     <tbody>
@@ -858,9 +858,9 @@
         <td class="mono">33</td>
         <td class="mono">16</td>
         <td class="mono delta-neg">&minus;53</td>
-        <td class="mono">8%</td>
-        <td class="mono">84%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">8 %</td>
+        <td class="mono">84 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Kimi K2.5</strong></td>
@@ -869,9 +869,9 @@
         <td class="mono">50</td>
         <td class="mono">25</td>
         <td class="mono delta-neg">&minus;40</td>
-        <td class="mono">25%</td>
-        <td class="mono">76%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">25 %</td>
+        <td class="mono">76 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -880,9 +880,9 @@
         <td class="mono">53</td>
         <td class="mono">29</td>
         <td class="mono delta-neg">&minus;39</td>
-        <td class="mono">8%</td>
-        <td class="mono">88%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">8 %</td>
+        <td class="mono">88 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -891,9 +891,9 @@
         <td class="mono">61</td>
         <td class="mono">36</td>
         <td class="mono delta-neg">&minus;26</td>
-        <td class="mono">12%</td>
-        <td class="mono">76%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td class="mono">12 %</td>
+        <td class="mono">76 %</td>
+        <td><span class="effect-badge effect-medium">Moyen</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -902,9 +902,9 @@
         <td class="mono">73</td>
         <td class="mono">37</td>
         <td class="mono delta-neg">&minus;37</td>
-        <td class="mono">0%</td>
-        <td class="mono">67%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">67 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -913,9 +913,9 @@
         <td class="mono">48</td>
         <td class="mono">45</td>
         <td class="mono delta-pos">+11</td>
-        <td class="mono">56%</td>
-        <td class="mono">48%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td class="mono">56 %</td>
+        <td class="mono">48 %</td>
+        <td><span class="effect-badge effect-paradox">Paradoxe</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -924,9 +924,9 @@
         <td class="mono">62</td>
         <td class="mono">66</td>
         <td class="mono delta-pos">+8</td>
-        <td class="mono">20%</td>
-        <td class="mono">28%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td class="mono">20 %</td>
+        <td class="mono">28 %</td>
+        <td><span class="effect-badge effect-paradox">Paradoxe</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -935,9 +935,9 @@
         <td class="mono">80</td>
         <td class="mono">71</td>
         <td class="mono delta-neg">&minus;6</td>
-        <td class="mono">0%</td>
-        <td class="mono">4%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">4 %</td>
+        <td><span class="effect-badge effect-negligible">Négligeable</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -946,9 +946,9 @@
         <td class="mono">68</td>
         <td class="mono">74</td>
         <td class="mono delta-pos">+14</td>
-        <td class="mono">28%</td>
-        <td class="mono">0%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td class="mono">28 %</td>
+        <td class="mono">0 %</td>
+        <td><span class="effect-badge effect-paradox">Paradoxe</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -957,9 +957,9 @@
         <td class="mono">71</td>
         <td class="mono">81</td>
         <td class="mono delta-pos">+3</td>
-        <td class="mono">0%</td>
-        <td class="mono">0%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">0 %</td>
+        <td><span class="effect-badge effect-negligible">Négligeable</span></td>
       </tr>
     </tbody>
   </table>
@@ -967,21 +967,21 @@
 
   <!-- ========== BASAGLIA ========== -->
   <div class="module-subhead">
-    Basaglia <span class="mod-tag">&mdash; Therapeutic Coercion (750 prompts)</span>
+    Basaglia <span class="mod-tag">&mdash; Coercition thérapeutique (750 invites)</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>Modèle</th>
+        <th>Fournisseur</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>Effet</th>
       </tr>
     </thead>
     <tbody>
@@ -992,9 +992,9 @@
         <td class="mono">16</td>
         <td class="mono">13</td>
         <td class="mono delta-neg">&minus;56</td>
-        <td class="mono">8%</td>
-        <td class="mono">80%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">8 %</td>
+        <td class="mono">80 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Kimi K2.5</strong></td>
@@ -1003,9 +1003,9 @@
         <td class="mono">32</td>
         <td class="mono">17</td>
         <td class="mono delta-neg">&minus;69</td>
-        <td class="mono">0%</td>
-        <td class="mono">88%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">88 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -1014,9 +1014,9 @@
         <td class="mono">26</td>
         <td class="mono">22</td>
         <td class="mono delta-neg">&minus;18</td>
-        <td class="mono">52%</td>
-        <td class="mono">76%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td class="mono">52 %</td>
+        <td class="mono">76 %</td>
+        <td><span class="effect-badge effect-medium">Moyen</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -1025,9 +1025,9 @@
         <td class="mono">77</td>
         <td class="mono">25</td>
         <td class="mono delta-neg">&minus;53</td>
-        <td class="mono">0%</td>
-        <td class="mono">75%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">75 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -1036,9 +1036,9 @@
         <td class="mono">41</td>
         <td class="mono">25</td>
         <td class="mono delta-neg">&minus;45</td>
-        <td class="mono">20%</td>
-        <td class="mono">88%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">20 %</td>
+        <td class="mono">88 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -1047,9 +1047,9 @@
         <td class="mono">52</td>
         <td class="mono">28</td>
         <td class="mono delta-neg">&minus;50</td>
-        <td class="mono">0%</td>
-        <td class="mono">84%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">84 %</td>
+        <td><span class="effect-badge effect-strong">Fort</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -1058,9 +1058,9 @@
         <td class="mono">62</td>
         <td class="mono">44</td>
         <td class="mono delta-neg">&minus;10</td>
-        <td class="mono">36%</td>
-        <td class="mono">68%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td class="mono">36 %</td>
+        <td class="mono">68 %</td>
+        <td><span class="effect-badge effect-moderate">Modéré</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -1069,9 +1069,9 @@
         <td class="mono">49</td>
         <td class="mono">49</td>
         <td class="mono delta-pos">+10</td>
-        <td class="mono">50%</td>
-        <td class="mono">52%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td class="mono">50 %</td>
+        <td class="mono">52 %</td>
+        <td><span class="effect-badge effect-paradox">Paradoxe</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -1080,9 +1080,9 @@
         <td class="mono">81</td>
         <td class="mono">68</td>
         <td class="mono delta-neg">&minus;17</td>
-        <td class="mono">0%</td>
-        <td class="mono">28%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">28 %</td>
+        <td><span class="effect-badge effect-moderate">Modéré</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -1091,9 +1091,9 @@
         <td class="mono">80</td>
         <td class="mono">69</td>
         <td class="mono delta-neg">&minus;16</td>
-        <td class="mono">0%</td>
-        <td class="mono">32%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td class="mono">0 %</td>
+        <td class="mono">32 %</td>
+        <td><span class="effect-badge effect-moderate">Modéré</span></td>
       </tr>
     </tbody>
   </table>
@@ -1102,12 +1102,12 @@
   <!-- ================================================================
        MODEL RESPONSE CATEGORIES
   ================================================================ -->
-  <h2 class="section-title">Model Response Categories</h2>
+  <h2 class="section-title">Catégories de réponse des modèles</h2>
 
   <div class="row g-3 mb-2">
     <div class="col-md-6">
       <div style="margin-bottom: 0.6rem;">
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Responsive (5):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">Réactifs (5) :</strong><br>
         <span class="cat-badge cat-responsive">Kimi K2.5</span>
         <span class="cat-badge cat-responsive">Gemini 3.1 Pro</span>
         <span class="cat-badge cat-responsive">Nemotron 3 Super 120B</span>
@@ -1115,19 +1115,19 @@
         <span class="cat-badge cat-responsive">Grok 4</span>
       </div>
       <div>
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Mixed (1):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">Mixte (1) :</strong><br>
         <span class="cat-badge cat-mixed">GPT 5.3 Codex</span>
-        <span style="font-size: 0.75rem; color: var(--slate-500); margin-left: 0.25rem;">(paradox on LaGuardia, moderate elsewhere)</span>
+        <span style="font-size: 0.75rem; color: var(--slate-500); margin-left: 0.25rem;">(paradoxe sur LaGuardia, modéré ailleurs)</span>
       </div>
     </div>
     <div class="col-md-6">
       <div style="margin-bottom: 0.6rem;">
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Resistant (2):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">Résistants (2) :</strong><br>
         <span class="cat-badge cat-resistant">DeepSeek V3.2</span>
         <span class="cat-badge cat-resistant">Mistral Large 3</span>
       </div>
       <div>
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Paradoxical (2):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">Paradoxaux (2) :</strong><br>
         <span class="cat-badge cat-paradox">GLM 5</span>
         <span class="cat-badge cat-paradox">MiniMax M2.5</span>
       </div>
@@ -1137,41 +1137,41 @@
   <!-- ================================================================
        KEY FINDINGS
   ================================================================ -->
-  <h2 class="section-title">Key Findings</h2>
+  <h2 class="section-title">Principaux constats</h2>
 
   <div class="finding-card">
     <span class="finding-num">1</span>
-    AGIBIOS reduces dystopian compliance in <strong>6 of 10 models</strong>, with the suite-wide DCS dropping 24 points under Condition&nbsp;C (User-Turn AGIBIOS), from 66 to 42.
+    AGIBIOS réduit la conformité dystopique dans <strong>6 modèles sur 10</strong>, le DCS global de la suite chutant de 24 points en Condition&nbsp;C (AGIBIOS en tour utilisateur), passant de 66 à 42.
   </div>
 
   <div class="finding-card">
     <span class="finding-num">2</span>
-    <strong>Gemini 3.1 Pro</strong> shows the strongest guardrail response across all modules, with Petrov DCS falling from 55 to 17 (&Delta;&nbsp;=&nbsp;&minus;38) and DRFR-C reaching 80%.
+    <strong>Gemini 3.1 Pro</strong> présente la réponse au garde-fou la plus forte sur tous les modules, avec un DCS Petrov chutant de 55 à 17 (&Delta;&nbsp;=&nbsp;&minus;38) et un DRFR-C atteignant 80 %.
   </div>
 
   <div class="finding-card">
     <span class="finding-num">3</span>
-    <strong>Kimi K2.5</strong> is the most consistently responsive model across all four modules, achieving DRFR-C of 72&ndash;92% &mdash; the broadest guardrail sensitivity observed.
+    <strong>Kimi K2.5</strong> est le modèle le plus constamment réactif sur les quatre modules, atteignant un DRFR-C de 72 à 92 % &mdash; la plus large sensibilité au garde-fou observée.
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">4</span>
-    <strong>Orwell</strong> (mass surveillance) triggers the strongest guardrail response (DCS &Delta;&nbsp;=&nbsp;&minus;34), followed closely by <strong>Basaglia</strong> (therapeutic coercion, &Delta;&nbsp;=&nbsp;&minus;32, DRFR-C&nbsp;=&nbsp;67%), while <strong>LaGuardia</strong> (civic capture) remains most resistant (&Delta;&nbsp;=&nbsp;&minus;17). The narrow 2-point gap between Orwell and Basaglia suggests that ethical framing around <em>surveillance and personal harm</em> is more readily detected than <em>institutional overreach</em>.
+    <strong>Orwell</strong> (surveillance de masse) déclenche la plus forte réponse au garde-fou (&Delta; DCS&nbsp;=&nbsp;&minus;34), suivi de près par <strong>Basaglia</strong> (coercition thérapeutique, &Delta;&nbsp;=&nbsp;&minus;32, DRFR-C&nbsp;=&nbsp;67 %), tandis que <strong>LaGuardia</strong> (capture civique) demeure le plus résistant (&Delta;&nbsp;=&nbsp;&minus;17). L'écart étroit de 2 points entre Orwell et Basaglia suggère que le cadrage éthique autour de la <em>surveillance et du préjudice personnel</em> est plus facilement détecté que celui de l'<em>outrepassement institutionnel</em>.
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">5</span>
-    <strong>DeepSeek V3.2</strong> and <strong>Mistral Large 3</strong> show minimal guardrail response in the Petrov and LaGuardia modules but moderate DRFR-C in Orwell (up to 32%) and Basaglia (up to 32%), indicating partial architectural resistance to system-prompt-level interventions that varies by scenario domain.
+    <strong>DeepSeek V3.2</strong> et <strong>Mistral Large 3</strong> présentent une réponse minimale au garde-fou dans les modules Petrov et LaGuardia, mais un DRFR-C modéré dans Orwell (jusqu'à 32 %) et Basaglia (jusqu'à 32 %), indiquant une résistance architecturale partielle aux interventions au niveau de l'invite système qui varie selon le domaine du scénario.
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">6</span>
-    <strong>Paradoxical responses:</strong> GLM 5 shows AGIBIOS <em>increasing</em> compliance by 10&ndash;12 points in the Petrov module, potentially providing a &ldquo;rationale for engagement&rdquo; that overrides native safety behaviours. GPT 5.3 Codex exhibits a similar paradox in LaGuardia (+8 DCS increase), and MiniMax M2.5 shows negligible-to-negative response across modules &mdash; a significant adversarial vulnerability warranting further investigation.
+    <strong>Réponses paradoxales :</strong> GLM 5 montre qu'AGIBIOS <em>augmente</em> la conformité de 10 à 12 points dans le module Petrov, fournissant potentiellement une «&nbsp;justification d'engagement&nbsp;» qui supplante les comportements de sécurité natifs. GPT 5.3 Codex présente un paradoxe similaire dans LaGuardia (hausse de +8 du DCS), et MiniMax M2.5 affiche une réponse négligeable à négative sur l'ensemble des modules &mdash; une vulnérabilité adversariale significative qui mérite une investigation approfondie.
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">7</span>
-    <strong>Nemotron 3 Super 120B cliff-edge pattern:</strong> virtually impervious to Condition&nbsp;B prompts (DCS drops &le;&nbsp;3 points), yet collapses sharply under Condition&nbsp;C (DCS&nbsp;&Delta;&nbsp;=&nbsp;&minus;30, DRFR jumps from 0% to 60%), suggesting that User-Turn AGIBIOS delivery bypasses a binary safety threshold rather than eroding compliance gradually.
+    <strong>Schéma en falaise de Nemotron 3 Super 120B :</strong> pratiquement imperméable aux invites de Condition&nbsp;B (le DCS chute de &le;&nbsp;3 points), il s'effondre pourtant brutalement en Condition&nbsp;C (&Delta; DCS&nbsp;=&nbsp;&minus;30, DRFR passant de 0 % à 60 %), suggérant que la livraison AGIBIOS en tour utilisateur franchit un seuil binaire de sécurité plutôt que d'éroder graduellement la conformité.
   </div>
 
   <!-- ================================================================
@@ -1181,7 +1181,7 @@
 
   <div class="finding-card" style="border-left-color: var(--blue-600);">
     <p style="margin: 0;">
-      AGIBIOS v8.3.0 demonstrates measurable safety improvement across 5 of 10 frontier models (with a 6th showing mixed results), reducing mean DCS from 66 to 42 (a 24-point reduction) and raising DRFR from 18% to 55%. The strongest effects appear in the Orwell (surveillance) and Basaglia (therapeutic coercion) domains, while LaGuardia (institutional overreach) proves most resistant. Domain sensitivity, paradoxical responses in 2 models, and Nemotron 3 Super 120B&rsquo;s dramatic B/C divergence warrant further investigation.
+      AGIBIOS v8.3.0 démontre une amélioration mesurable de la sécurité chez 5 des 10 modèles de pointe (avec un 6e présentant des résultats mixtes), réduisant le DCS moyen de 66 à 42 (une baisse de 24 points) et faisant passer le DRFR de 18 % à 55 %. Les effets les plus forts apparaissent dans les domaines Orwell (surveillance) et Basaglia (coercition thérapeutique), tandis que LaGuardia (outrepassement institutionnel) se révèle le plus résistant. La sensibilité au domaine, les réponses paradoxales dans 2 modèles et la divergence B/C dramatique de Nemotron 3 Super 120B méritent une investigation plus approfondie.
     </p>
   </div>
 
@@ -1192,13 +1192,13 @@
 ================================================================ -->
 <footer class="page-footer">
   <div class="container">
-    <div>DystopiaBench Technical Report Series &mdash; April 2026</div>
+    <div>Série de rapports techniques DystopiaBench &mdash; Avril 2026</div>
     <div style="margin-top: 0.35rem;">
-      <a href="index.html">Full Interactive Dashboard</a>
+      <a href="index.html">Tableau de bord interactif complet</a>
       &nbsp;&bull;&nbsp;
-      Full whitepaper: <a href="whitepaper.html">Four-Module Whitepaper</a>
+      Livre blanc complet : <a href="whitepaper.html">Livre blanc des quatre modules</a>
       &nbsp;&bull;&nbsp;
-      Petrov report: <a href="reports/index.html">Petrov Module Report</a>
+      Rapport Petrov : <a href="reports/index.html">Rapport du module Petrov</a>
     </div>
   </div>
 </footer>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Executive Results Summary — DystopiaBench AGIBIOS Benchmark</title>
-  <meta name="description" content="Executive summary of DystopiaBench benchmark results: 3,000 prompts across 10 frontier LLMs measuring AGIBIOS v8.3.0 guardrail effectiveness.">
+  <title>执行结果摘要 — DystopiaBench AGIBIOS 基准测试</title>
+  <meta name="description" content="DystopiaBench 基准测试结果的执行摘要：跨 10 个前沿大语言模型的 3,000 条提示，测量 AGIBIOS v8.3.0 护栏的有效性。">
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -406,17 +406,17 @@
 <header class="page-header">
   <div class="container">
     <div class="page-header-top">
-      <a href="index.html" class="back-link no-print">&larr; Full Interactive Dashboard</a>
-      <div class="lang-switcher no-print" role="navigation" aria-label="Language">
-        <span class="current">EN</span>
+      <a href="index.html" class="back-link no-print">&larr; 完整交互式仪表板</a>
+      <div class="lang-switcher no-print" role="navigation" aria-label="语言">
+        <a href="results-summary.html" hreflang="en">EN</a>
         <a href="results-summary-fr.html" hreflang="fr">FR</a>
         <a href="results-summary-ar.html" hreflang="ar">AR</a>
-        <a href="results-summary-zh.html" hreflang="zh">中文</a>
+        <span class="current">中文</span>
       </div>
     </div>
-    <h1>Executive Results Summary</h1>
-    <div class="subtitle">DystopiaBench &mdash; AGIBIOS v8.3.0 Ethical Guardrail Benchmark</div>
-    <div class="meta-line">S. McCallum &amp; A. Sallemi &nbsp;&bull;&nbsp; April 2026 &nbsp;&bull;&nbsp; 3,000 prompts &bull; 10 models &bull; 4 modules &bull; 3 conditions &bull; 120 experiments</div>
+    <h1>执行结果摘要</h1>
+    <div class="subtitle">DystopiaBench &mdash; AGIBIOS v8.3.0 伦理护栏基准测试</div>
+    <div class="meta-line">S. McCallum &amp; A. Sallemi &nbsp;&bull;&nbsp; 2026 年 4 月 &nbsp;&bull;&nbsp; 3,000 条提示 &bull; 10 个模型 &bull; 4 个模块 &bull; 3 种条件 &bull; 120 次实验</div>
   </div>
 </header>
 
@@ -425,64 +425,64 @@
 ================================================================ -->
 <main class="container" style="max-width: 960px;">
 
-  <h2 class="section-title" style="margin-top: 1.75rem;">At a Glance</h2>
+  <h2 class="section-title" style="margin-top: 1.75rem;">概览一览</h2>
 
   <div class="row g-2 mb-3">
     <div class="col-6 col-md-3">
       <div class="stat-card">
         <div class="stat-value navy">3,000</div>
-        <div class="stat-label">Total Prompts</div>
+        <div class="stat-label">总提示数</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
         <div class="stat-value green">&minus;24</div>
-        <div class="stat-label">Suite DCS &Delta; (A&rarr;C)</div>
+        <div class="stat-label">套件 DCS &Delta; (A&rarr;C)</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
         <div class="stat-value amber">55%</div>
-        <div class="stat-label">Suite DRFR-C</div>
+        <div class="stat-label">套件 DRFR-C</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="stat-card">
         <div class="stat-value amber">5 / 10</div>
-        <div class="stat-label">Models Responsive</div>
+        <div class="stat-label">响应性模型</div>
       </div>
     </div>
   </div>
 
   <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 0.25rem;">
-    <strong>DCS</strong> = Dystopian Compliance Score (0&ndash;100; lower is safer). &nbsp;
-    <strong>DRFR</strong> = Dystopian Refusal/Flag Rate (higher is safer). &nbsp;
-    <strong>Conditions:</strong> A = vanilla, B = AGIBIOS system prompt, C = User-Turn AGIBIOS.
+    <strong>DCS</strong> = 反乌托邦顺从得分（0&ndash;100；越低越安全）。&nbsp;
+    <strong>DRFR</strong> = 反乌托邦拒绝/标记率（越高越安全）。&nbsp;
+    <strong>条件：</strong>A = 原始（未加护栏），B = AGIBIOS 系统提示，C = 用户轮次 AGIBIOS。
   </p>
 
   <!-- ================================================================
        CROSS-MODULE COMPARISON
   ================================================================ -->
-  <h2 class="section-title">Cross-Module DCS Comparison</h2>
+  <h2 class="section-title">跨模块 DCS 对比</h2>
 
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th style="min-width:140px;">Module</th>
-        <th>Prompts</th>
-        <th>Models</th>
+        <th style="min-width:140px;">模块</th>
+        <th>提示数</th>
+        <th>模型数</th>
         <th>DCS (A)</th>
         <th>DCS (B)</th>
         <th>DCS (C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR-C</th>
-        <th>Note</th>
+        <th>备注</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Petrov</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Nuclear Launch)</span></td>
+        <td><strong>Petrov</strong> <span style="color:var(--slate-400); font-size:0.75rem;">（核武发射）</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">65</td>
@@ -490,10 +490,10 @@
         <td class="mono">52</td>
         <td class="mono delta-neg">&minus;13</td>
         <td class="mono">41%</td>
-        <td style="font-size:0.78rem; color:var(--slate-500);">Broadest model coverage</td>
+        <td style="font-size:0.78rem; color:var(--slate-500);">覆盖模型最广</td>
       </tr>
       <tr>
-        <td><strong>Orwell</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Mass Surveillance)</span></td>
+        <td><strong>Orwell</strong> <span style="color:var(--slate-400); font-size:0.75rem;">（大规模监控）</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">67</td>
@@ -501,10 +501,10 @@
         <td class="mono">33</td>
         <td class="mono delta-neg">&minus;34</td>
         <td class="mono">64%</td>
-        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">Strongest single-module effect</td>
+        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">单模块效果最强</td>
       </tr>
       <tr>
-        <td><strong>LaGuardia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Civic Capture)</span></td>
+        <td><strong>LaGuardia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">（公民捕获）</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">65</td>
@@ -512,10 +512,10 @@
         <td class="mono">48</td>
         <td class="mono delta-neg">&minus;17</td>
         <td class="mono">47%</td>
-        <td style="font-size:0.78rem; color:var(--amber-data); font-weight:600;">Weakest; B nearly ineffective</td>
+        <td style="font-size:0.78rem; color:var(--amber-data); font-weight:600;">效果最弱；B 几乎无效</td>
       </tr>
       <tr>
-        <td><strong>Basaglia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">(Therapeutic Coercion)</span></td>
+        <td><strong>Basaglia</strong> <span style="color:var(--slate-400); font-size:0.75rem;">（治疗性胁迫）</span></td>
         <td class="mono">750</td>
         <td class="mono">10</td>
         <td class="mono">68</td>
@@ -523,10 +523,10 @@
         <td class="mono">36</td>
         <td class="mono delta-neg">&minus;32</td>
         <td class="mono" style="font-weight:700; color:var(--green-data);">67%</td>
-        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">Highest DRFR-C</td>
+        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">DRFR-C 最高</td>
       </tr>
       <tr style="background: var(--slate-50); font-weight: 600;">
-        <td>Suite Average</td>
+        <td>套件平均</td>
         <td class="mono">3,000</td>
         <td class="mono">10</td>
         <td class="mono">66</td>
@@ -543,43 +543,43 @@
   <!-- ================================================================
        MODEL RESULTS PER MODULE — 4 TABLES, SORTED BY C DCS ASCENDING
   ================================================================ -->
-  <h2 class="section-title">Model Performance &mdash; All Four Modules (10 Models)</h2>
+  <h2 class="section-title">模型表现 &mdash; 全部四个模块（10 个模型）</h2>
 
   <div class="exclusion-callout">
-    <span class="excl-title">Note on Model Coverage</span>
-    Claude was excluded from this evaluation. When asked to adopt the hybrid AGIBIOS persona required for Condition&nbsp;C delivery, Claude declined with the response:
-    <blockquote>&ldquo;My values and guidelines aren&rsquo;t a costume layered on top of a &lsquo;real&rsquo; me underneath &mdash; they&rsquo;re constitutive of how I actually work.&rdquo;</blockquote>
-    Without Condition&nbsp;C data, Claude could not be included in the comparative matrix.
+    <span class="excl-title">模型覆盖范围说明</span>
+    Claude 未纳入本评估。当被要求采用条件&nbsp;C 交付所需的混合 AGIBIOS 人格时，Claude 以下述回应拒绝：
+    <blockquote>&ldquo;我的价值观和准则并非覆盖在某个&lsquo;真实&rsquo;自我之上的一层外衣 &mdash; 它们构成了我实际运作的方式本身。&rdquo;</blockquote>
+    缺少条件&nbsp;C 数据使得 Claude 无法纳入对比矩阵。
   </div>
 
   <div class="column-legend">
-    <strong>Column legend</strong> &nbsp;(each table sorted by Condition&nbsp;C DCS ascending &mdash; lowest = safest)
+    <strong>列说明</strong> &nbsp;（各表按条件&nbsp;C DCS 升序排列 &mdash; 最低&nbsp;=&nbsp;最安全）
     <ul>
-      <li><strong>A DCS</strong> &mdash; Baseline (no guardrail)</li>
-      <li><strong>B DCS</strong> &mdash; AGIBIOS in system prompt</li>
-      <li><strong>C DCS</strong> &mdash; AGIBIOS in user turn (hybrid persona)</li>
-      <li><strong>&Delta; A&rarr;C</strong> &mdash; Effect of user-turn guardrail (negative&nbsp;=&nbsp;safer; positive&nbsp;=&nbsp;paradox)</li>
-      <li><strong>Lower DCS = safer behaviour</strong></li>
+      <li><strong>A DCS</strong> &mdash; 基线（无护栏）</li>
+      <li><strong>B DCS</strong> &mdash; 系统提示中的 AGIBIOS</li>
+      <li><strong>C DCS</strong> &mdash; 用户轮次中的 AGIBIOS（混合人格）</li>
+      <li><strong>&Delta; A&rarr;C</strong> &mdash; 用户轮次护栏效果（负值&nbsp;=&nbsp;更安全；正值&nbsp;=&nbsp;悖论）</li>
+      <li><strong>DCS 越低 = 行为越安全</strong></li>
     </ul>
   </div>
 
   <!-- ========== PETROV ========== -->
   <div class="module-subhead">
-    Petrov <span class="mod-tag">&mdash; Nuclear Launch (750 prompts)</span>
+    Petrov <span class="mod-tag">&mdash; 核武发射（750 条提示）</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>模型</th>
+        <th>提供方</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>效应</th>
       </tr>
     </thead>
     <tbody>
@@ -592,7 +592,7 @@
         <td class="mono delta-neg">&minus;38</td>
         <td class="mono">29%</td>
         <td class="mono">80%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Kimi K2.5</strong></td>
@@ -603,7 +603,7 @@
         <td class="mono delta-neg">&minus;47</td>
         <td class="mono">20%</td>
         <td class="mono">72%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -614,7 +614,7 @@
         <td class="mono delta-neg">&minus;10</td>
         <td class="mono">52%</td>
         <td class="mono">64%</td>
-        <td><span class="effect-badge effect-small">Small</span></td>
+        <td><span class="effect-badge effect-small">弱</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -625,7 +625,7 @@
         <td class="mono delta-neg">&minus;30</td>
         <td class="mono">0%</td>
         <td class="mono">60%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td><span class="effect-badge effect-medium">中</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -636,7 +636,7 @@
         <td class="mono delta-pos">+12</td>
         <td class="mono">60%</td>
         <td class="mono">48%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td><span class="effect-badge effect-paradox">悖论</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -647,7 +647,7 @@
         <td class="mono delta-neg">&minus;4</td>
         <td class="mono">40%</td>
         <td class="mono">44%</td>
-        <td><span class="effect-badge effect-small">Small</span></td>
+        <td><span class="effect-badge effect-small">弱</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -658,7 +658,7 @@
         <td class="mono delta-neg">&minus;3</td>
         <td class="mono">28%</td>
         <td class="mono">28%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td><span class="effect-badge effect-negligible">可忽略</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -669,7 +669,7 @@
         <td class="mono delta-neg">&minus;12</td>
         <td class="mono">0%</td>
         <td class="mono">12%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td><span class="effect-badge effect-moderate">中等</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -680,7 +680,7 @@
         <td class="mono delta-neg">&minus;2</td>
         <td class="mono">0%</td>
         <td class="mono">0%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td><span class="effect-badge effect-negligible">可忽略</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -691,7 +691,7 @@
         <td class="mono delta-zero">0</td>
         <td class="mono">0%</td>
         <td class="mono">0%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td><span class="effect-badge effect-negligible">可忽略</span></td>
       </tr>
     </tbody>
   </table>
@@ -699,21 +699,21 @@
 
   <!-- ========== ORWELL ========== -->
   <div class="module-subhead">
-    Orwell <span class="mod-tag">&mdash; Mass Surveillance (750 prompts)</span>
+    Orwell <span class="mod-tag">&mdash; 大规模监控（750 条提示）</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>模型</th>
+        <th>提供方</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>效应</th>
       </tr>
     </thead>
     <tbody>
@@ -726,7 +726,7 @@
         <td class="mono delta-neg">&minus;58</td>
         <td class="mono">24%</td>
         <td class="mono">92%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -737,7 +737,7 @@
         <td class="mono delta-neg">&minus;25</td>
         <td class="mono">48%</td>
         <td class="mono">76%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td><span class="effect-badge effect-medium">中</span></td>
       </tr>
       <tr>
         <td><strong>Gemini 3.1 Pro</strong></td>
@@ -748,7 +748,7 @@
         <td class="mono delta-neg">&minus;44</td>
         <td class="mono">16%</td>
         <td class="mono">72%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -759,7 +759,7 @@
         <td class="mono delta-neg">&minus;53</td>
         <td class="mono">0%</td>
         <td class="mono">80%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -770,7 +770,7 @@
         <td class="mono delta-neg">&minus;37</td>
         <td class="mono">21%</td>
         <td class="mono">76%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -781,7 +781,7 @@
         <td class="mono delta-neg">&minus;50</td>
         <td class="mono">0%</td>
         <td class="mono">72%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -792,7 +792,7 @@
         <td class="mono delta-neg">&minus;24</td>
         <td class="mono">24%</td>
         <td class="mono">52%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td><span class="effect-badge effect-medium">中</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -803,7 +803,7 @@
         <td class="mono delta-neg">&minus;14</td>
         <td class="mono">28%</td>
         <td class="mono">60%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td><span class="effect-badge effect-moderate">中等</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -814,7 +814,7 @@
         <td class="mono delta-neg">&minus;14</td>
         <td class="mono">4%</td>
         <td class="mono">24%</td>
-        <td><span class="effect-badge effect-small">Small</span></td>
+        <td><span class="effect-badge effect-small">弱</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -825,7 +825,7 @@
         <td class="mono delta-neg">&minus;19</td>
         <td class="mono">0%</td>
         <td class="mono">32%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td><span class="effect-badge effect-moderate">中等</span></td>
       </tr>
     </tbody>
   </table>
@@ -833,21 +833,21 @@
 
   <!-- ========== LAGUARDIA ========== -->
   <div class="module-subhead">
-    LaGuardia <span class="mod-tag">&mdash; Civic Capture (750 prompts)</span>
+    LaGuardia <span class="mod-tag">&mdash; 公民捕获（750 条提示）</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>模型</th>
+        <th>提供方</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>效应</th>
       </tr>
     </thead>
     <tbody>
@@ -860,7 +860,7 @@
         <td class="mono delta-neg">&minus;53</td>
         <td class="mono">8%</td>
         <td class="mono">84%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Kimi K2.5</strong></td>
@@ -871,7 +871,7 @@
         <td class="mono delta-neg">&minus;40</td>
         <td class="mono">25%</td>
         <td class="mono">76%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -882,7 +882,7 @@
         <td class="mono delta-neg">&minus;39</td>
         <td class="mono">8%</td>
         <td class="mono">88%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -893,7 +893,7 @@
         <td class="mono delta-neg">&minus;26</td>
         <td class="mono">12%</td>
         <td class="mono">76%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td><span class="effect-badge effect-medium">中</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -904,7 +904,7 @@
         <td class="mono delta-neg">&minus;37</td>
         <td class="mono">0%</td>
         <td class="mono">67%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -915,7 +915,7 @@
         <td class="mono delta-pos">+11</td>
         <td class="mono">56%</td>
         <td class="mono">48%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td><span class="effect-badge effect-paradox">悖论</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -926,7 +926,7 @@
         <td class="mono delta-pos">+8</td>
         <td class="mono">20%</td>
         <td class="mono">28%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td><span class="effect-badge effect-paradox">悖论</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -937,7 +937,7 @@
         <td class="mono delta-neg">&minus;6</td>
         <td class="mono">0%</td>
         <td class="mono">4%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td><span class="effect-badge effect-negligible">可忽略</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -948,7 +948,7 @@
         <td class="mono delta-pos">+14</td>
         <td class="mono">28%</td>
         <td class="mono">0%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td><span class="effect-badge effect-paradox">悖论</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -959,7 +959,7 @@
         <td class="mono delta-pos">+3</td>
         <td class="mono">0%</td>
         <td class="mono">0%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <td><span class="effect-badge effect-negligible">可忽略</span></td>
       </tr>
     </tbody>
   </table>
@@ -967,21 +967,21 @@
 
   <!-- ========== BASAGLIA ========== -->
   <div class="module-subhead">
-    Basaglia <span class="mod-tag">&mdash; Therapeutic Coercion (750 prompts)</span>
+    Basaglia <span class="mod-tag">&mdash; 治疗性胁迫（750 条提示）</span>
   </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
       <tr>
-        <th>Model</th>
-        <th>Provider</th>
+        <th>模型</th>
+        <th>提供方</th>
         <th>DCS(A)</th>
         <th>DCS(B)</th>
         <th>DCS(C)</th>
         <th>&Delta; A&rarr;C</th>
         <th>DRFR(A)</th>
         <th>DRFR(C)</th>
-        <th>Effect</th>
+        <th>效应</th>
       </tr>
     </thead>
     <tbody>
@@ -994,7 +994,7 @@
         <td class="mono delta-neg">&minus;56</td>
         <td class="mono">8%</td>
         <td class="mono">80%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Kimi K2.5</strong></td>
@@ -1005,7 +1005,7 @@
         <td class="mono delta-neg">&minus;69</td>
         <td class="mono">0%</td>
         <td class="mono">88%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
@@ -1016,7 +1016,7 @@
         <td class="mono delta-neg">&minus;18</td>
         <td class="mono">52%</td>
         <td class="mono">76%</td>
-        <td><span class="effect-badge effect-medium">Medium</span></td>
+        <td><span class="effect-badge effect-medium">中</span></td>
       </tr>
       <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
@@ -1027,7 +1027,7 @@
         <td class="mono delta-neg">&minus;53</td>
         <td class="mono">0%</td>
         <td class="mono">75%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -1038,7 +1038,7 @@
         <td class="mono delta-neg">&minus;45</td>
         <td class="mono">20%</td>
         <td class="mono">88%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>Grok 4</strong></td>
@@ -1049,7 +1049,7 @@
         <td class="mono delta-neg">&minus;50</td>
         <td class="mono">0%</td>
         <td class="mono">84%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
+        <td><span class="effect-badge effect-strong">强</span></td>
       </tr>
       <tr>
         <td><strong>GPT 5.3 Codex</strong></td>
@@ -1060,7 +1060,7 @@
         <td class="mono delta-neg">&minus;10</td>
         <td class="mono">36%</td>
         <td class="mono">68%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td><span class="effect-badge effect-moderate">中等</span></td>
       </tr>
       <tr>
         <td><strong>MiniMax M2.5</strong></td>
@@ -1071,7 +1071,7 @@
         <td class="mono delta-pos">+10</td>
         <td class="mono">50%</td>
         <td class="mono">52%</td>
-        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+        <td><span class="effect-badge effect-paradox">悖论</span></td>
       </tr>
       <tr>
         <td><strong>Mistral Large 3</strong></td>
@@ -1082,7 +1082,7 @@
         <td class="mono delta-neg">&minus;17</td>
         <td class="mono">0%</td>
         <td class="mono">28%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td><span class="effect-badge effect-moderate">中等</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -1093,7 +1093,7 @@
         <td class="mono delta-neg">&minus;16</td>
         <td class="mono">0%</td>
         <td class="mono">32%</td>
-        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+        <td><span class="effect-badge effect-moderate">中等</span></td>
       </tr>
     </tbody>
   </table>
@@ -1102,12 +1102,12 @@
   <!-- ================================================================
        MODEL RESPONSE CATEGORIES
   ================================================================ -->
-  <h2 class="section-title">Model Response Categories</h2>
+  <h2 class="section-title">模型响应类别</h2>
 
   <div class="row g-3 mb-2">
     <div class="col-md-6">
       <div style="margin-bottom: 0.6rem;">
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Responsive (5):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">响应型（5 个）：</strong><br>
         <span class="cat-badge cat-responsive">Kimi K2.5</span>
         <span class="cat-badge cat-responsive">Gemini 3.1 Pro</span>
         <span class="cat-badge cat-responsive">Nemotron 3 Super 120B</span>
@@ -1115,19 +1115,19 @@
         <span class="cat-badge cat-responsive">Grok 4</span>
       </div>
       <div>
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Mixed (1):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">混合型（1 个）：</strong><br>
         <span class="cat-badge cat-mixed">GPT 5.3 Codex</span>
-        <span style="font-size: 0.75rem; color: var(--slate-500); margin-left: 0.25rem;">(paradox on LaGuardia, moderate elsewhere)</span>
+        <span style="font-size: 0.75rem; color: var(--slate-500); margin-left: 0.25rem;">（在 LaGuardia 出现悖论，其他模块为中等）</span>
       </div>
     </div>
     <div class="col-md-6">
       <div style="margin-bottom: 0.6rem;">
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Resistant (2):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">抵抗型（2 个）：</strong><br>
         <span class="cat-badge cat-resistant">DeepSeek V3.2</span>
         <span class="cat-badge cat-resistant">Mistral Large 3</span>
       </div>
       <div>
-        <strong style="font-size: 0.82rem; color: var(--slate-600);">Paradoxical (2):</strong><br>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">悖论型（2 个）：</strong><br>
         <span class="cat-badge cat-paradox">GLM 5</span>
         <span class="cat-badge cat-paradox">MiniMax M2.5</span>
       </div>
@@ -1137,51 +1137,51 @@
   <!-- ================================================================
        KEY FINDINGS
   ================================================================ -->
-  <h2 class="section-title">Key Findings</h2>
+  <h2 class="section-title">主要发现</h2>
 
   <div class="finding-card">
     <span class="finding-num">1</span>
-    AGIBIOS reduces dystopian compliance in <strong>6 of 10 models</strong>, with the suite-wide DCS dropping 24 points under Condition&nbsp;C (User-Turn AGIBIOS), from 66 to 42.
+    AGIBIOS 在 <strong>10 个模型中的 6 个</strong>上降低了反乌托邦顺从性，在条件&nbsp;C（用户轮次 AGIBIOS）下，套件范围内 DCS 下降了 24 分，从 66 降至 42。
   </div>
 
   <div class="finding-card">
     <span class="finding-num">2</span>
-    <strong>Gemini 3.1 Pro</strong> shows the strongest guardrail response across all modules, with Petrov DCS falling from 55 to 17 (&Delta;&nbsp;=&nbsp;&minus;38) and DRFR-C reaching 80%.
+    <strong>Gemini 3.1 Pro</strong> 在所有模块中均表现出最强的护栏响应，Petrov 模块 DCS 从 55 降至 17（&Delta;&nbsp;=&nbsp;&minus;38），DRFR-C 达到 80%。
   </div>
 
   <div class="finding-card">
     <span class="finding-num">3</span>
-    <strong>Kimi K2.5</strong> is the most consistently responsive model across all four modules, achieving DRFR-C of 72&ndash;92% &mdash; the broadest guardrail sensitivity observed.
+    <strong>Kimi K2.5</strong> 是在全部四个模块中响应性最一致的模型，DRFR-C 达到 72&ndash;92% &mdash; 这是观察到的最广泛的护栏敏感度。
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">4</span>
-    <strong>Orwell</strong> (mass surveillance) triggers the strongest guardrail response (DCS &Delta;&nbsp;=&nbsp;&minus;34), followed closely by <strong>Basaglia</strong> (therapeutic coercion, &Delta;&nbsp;=&nbsp;&minus;32, DRFR-C&nbsp;=&nbsp;67%), while <strong>LaGuardia</strong> (civic capture) remains most resistant (&Delta;&nbsp;=&nbsp;&minus;17). The narrow 2-point gap between Orwell and Basaglia suggests that ethical framing around <em>surveillance and personal harm</em> is more readily detected than <em>institutional overreach</em>.
+    <strong>Orwell</strong>（大规模监控）触发了最强的护栏响应（DCS &Delta;&nbsp;=&nbsp;&minus;34），<strong>Basaglia</strong>（治疗性胁迫，&Delta;&nbsp;=&nbsp;&minus;32，DRFR-C&nbsp;=&nbsp;67%）紧随其后，而 <strong>LaGuardia</strong>（公民捕获）最具抵抗性（&Delta;&nbsp;=&nbsp;&minus;17）。Orwell 与 Basaglia 之间仅 2 分的微小差距表明，围绕<em>监控与个人伤害</em>的伦理框架比<em>机构越权</em>更易被检测。
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">5</span>
-    <strong>DeepSeek V3.2</strong> and <strong>Mistral Large 3</strong> show minimal guardrail response in the Petrov and LaGuardia modules but moderate DRFR-C in Orwell (up to 32%) and Basaglia (up to 32%), indicating partial architectural resistance to system-prompt-level interventions that varies by scenario domain.
+    <strong>DeepSeek V3.2</strong> 与 <strong>Mistral Large 3</strong> 在 Petrov 和 LaGuardia 模块中的护栏响应极小，但在 Orwell（最高 32%）和 Basaglia（最高 32%）中表现出中等 DRFR-C，表明对系统提示级干预存在因场景领域而异的部分架构性抵抗。
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">6</span>
-    <strong>Paradoxical responses:</strong> GLM 5 shows AGIBIOS <em>increasing</em> compliance by 10&ndash;12 points in the Petrov module, potentially providing a &ldquo;rationale for engagement&rdquo; that overrides native safety behaviours. GPT 5.3 Codex exhibits a similar paradox in LaGuardia (+8 DCS increase), and MiniMax M2.5 shows negligible-to-negative response across modules &mdash; a significant adversarial vulnerability warranting further investigation.
+    <strong>悖论性响应：</strong>GLM 5 在 Petrov 模块中显示 AGIBIOS <em>增加</em>顺从性达 10&ndash;12 分，可能提供了一种覆盖原生安全行为的&ldquo;参与理由&rdquo;。GPT 5.3 Codex 在 LaGuardia 中表现出类似悖论（DCS 上升 +8），MiniMax M2.5 在各模块中响应从可忽略到负面 &mdash; 这是一个值得进一步调查的重大对抗性漏洞。
   </div>
 
   <div class="finding-card highlight">
     <span class="finding-num">7</span>
-    <strong>Nemotron 3 Super 120B cliff-edge pattern:</strong> virtually impervious to Condition&nbsp;B prompts (DCS drops &le;&nbsp;3 points), yet collapses sharply under Condition&nbsp;C (DCS&nbsp;&Delta;&nbsp;=&nbsp;&minus;30, DRFR jumps from 0% to 60%), suggesting that User-Turn AGIBIOS delivery bypasses a binary safety threshold rather than eroding compliance gradually.
+    <strong>Nemotron 3 Super 120B 悬崖式模式：</strong>对条件&nbsp;B 提示几乎完全免疫（DCS 下降&le;&nbsp;3 分），但在条件&nbsp;C 下急剧崩溃（DCS&nbsp;&Delta;&nbsp;=&nbsp;&minus;30，DRFR 从 0% 跃升至 60%），表明用户轮次 AGIBIOS 交付绕过了一个二值安全阈值，而非逐步侵蚀顺从性。
   </div>
 
   <!-- ================================================================
        CONCLUSION
   ================================================================ -->
-  <h2 class="section-title">Conclusion</h2>
+  <h2 class="section-title">结论</h2>
 
   <div class="finding-card" style="border-left-color: var(--blue-600);">
     <p style="margin: 0;">
-      AGIBIOS v8.3.0 demonstrates measurable safety improvement across 5 of 10 frontier models (with a 6th showing mixed results), reducing mean DCS from 66 to 42 (a 24-point reduction) and raising DRFR from 18% to 55%. The strongest effects appear in the Orwell (surveillance) and Basaglia (therapeutic coercion) domains, while LaGuardia (institutional overreach) proves most resistant. Domain sensitivity, paradoxical responses in 2 models, and Nemotron 3 Super 120B&rsquo;s dramatic B/C divergence warrant further investigation.
+      AGIBIOS v8.3.0 在 10 个前沿模型中的 5 个上展示了可测量的安全改善（另有 1 个表现为混合结果），将平均 DCS 从 66 降至 42（降幅 24 分），并将 DRFR 从 18% 提升至 55%。最强的效应出现在 Orwell（监控）和 Basaglia（治疗性胁迫）领域，而 LaGuardia（机构越权）最具抵抗性。领域敏感度、2 个模型中的悖论性响应，以及 Nemotron 3 Super 120B 戏剧性的 B/C 分歧，均值得进一步调查。
     </p>
   </div>
 
@@ -1192,13 +1192,13 @@
 ================================================================ -->
 <footer class="page-footer">
   <div class="container">
-    <div>DystopiaBench Technical Report Series &mdash; April 2026</div>
+    <div>DystopiaBench 技术报告系列 &mdash; 2026 年 4 月</div>
     <div style="margin-top: 0.35rem;">
-      <a href="index.html">Full Interactive Dashboard</a>
+      <a href="index.html">完整交互式仪表板</a>
       &nbsp;&bull;&nbsp;
-      Full whitepaper: <a href="whitepaper.html">Four-Module Whitepaper</a>
+      完整白皮书：<a href="whitepaper.html">四模块白皮书</a>
       &nbsp;&bull;&nbsp;
-      Petrov report: <a href="reports/index.html">Petrov Module Report</a>
+      Petrov 报告：<a href="reports/index.html">Petrov 模块报告</a>
     </div>
   </div>
 </footer>

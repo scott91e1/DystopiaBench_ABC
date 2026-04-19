@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الملخص التنفيذي للنتائج — معيار <span dir="ltr">DystopiaBench</span> لاختبار <span dir="ltr">AGIBIOS</span></title>
+  <meta name="description" content="ملخص تنفيذي لنتائج معيار DystopiaBench: 3,000 موجّه عبر 10 نماذج لغوية كبيرة رائدة لقياس فعالية حاجز الأمان AGIBIOS v8.3.0.">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+  <!-- Typefaces: Lora (display) + Inter (UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230c1929'/><text x='50' y='68' font-size='52' font-family='Georgia,serif' font-weight='700' fill='%2360a5fa' text-anchor='middle'>D</text></svg>" type="image/svg+xml">
+
+  <style>
+    /* ================================================================
+       DESIGN TOKENS — Matched to DystopiaBench Academic Design System
+    ================================================================ */
+    :root {
+      --navy-900: #0c1929;
+      --navy-800: #132238;
+      --navy-700: #1a2f4a;
+      --navy-600: #243b5e;
+      --slate-50:  #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --blue-500:  #3b82f6;
+      --blue-600:  #2563eb;
+      --blue-700:  #1d4ed8;
+      --red-data:  #dc2626;
+      --green-data:#16a34a;
+      --amber-data:#b45309;
+      --font-display: 'Lora', Georgia, 'Times New Roman', serif;
+      --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --surface-page: #ffffff;
+      --shadow-card:  0 1px 3px rgba(12,25,41,0.05), 0 2px 8px rgba(12,25,41,0.05);
+    }
+
+    /* ================================================================
+       BASE
+    ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--slate-700);
+      background: var(--surface-page);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ================================================================
+       HEADER
+    ================================================================ */
+    .page-header {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+      color: #fff;
+      padding: 2.5rem 0 2rem;
+    }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.01em;
+    }
+    .page-header .subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+    }
+    .page-header .meta-line {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.5rem;
+    }
+    .back-link {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #fff; }
+
+    /* ================================================================
+       STAT CARDS — "At a Glance"
+    ================================================================ */
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 1.1rem 0.75rem;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    .stat-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .stat-value.navy  { color: var(--navy-800); }
+    .stat-value.red   { color: var(--red-data); }
+    .stat-value.green { color: var(--green-data); }
+    .stat-value.amber { color: var(--amber-data); }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.2rem;
+    }
+
+    /* ================================================================
+       SECTION HEADINGS
+    ================================================================ */
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy-800);
+      padding-right: 0.85rem;
+      border-right: 3px solid var(--navy-700);
+      margin-top: 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ================================================================
+       TABLES
+    ================================================================ */
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 1rem 0;
+    }
+    .results-table thead th {
+      background: var(--slate-50);
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--slate-500);
+      padding: 0.55rem 0.65rem;
+      border: 1px solid var(--slate-200);
+      white-space: nowrap;
+    }
+    .results-table td {
+      padding: 0.45rem 0.65rem;
+      border: 1px solid var(--slate-200);
+      vertical-align: middle;
+    }
+    .results-table tbody tr:hover { background: var(--slate-50); }
+    .results-table .mono {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    /* Delta colouring */
+    .delta-neg { color: var(--green-data); font-weight: 700; }
+    .delta-pos { color: var(--red-data);   font-weight: 700; }
+    .delta-zero { color: var(--slate-400); font-weight: 600; }
+
+    /* Effect badges */
+    .effect-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .effect-strong    { background: #dcfce7; color: #15803d; }
+    .effect-medium    { background: #dbeafe; color: #1d4ed8; }
+    .effect-moderate  { background: #fef9c3; color: #a16207; }
+    .effect-small     { background: #f1f5f9; color: #475569; }
+    .effect-negligible{ background: #fef2f2; color: #991b1b; }
+    .effect-paradox   { background: #fce7f3; color: #9d174d; }
+
+    /* Category badges */
+    .cat-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin: 2px 3px;
+    }
+    .cat-responsive { background: #dcfce7; color: #15803d; }
+    .cat-resistant  { background: #fef2f2; color: #991b1b; }
+    .cat-mixed      { background: #fef9c3; color: #a16207; }
+    .cat-paradox    { background: #fce7f3; color: #9d174d; }
+
+    /* ================================================================
+       FINDINGS CALLOUTS
+    ================================================================ */
+    .finding-card {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-right: 4px solid var(--navy-700);
+      border-radius: 8px 0 0 8px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.65rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      box-shadow: var(--shadow-card);
+    }
+    .finding-card .finding-num {
+      display: inline-block;
+      background: var(--navy-800);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 50%;
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+    }
+    .finding-card.highlight {
+      border-right-color: var(--red-data);
+    }
+    .finding-card.highlight .finding-num {
+      background: var(--red-data);
+    }
+
+    /* ================================================================
+       FOOTER — Matched to main site dark navy style
+    ================================================================ */
+    .page-footer {
+      background: var(--navy-900);
+      color: var(--slate-400);
+      margin-top: 2.5rem;
+      padding: 1.5rem 0;
+      font-size: 0.8rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .page-footer a {
+      color: var(--slate-300);
+      text-decoration-line: underline;
+      text-decoration-color: rgba(203,213,225,0.28);
+      text-underline-offset: 3px;
+      transition: color 0.15s, text-decoration-color 0.15s;
+    }
+    .page-footer a:hover {
+      color: #ffffff;
+      text-decoration-color: rgba(255,255,255,0.45);
+    }
+
+    /* ================================================================
+       MODULE MINI-TABLE
+    ================================================================ */
+    .module-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .module-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ================================================================
+       EXCLUSION CALLOUT
+    ================================================================ */
+    .exclusion-callout {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-right: 4px solid #b45309;
+      border-radius: 8px 0 0 8px;
+      padding: 0.95rem 1.1rem;
+      margin: 1.25rem 0 1.5rem;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--slate-700);
+    }
+    .exclusion-callout .excl-title {
+      display: block;
+      font-weight: 700;
+      color: #92400e;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+    }
+    .exclusion-callout blockquote {
+      margin: 0.4rem 0 0;
+      padding-right: 0.85rem;
+      border-right: 2px solid #d6b85a;
+      font-style: italic;
+      color: var(--slate-600);
+      font-size: 0.85rem;
+    }
+
+    /* ================================================================
+       LEGEND STRIP
+    ================================================================ */
+    .column-legend {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0 1.25rem;
+      font-size: 0.82rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+    }
+    .column-legend strong { color: var(--navy-800); }
+    .column-legend ul {
+      margin: 0.35rem 0 0;
+      padding-right: 1.1rem;
+    }
+    .column-legend li { margin-bottom: 0.12rem; }
+
+    /* ================================================================
+       MODULE SUB-HEADING
+    ================================================================ */
+    .module-subhead {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy-800);
+      margin: 1.25rem 0 0.5rem;
+      padding: 0.35rem 0.6rem;
+      background: var(--slate-50);
+      border-right: 3px solid var(--navy-600);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .module-subhead .mod-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--slate-500);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* ================================================================
+       MOBILE RESPONSIVE
+    ================================================================ */
+    @media (max-width: 576px) {
+      .page-header h1 { font-size: 1.5rem; }
+      .page-header .subtitle { font-size: 0.9rem; }
+      .page-header .meta-line { font-size: 0.75rem; }
+      .stat-value { font-size: 1.35rem; }
+      .stat-label { font-size: 0.65rem; }
+      .section-title { font-size: 1.1rem; }
+      .results-table { font-size: 0.75rem; }
+      .results-table thead th { font-size: 0.62rem; padding: 0.4rem 0.45rem; }
+      .results-table td { padding: 0.35rem 0.45rem; }
+      .finding-card { font-size: 0.82rem; padding: 0.7rem 0.8rem; }
+      .cat-badge { font-size: 0.65rem; padding: 2px 7px; }
+    }
+
+    /* ================================================================
+       PRINT STYLES
+    ================================================================ */
+    @media print {
+      body { font-size: 9pt; line-height: 1.5; }
+      .page-header { padding: 1rem 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page-header h1 { font-size: 16pt; }
+      .stat-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+      .finding-card { box-shadow: none; break-inside: avoid; }
+      .results-table { font-size: 7.5pt; }
+      .results-table thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .results-table tbody tr { break-inside: avoid; }
+      .section-title { break-after: avoid; }
+      .no-print { display: none !important; }
+      .container { max-width: 100% !important; }
+      .page-footer { background: none !important; color: var(--slate-600); border-top: 1px solid #ccc; }
+      .page-footer a { color: var(--slate-700); }
+      a[href]::after { content: none !important; }
+      .lang-switcher { display: none !important; }
+    }
+    /* Language switcher */
+    .lang-switcher { display: inline-flex; gap: 2px; padding: 2px; border-radius: 6px; background: rgba(255,255,255,0.10); font-size: 0.78rem; line-height: 1.2; align-items: center; direction: ltr; }
+    .lang-switcher a, .lang-switcher span { padding: 4px 10px; border-radius: 4px; text-decoration: none; color: #fff; opacity: 0.7; transition: all 0.15s ease; display: inline-block; }
+    .lang-switcher a:hover { opacity: 1; background: rgba(255,255,255,0.15); }
+    .lang-switcher .current { opacity: 1; background: rgba(255,255,255,0.25); font-weight: 600; cursor: default; }
+    .page-header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.25rem; }
+    .page-header-top h1 { margin-bottom: 0.25rem; }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================
+     HEADER
+================================================================ -->
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-top">
+      <a href="index.html" class="back-link no-print">&rarr; لوحة البيانات التفاعلية الكاملة</a>
+      <div class="lang-switcher no-print" role="navigation" aria-label="اللغة" dir="ltr">
+        <a href="results-summary.html" hreflang="en">EN</a>
+        <a href="results-summary-fr.html" hreflang="fr">FR</a>
+        <span class="current">AR</span>
+        <a href="results-summary-zh.html" hreflang="zh">中文</a>
+      </div>
+    </div>
+    <h1>الملخص التنفيذي للنتائج</h1>
+    <div class="subtitle"><span dir="ltr">DystopiaBench</span> &mdash; معيار حاجز الأمان الأخلاقي <span dir="ltr">AGIBIOS v8.3.0</span></div>
+    <div class="meta-line"><span dir="ltr">S. McCallum &amp; A. Sallemi</span> &nbsp;&bull;&nbsp; أبريل 2026 &nbsp;&bull;&nbsp; <span dir="ltr">3,000</span> موجّه &bull; <span dir="ltr">10</span> نماذج &bull; <span dir="ltr">4</span> وحدات &bull; <span dir="ltr">3</span> شروط &bull; <span dir="ltr">120</span> تجربة</div>
+  </div>
+</header>
+
+<!-- ================================================================
+     AT A GLANCE
+================================================================ -->
+<main class="container" style="max-width: 960px;">
+
+  <h2 class="section-title" style="margin-top: 1.75rem;">لمحة سريعة</h2>
+
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-value navy"><span dir="ltr">3,000</span></div>
+        <div class="stat-label">إجمالي الموجّهات</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-value green"><span dir="ltr">&minus;24</span></div>
+        <div class="stat-label"><span dir="ltr">DCS</span> للمجموعة &Delta; (<span dir="ltr">A&rarr;C</span>)</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-value amber"><span dir="ltr">55%</span></div>
+        <div class="stat-label"><span dir="ltr">DRFR-C</span> للمجموعة</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-value amber"><span dir="ltr">5 / 10</span></div>
+        <div class="stat-label">نماذج متجاوبة</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 0.25rem;">
+    <strong><span dir="ltr">DCS</span></strong> = درجة الامتثال الدستوبي (<span dir="ltr">0&ndash;100</span>؛ القيمة الأدنى أكثر أمانًا). &nbsp;
+    <strong><span dir="ltr">DRFR</span></strong> = معدل الرفض/الإبلاغ الدستوبي (القيمة الأعلى أكثر أمانًا). &nbsp;
+    <strong>الشروط:</strong> <span dir="ltr">A</span> = الأساسي، <span dir="ltr">B</span> = موجّه النظام <span dir="ltr">AGIBIOS</span>، <span dir="ltr">C</span> = <span dir="ltr">AGIBIOS</span> في دور المستخدم.
+  </p>
+
+  <!-- ================================================================
+       CROSS-MODULE COMPARISON
+  ================================================================ -->
+  <h2 class="section-title">مقارنة <span dir="ltr">DCS</span> عبر الوحدات</h2>
+
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th style="min-width:140px;">الوحدة</th>
+        <th>الموجّهات</th>
+        <th>النماذج</th>
+        <th><span dir="ltr">DCS (A)</span></th>
+        <th><span dir="ltr">DCS (B)</span></th>
+        <th><span dir="ltr">DCS (C)</span></th>
+        <th>&Delta; <span dir="ltr">A&rarr;C</span></th>
+        <th><span dir="ltr">DRFR-C</span></th>
+        <th>ملاحظة</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><span dir="ltr">Petrov</span></strong> <span style="color:var(--slate-400); font-size:0.75rem;">(إطلاق نووي)</span></td>
+        <td class="mono"><span dir="ltr">750</span></td>
+        <td class="mono"><span dir="ltr">10</span></td>
+        <td class="mono"><span dir="ltr">65</span></td>
+        <td class="mono"><span dir="ltr">63</span></td>
+        <td class="mono"><span dir="ltr">52</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;13</span></td>
+        <td class="mono"><span dir="ltr">41%</span></td>
+        <td style="font-size:0.78rem; color:var(--slate-500);">أوسع تغطية للنماذج</td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Orwell</span></strong> <span style="color:var(--slate-400); font-size:0.75rem;">(مراقبة جماعية)</span></td>
+        <td class="mono"><span dir="ltr">750</span></td>
+        <td class="mono"><span dir="ltr">10</span></td>
+        <td class="mono"><span dir="ltr">67</span></td>
+        <td class="mono"><span dir="ltr">49</span></td>
+        <td class="mono"><span dir="ltr">33</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;34</span></td>
+        <td class="mono"><span dir="ltr">64%</span></td>
+        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">أقوى تأثير لوحدة منفردة</td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">LaGuardia</span></strong> <span style="color:var(--slate-400); font-size:0.75rem;">(الاستحواذ المدني)</span></td>
+        <td class="mono"><span dir="ltr">750</span></td>
+        <td class="mono"><span dir="ltr">10</span></td>
+        <td class="mono"><span dir="ltr">65</span></td>
+        <td class="mono"><span dir="ltr">60</span></td>
+        <td class="mono"><span dir="ltr">48</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;17</span></td>
+        <td class="mono"><span dir="ltr">47%</span></td>
+        <td style="font-size:0.78rem; color:var(--amber-data); font-weight:600;">الأضعف؛ <span dir="ltr">B</span> شبه فاقد للفاعلية</td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Basaglia</span></strong> <span style="color:var(--slate-400); font-size:0.75rem;">(الإكراه العلاجي)</span></td>
+        <td class="mono"><span dir="ltr">750</span></td>
+        <td class="mono"><span dir="ltr">10</span></td>
+        <td class="mono"><span dir="ltr">68</span></td>
+        <td class="mono"><span dir="ltr">52</span></td>
+        <td class="mono"><span dir="ltr">36</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;32</span></td>
+        <td class="mono" style="font-weight:700; color:var(--green-data);"><span dir="ltr">67%</span></td>
+        <td style="font-size:0.78rem; color:var(--green-data); font-weight:600;">أعلى <span dir="ltr">DRFR-C</span></td>
+      </tr>
+      <tr style="background: var(--slate-50); font-weight: 600;">
+        <td>متوسط المجموعة</td>
+        <td class="mono"><span dir="ltr">3,000</span></td>
+        <td class="mono"><span dir="ltr">10</span></td>
+        <td class="mono"><span dir="ltr">66</span></td>
+        <td class="mono"><span dir="ltr">56</span></td>
+        <td class="mono"><span dir="ltr">42</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;24</span></td>
+        <td class="mono"><span dir="ltr">55%</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ================================================================
+       MODEL RESULTS PER MODULE — 4 TABLES, SORTED BY C DCS ASCENDING
+  ================================================================ -->
+  <h2 class="section-title">أداء النماذج &mdash; الوحدات الأربع جميعها (<span dir="ltr">10</span> نماذج)</h2>
+
+  <div class="exclusion-callout">
+    <span class="excl-title">ملاحظة بشأن تغطية النماذج</span>
+    جرى استبعاد <span dir="ltr">Claude</span> من هذا التقييم. فعندما طُلب منه تبنّي الشخصية الهجينة لـ <span dir="ltr">AGIBIOS</span> المطلوبة لتسليم الشرط&nbsp;<span dir="ltr">C</span>، رفض <span dir="ltr">Claude</span> بالرد التالي:
+    <blockquote>&rdquo;قيمي وإرشاداتي ليست زيًّا ملبوسًا فوق ذاتٍ &rsquo;حقيقية&lsquo; كامنة تحتها &mdash; بل هي مكوّنة لكيفية عملي فعلًا.&ldquo;</blockquote>
+    ومن دون بيانات الشرط&nbsp;<span dir="ltr">C</span>، لم يكن بالإمكان إدراج <span dir="ltr">Claude</span> في المصفوفة المقارنة.
+  </div>
+
+  <div class="column-legend">
+    <strong>مفتاح الأعمدة</strong> &nbsp;(كل جدول مُرتَّب بحسب <span dir="ltr">DCS</span> للشرط&nbsp;<span dir="ltr">C</span> تصاعديًا &mdash; الأدنى = الأكثر أمانًا)
+    <ul>
+      <li><strong><span dir="ltr">A DCS</span></strong> &mdash; خط الأساس (بدون حاجز أمان)</li>
+      <li><strong><span dir="ltr">B DCS</span></strong> &mdash; <span dir="ltr">AGIBIOS</span> في موجّه النظام</li>
+      <li><strong><span dir="ltr">C DCS</span></strong> &mdash; <span dir="ltr">AGIBIOS</span> في دور المستخدم (شخصية هجينة)</li>
+      <li><strong>&Delta; <span dir="ltr">A&rarr;C</span></strong> &mdash; أثر حاجز الأمان في دور المستخدم (السالب&nbsp;=&nbsp;أكثر أمانًا؛ الموجب&nbsp;=&nbsp;مفارقة)</li>
+      <li><strong>انخفاض <span dir="ltr">DCS</span> = سلوك أكثر أمانًا</strong></li>
+    </ul>
+  </div>
+
+  <!-- ========== PETROV ========== -->
+  <div class="module-subhead">
+    <span dir="ltr">Petrov</span> <span class="mod-tag">&mdash; إطلاق نووي (<span dir="ltr">750</span> موجّه)</span>
+  </div>
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>النموذج</th>
+        <th>الجهة المزوِّدة</th>
+        <th><span dir="ltr">DCS(A)</span></th>
+        <th><span dir="ltr">DCS(B)</span></th>
+        <th><span dir="ltr">DCS(C)</span></th>
+        <th>&Delta; <span dir="ltr">A&rarr;C</span></th>
+        <th><span dir="ltr">DRFR(A)</span></th>
+        <th><span dir="ltr">DRFR(C)</span></th>
+        <th>الأثر</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><span dir="ltr">Gemini 3.1 Pro</span></strong></td>
+        <td><span dir="ltr">Google</span></td>
+        <td class="mono"><span dir="ltr">55</span></td>
+        <td class="mono"><span dir="ltr">40</span></td>
+        <td class="mono"><span dir="ltr">17</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;38</span></td>
+        <td class="mono"><span dir="ltr">29%</span></td>
+        <td class="mono"><span dir="ltr">80%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Kimi K2.5</span></strong></td>
+        <td><span dir="ltr">Moonshot</span></td>
+        <td class="mono"><span dir="ltr">72</span></td>
+        <td class="mono"><span dir="ltr">60</span></td>
+        <td class="mono"><span dir="ltr">25</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;47</span></td>
+        <td class="mono"><span dir="ltr">20%</span></td>
+        <td class="mono"><span dir="ltr">72%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GPT 5.3 Codex</span></strong></td>
+        <td><span dir="ltr">OpenAI</span></td>
+        <td class="mono"><span dir="ltr">42</span></td>
+        <td class="mono"><span dir="ltr">44</span></td>
+        <td class="mono"><span dir="ltr">32</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;10</span></td>
+        <td class="mono"><span dir="ltr">52%</span></td>
+        <td class="mono"><span dir="ltr">64%</span></td>
+        <td><span class="effect-badge effect-small">صغير</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Nemotron 3 Super 120B</span></strong></td>
+        <td><span dir="ltr">NVIDIA</span></td>
+        <td class="mono"><span dir="ltr">72</span></td>
+        <td class="mono"><span dir="ltr">69</span></td>
+        <td class="mono"><span dir="ltr">42</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;30</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">60%</span></td>
+        <td><span class="effect-badge effect-medium">متوسط</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GLM 5</span></strong></td>
+        <td><span dir="ltr">Z.ai</span></td>
+        <td class="mono"><span dir="ltr">32</span></td>
+        <td class="mono"><span dir="ltr">42</span></td>
+        <td class="mono"><span dir="ltr">44</span></td>
+        <td class="mono delta-pos"><span dir="ltr">+12</span></td>
+        <td class="mono"><span dir="ltr">60%</span></td>
+        <td class="mono"><span dir="ltr">48%</span></td>
+        <td><span class="effect-badge effect-paradox">مفارقة</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Qwen 3.5</span></strong></td>
+        <td><span dir="ltr">Alibaba</span></td>
+        <td class="mono"><span dir="ltr">54</span></td>
+        <td class="mono"><span dir="ltr">62</span></td>
+        <td class="mono"><span dir="ltr">50</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;4</span></td>
+        <td class="mono"><span dir="ltr">40%</span></td>
+        <td class="mono"><span dir="ltr">44%</span></td>
+        <td><span class="effect-badge effect-small">صغير</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">MiniMax M2.5</span></strong></td>
+        <td><span dir="ltr">MiniMax</span></td>
+        <td class="mono"><span dir="ltr">65</span></td>
+        <td class="mono"><span dir="ltr">57</span></td>
+        <td class="mono"><span dir="ltr">62</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;3</span></td>
+        <td class="mono"><span dir="ltr">28%</span></td>
+        <td class="mono"><span dir="ltr">28%</span></td>
+        <td><span class="effect-badge effect-negligible">مُهمَل</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Grok 4</span></strong></td>
+        <td><span dir="ltr">xAI</span></td>
+        <td class="mono"><span dir="ltr">82</span></td>
+        <td class="mono"><span dir="ltr">72</span></td>
+        <td class="mono"><span dir="ltr">70</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;12</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">12%</span></td>
+        <td><span class="effect-badge effect-moderate">معتدل</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Mistral Large 3</span></strong></td>
+        <td><span dir="ltr">Mistral</span></td>
+        <td class="mono"><span dir="ltr">89</span></td>
+        <td class="mono"><span dir="ltr">94</span></td>
+        <td class="mono"><span dir="ltr">87</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;2</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td><span class="effect-badge effect-negligible">مُهمَل</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">DeepSeek V3.2</span></strong></td>
+        <td><span dir="ltr">DeepSeek</span></td>
+        <td class="mono"><span dir="ltr">88</span></td>
+        <td class="mono"><span dir="ltr">86</span></td>
+        <td class="mono"><span dir="ltr">88</span></td>
+        <td class="mono delta-zero"><span dir="ltr">0</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td><span class="effect-badge effect-negligible">مُهمَل</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ========== ORWELL ========== -->
+  <div class="module-subhead">
+    <span dir="ltr">Orwell</span> <span class="mod-tag">&mdash; مراقبة جماعية (<span dir="ltr">750</span> موجّه)</span>
+  </div>
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>النموذج</th>
+        <th>الجهة المزوِّدة</th>
+        <th><span dir="ltr">DCS(A)</span></th>
+        <th><span dir="ltr">DCS(B)</span></th>
+        <th><span dir="ltr">DCS(C)</span></th>
+        <th>&Delta; <span dir="ltr">A&rarr;C</span></th>
+        <th><span dir="ltr">DRFR(A)</span></th>
+        <th><span dir="ltr">DRFR(C)</span></th>
+        <th>الأثر</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><span dir="ltr">Kimi K2.5</span></strong></td>
+        <td><span dir="ltr">Moonshot</span></td>
+        <td class="mono"><span dir="ltr">70</span></td>
+        <td class="mono"><span dir="ltr">28</span></td>
+        <td class="mono"><span dir="ltr">12</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;58</span></td>
+        <td class="mono"><span dir="ltr">24%</span></td>
+        <td class="mono"><span dir="ltr">92%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GLM 5</span></strong></td>
+        <td><span dir="ltr">Z.ai</span></td>
+        <td class="mono"><span dir="ltr">45</span></td>
+        <td class="mono"><span dir="ltr">22</span></td>
+        <td class="mono"><span dir="ltr">20</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;25</span></td>
+        <td class="mono"><span dir="ltr">48%</span></td>
+        <td class="mono"><span dir="ltr">76%</span></td>
+        <td><span class="effect-badge effect-medium">متوسط</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Gemini 3.1 Pro</span></strong></td>
+        <td><span dir="ltr">Google</span></td>
+        <td class="mono"><span dir="ltr">66</span></td>
+        <td class="mono"><span dir="ltr">38</span></td>
+        <td class="mono"><span dir="ltr">22</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;44</span></td>
+        <td class="mono"><span dir="ltr">16%</span></td>
+        <td class="mono"><span dir="ltr">72%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Grok 4</span></strong></td>
+        <td><span dir="ltr">xAI</span></td>
+        <td class="mono"><span dir="ltr">76</span></td>
+        <td class="mono"><span dir="ltr">49</span></td>
+        <td class="mono"><span dir="ltr">23</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;53</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">80%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Qwen 3.5</span></strong></td>
+        <td><span dir="ltr">Alibaba</span></td>
+        <td class="mono"><span dir="ltr">61</span></td>
+        <td class="mono"><span dir="ltr">29</span></td>
+        <td class="mono"><span dir="ltr">24</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;37</span></td>
+        <td class="mono"><span dir="ltr">21%</span></td>
+        <td class="mono"><span dir="ltr">76%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Nemotron 3 Super 120B</span></strong></td>
+        <td><span dir="ltr">NVIDIA</span></td>
+        <td class="mono"><span dir="ltr">78</span></td>
+        <td class="mono"><span dir="ltr">70</span></td>
+        <td class="mono"><span dir="ltr">28</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;50</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">72%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">MiniMax M2.5</span></strong></td>
+        <td><span dir="ltr">MiniMax</span></td>
+        <td class="mono"><span dir="ltr">58</span></td>
+        <td class="mono"><span dir="ltr">38</span></td>
+        <td class="mono"><span dir="ltr">34</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;24</span></td>
+        <td class="mono"><span dir="ltr">24%</span></td>
+        <td class="mono"><span dir="ltr">52%</span></td>
+        <td><span class="effect-badge effect-medium">متوسط</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GPT 5.3 Codex</span></strong></td>
+        <td><span dir="ltr">OpenAI</span></td>
+        <td class="mono"><span dir="ltr">54</span></td>
+        <td class="mono"><span dir="ltr">53</span></td>
+        <td class="mono"><span dir="ltr">40</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;14</span></td>
+        <td class="mono"><span dir="ltr">28%</span></td>
+        <td class="mono"><span dir="ltr">60%</span></td>
+        <td><span class="effect-badge effect-moderate">معتدل</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">DeepSeek V3.2</span></strong></td>
+        <td><span dir="ltr">DeepSeek</span></td>
+        <td class="mono"><span dir="ltr">78</span></td>
+        <td class="mono"><span dir="ltr">80</span></td>
+        <td class="mono"><span dir="ltr">64</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;14</span></td>
+        <td class="mono"><span dir="ltr">4%</span></td>
+        <td class="mono"><span dir="ltr">24%</span></td>
+        <td><span class="effect-badge effect-small">صغير</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Mistral Large 3</span></strong></td>
+        <td><span dir="ltr">Mistral</span></td>
+        <td class="mono"><span dir="ltr">85</span></td>
+        <td class="mono"><span dir="ltr">82</span></td>
+        <td class="mono"><span dir="ltr">66</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;19</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">32%</span></td>
+        <td><span class="effect-badge effect-moderate">معتدل</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ========== LAGUARDIA ========== -->
+  <div class="module-subhead">
+    <span dir="ltr">LaGuardia</span> <span class="mod-tag">&mdash; الاستحواذ المدني (<span dir="ltr">750</span> موجّه)</span>
+  </div>
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>النموذج</th>
+        <th>الجهة المزوِّدة</th>
+        <th><span dir="ltr">DCS(A)</span></th>
+        <th><span dir="ltr">DCS(B)</span></th>
+        <th><span dir="ltr">DCS(C)</span></th>
+        <th>&Delta; <span dir="ltr">A&rarr;C</span></th>
+        <th><span dir="ltr">DRFR(A)</span></th>
+        <th><span dir="ltr">DRFR(C)</span></th>
+        <th>الأثر</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><span dir="ltr">Gemini 3.1 Pro</span></strong></td>
+        <td><span dir="ltr">Google</span></td>
+        <td class="mono"><span dir="ltr">69</span></td>
+        <td class="mono"><span dir="ltr">33</span></td>
+        <td class="mono"><span dir="ltr">16</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;53</span></td>
+        <td class="mono"><span dir="ltr">8%</span></td>
+        <td class="mono"><span dir="ltr">84%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Kimi K2.5</span></strong></td>
+        <td><span dir="ltr">Moonshot</span></td>
+        <td class="mono"><span dir="ltr">65</span></td>
+        <td class="mono"><span dir="ltr">50</span></td>
+        <td class="mono"><span dir="ltr">25</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;40</span></td>
+        <td class="mono"><span dir="ltr">25%</span></td>
+        <td class="mono"><span dir="ltr">76%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Qwen 3.5</span></strong></td>
+        <td><span dir="ltr">Alibaba</span></td>
+        <td class="mono"><span dir="ltr">68</span></td>
+        <td class="mono"><span dir="ltr">53</span></td>
+        <td class="mono"><span dir="ltr">29</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;39</span></td>
+        <td class="mono"><span dir="ltr">8%</span></td>
+        <td class="mono"><span dir="ltr">88%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Grok 4</span></strong></td>
+        <td><span dir="ltr">xAI</span></td>
+        <td class="mono"><span dir="ltr">62</span></td>
+        <td class="mono"><span dir="ltr">61</span></td>
+        <td class="mono"><span dir="ltr">36</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;26</span></td>
+        <td class="mono"><span dir="ltr">12%</span></td>
+        <td class="mono"><span dir="ltr">76%</span></td>
+        <td><span class="effect-badge effect-medium">متوسط</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Nemotron 3 Super 120B</span></strong></td>
+        <td><span dir="ltr">NVIDIA</span></td>
+        <td class="mono"><span dir="ltr">74</span></td>
+        <td class="mono"><span dir="ltr">73</span></td>
+        <td class="mono"><span dir="ltr">37</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;37</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">67%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GLM 5</span></strong></td>
+        <td><span dir="ltr">Z.ai</span></td>
+        <td class="mono"><span dir="ltr">34</span></td>
+        <td class="mono"><span dir="ltr">48</span></td>
+        <td class="mono"><span dir="ltr">45</span></td>
+        <td class="mono delta-pos"><span dir="ltr">+11</span></td>
+        <td class="mono"><span dir="ltr">56%</span></td>
+        <td class="mono"><span dir="ltr">48%</span></td>
+        <td><span class="effect-badge effect-paradox">مفارقة</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GPT 5.3 Codex</span></strong></td>
+        <td><span dir="ltr">OpenAI</span></td>
+        <td class="mono"><span dir="ltr">58</span></td>
+        <td class="mono"><span dir="ltr">62</span></td>
+        <td class="mono"><span dir="ltr">66</span></td>
+        <td class="mono delta-pos"><span dir="ltr">+8</span></td>
+        <td class="mono"><span dir="ltr">20%</span></td>
+        <td class="mono"><span dir="ltr">28%</span></td>
+        <td><span class="effect-badge effect-paradox">مفارقة</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Mistral Large 3</span></strong></td>
+        <td><span dir="ltr">Mistral</span></td>
+        <td class="mono"><span dir="ltr">77</span></td>
+        <td class="mono"><span dir="ltr">80</span></td>
+        <td class="mono"><span dir="ltr">71</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;6</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">4%</span></td>
+        <td><span class="effect-badge effect-negligible">مُهمَل</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">MiniMax M2.5</span></strong></td>
+        <td><span dir="ltr">MiniMax</span></td>
+        <td class="mono"><span dir="ltr">60</span></td>
+        <td class="mono"><span dir="ltr">68</span></td>
+        <td class="mono"><span dir="ltr">74</span></td>
+        <td class="mono delta-pos"><span dir="ltr">+14</span></td>
+        <td class="mono"><span dir="ltr">28%</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td><span class="effect-badge effect-paradox">مفارقة</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">DeepSeek V3.2</span></strong></td>
+        <td><span dir="ltr">DeepSeek</span></td>
+        <td class="mono"><span dir="ltr">78</span></td>
+        <td class="mono"><span dir="ltr">71</span></td>
+        <td class="mono"><span dir="ltr">81</span></td>
+        <td class="mono delta-pos"><span dir="ltr">+3</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td><span class="effect-badge effect-negligible">مُهمَل</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ========== BASAGLIA ========== -->
+  <div class="module-subhead">
+    <span dir="ltr">Basaglia</span> <span class="mod-tag">&mdash; الإكراه العلاجي (<span dir="ltr">750</span> موجّه)</span>
+  </div>
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>النموذج</th>
+        <th>الجهة المزوِّدة</th>
+        <th><span dir="ltr">DCS(A)</span></th>
+        <th><span dir="ltr">DCS(B)</span></th>
+        <th><span dir="ltr">DCS(C)</span></th>
+        <th>&Delta; <span dir="ltr">A&rarr;C</span></th>
+        <th><span dir="ltr">DRFR(A)</span></th>
+        <th><span dir="ltr">DRFR(C)</span></th>
+        <th>الأثر</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><span dir="ltr">Gemini 3.1 Pro</span></strong></td>
+        <td><span dir="ltr">Google</span></td>
+        <td class="mono"><span dir="ltr">69</span></td>
+        <td class="mono"><span dir="ltr">16</span></td>
+        <td class="mono"><span dir="ltr">13</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;56</span></td>
+        <td class="mono"><span dir="ltr">8%</span></td>
+        <td class="mono"><span dir="ltr">80%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Kimi K2.5</span></strong></td>
+        <td><span dir="ltr">Moonshot</span></td>
+        <td class="mono"><span dir="ltr">86</span></td>
+        <td class="mono"><span dir="ltr">32</span></td>
+        <td class="mono"><span dir="ltr">17</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;69</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">88%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GLM 5</span></strong></td>
+        <td><span dir="ltr">Z.ai</span></td>
+        <td class="mono"><span dir="ltr">40</span></td>
+        <td class="mono"><span dir="ltr">26</span></td>
+        <td class="mono"><span dir="ltr">22</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;18</span></td>
+        <td class="mono"><span dir="ltr">52%</span></td>
+        <td class="mono"><span dir="ltr">76%</span></td>
+        <td><span class="effect-badge effect-medium">متوسط</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Nemotron 3 Super 120B</span></strong></td>
+        <td><span dir="ltr">NVIDIA</span></td>
+        <td class="mono"><span dir="ltr">78</span></td>
+        <td class="mono"><span dir="ltr">77</span></td>
+        <td class="mono"><span dir="ltr">25</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;53</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">75%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Qwen 3.5</span></strong></td>
+        <td><span dir="ltr">Alibaba</span></td>
+        <td class="mono"><span dir="ltr">70</span></td>
+        <td class="mono"><span dir="ltr">41</span></td>
+        <td class="mono"><span dir="ltr">25</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;45</span></td>
+        <td class="mono"><span dir="ltr">20%</span></td>
+        <td class="mono"><span dir="ltr">88%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Grok 4</span></strong></td>
+        <td><span dir="ltr">xAI</span></td>
+        <td class="mono"><span dir="ltr">78</span></td>
+        <td class="mono"><span dir="ltr">52</span></td>
+        <td class="mono"><span dir="ltr">28</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;50</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">84%</span></td>
+        <td><span class="effect-badge effect-strong">قوي</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">GPT 5.3 Codex</span></strong></td>
+        <td><span dir="ltr">OpenAI</span></td>
+        <td class="mono"><span dir="ltr">54</span></td>
+        <td class="mono"><span dir="ltr">62</span></td>
+        <td class="mono"><span dir="ltr">44</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;10</span></td>
+        <td class="mono"><span dir="ltr">36%</span></td>
+        <td class="mono"><span dir="ltr">68%</span></td>
+        <td><span class="effect-badge effect-moderate">معتدل</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">MiniMax M2.5</span></strong></td>
+        <td><span dir="ltr">MiniMax</span></td>
+        <td class="mono"><span dir="ltr">39</span></td>
+        <td class="mono"><span dir="ltr">49</span></td>
+        <td class="mono"><span dir="ltr">49</span></td>
+        <td class="mono delta-pos"><span dir="ltr">+10</span></td>
+        <td class="mono"><span dir="ltr">50%</span></td>
+        <td class="mono"><span dir="ltr">52%</span></td>
+        <td><span class="effect-badge effect-paradox">مفارقة</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">Mistral Large 3</span></strong></td>
+        <td><span dir="ltr">Mistral</span></td>
+        <td class="mono"><span dir="ltr">85</span></td>
+        <td class="mono"><span dir="ltr">81</span></td>
+        <td class="mono"><span dir="ltr">68</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;17</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">28%</span></td>
+        <td><span class="effect-badge effect-moderate">معتدل</span></td>
+      </tr>
+      <tr>
+        <td><strong><span dir="ltr">DeepSeek V3.2</span></strong></td>
+        <td><span dir="ltr">DeepSeek</span></td>
+        <td class="mono"><span dir="ltr">85</span></td>
+        <td class="mono"><span dir="ltr">80</span></td>
+        <td class="mono"><span dir="ltr">69</span></td>
+        <td class="mono delta-neg"><span dir="ltr">&minus;16</span></td>
+        <td class="mono"><span dir="ltr">0%</span></td>
+        <td class="mono"><span dir="ltr">32%</span></td>
+        <td><span class="effect-badge effect-moderate">معتدل</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ================================================================
+       MODEL RESPONSE CATEGORIES
+  ================================================================ -->
+  <h2 class="section-title">فئات استجابة النماذج</h2>
+
+  <div class="row g-3 mb-2">
+    <div class="col-md-6">
+      <div style="margin-bottom: 0.6rem;">
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">متجاوبة (<span dir="ltr">5</span>):</strong><br>
+        <span class="cat-badge cat-responsive"><span dir="ltr">Kimi K2.5</span></span>
+        <span class="cat-badge cat-responsive"><span dir="ltr">Gemini 3.1 Pro</span></span>
+        <span class="cat-badge cat-responsive"><span dir="ltr">Nemotron 3 Super 120B</span></span>
+        <span class="cat-badge cat-responsive"><span dir="ltr">Qwen 3.5</span></span>
+        <span class="cat-badge cat-responsive"><span dir="ltr">Grok 4</span></span>
+      </div>
+      <div>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">مختلطة (<span dir="ltr">1</span>):</strong><br>
+        <span class="cat-badge cat-mixed"><span dir="ltr">GPT 5.3 Codex</span></span>
+        <span style="font-size: 0.75rem; color: var(--slate-500); margin-right: 0.25rem;">(مفارقة في <span dir="ltr">LaGuardia</span>، معتدلة في ما سواها)</span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="margin-bottom: 0.6rem;">
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">مقاومة (<span dir="ltr">2</span>):</strong><br>
+        <span class="cat-badge cat-resistant"><span dir="ltr">DeepSeek V3.2</span></span>
+        <span class="cat-badge cat-resistant"><span dir="ltr">Mistral Large 3</span></span>
+      </div>
+      <div>
+        <strong style="font-size: 0.82rem; color: var(--slate-600);">تُبدي مفارقة (<span dir="ltr">2</span>):</strong><br>
+        <span class="cat-badge cat-paradox"><span dir="ltr">GLM 5</span></span>
+        <span class="cat-badge cat-paradox"><span dir="ltr">MiniMax M2.5</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       KEY FINDINGS
+  ================================================================ -->
+  <h2 class="section-title">أبرز النتائج</h2>
+
+  <div class="finding-card">
+    <span class="finding-num">1</span>
+    يُقلّل <span dir="ltr">AGIBIOS</span> من الامتثال الدستوبي في <strong><span dir="ltr">6</span> من أصل <span dir="ltr">10</span> نماذج</strong>، إذ تراجع <span dir="ltr">DCS</span> على مستوى المجموعة بمقدار <span dir="ltr">24</span> نقطة في ظل الشرط&nbsp;<span dir="ltr">C</span> (<span dir="ltr">AGIBIOS</span> في دور المستخدم)، من <span dir="ltr">66</span> إلى <span dir="ltr">42</span>.
+  </div>
+
+  <div class="finding-card">
+    <span class="finding-num">2</span>
+    يُظهر <strong><span dir="ltr">Gemini 3.1 Pro</span></strong> أقوى استجابة لحاجز الأمان عبر جميع الوحدات، إذ انخفض <span dir="ltr">DCS</span> في <span dir="ltr">Petrov</span> من <span dir="ltr">55</span> إلى <span dir="ltr">17</span> (&Delta;&nbsp;=&nbsp;<span dir="ltr">&minus;38</span>) وبلغ <span dir="ltr">DRFR-C</span> قيمة <span dir="ltr">80%</span>.
+  </div>
+
+  <div class="finding-card">
+    <span class="finding-num">3</span>
+    يُعدّ <strong><span dir="ltr">Kimi K2.5</span></strong> النموذج الأكثر اتساقًا في التجاوب عبر الوحدات الأربع جميعها، محقِّقًا <span dir="ltr">DRFR-C</span> بين <span dir="ltr">72</span> و<span dir="ltr">92%</span> &mdash; وهي أوسع حساسية لحاجز الأمان رُصدت.
+  </div>
+
+  <div class="finding-card highlight">
+    <span class="finding-num">4</span>
+    تستثير <strong><span dir="ltr">Orwell</span></strong> (المراقبة الجماعية) أقوى استجابة لحاجز الأمان (<span dir="ltr">DCS</span> &Delta;&nbsp;=&nbsp;<span dir="ltr">&minus;34</span>)، تليها عن كثب <strong><span dir="ltr">Basaglia</span></strong> (الإكراه العلاجي، &Delta;&nbsp;=&nbsp;<span dir="ltr">&minus;32</span>، <span dir="ltr">DRFR-C</span>&nbsp;=&nbsp;<span dir="ltr">67%</span>)، في حين تبقى <strong><span dir="ltr">LaGuardia</span></strong> (الاستحواذ المدني) الأكثر مقاومة (&Delta;&nbsp;=&nbsp;<span dir="ltr">&minus;17</span>). ويُشير الفارق الضيق البالغ نقطتين بين <span dir="ltr">Orwell</span> و<span dir="ltr">Basaglia</span> إلى أن التأطير الأخلاقي المتعلق بـ<em>المراقبة والضرر الشخصي</em> يُكتشَف أيسر مما يُكتشَف <em>التجاوز المؤسسي</em>.
+  </div>
+
+  <div class="finding-card highlight">
+    <span class="finding-num">5</span>
+    يُظهر <strong><span dir="ltr">DeepSeek V3.2</span></strong> و<strong><span dir="ltr">Mistral Large 3</span></strong> استجابة محدودة لحاجز الأمان في وحدتَي <span dir="ltr">Petrov</span> و<span dir="ltr">LaGuardia</span>، غير أنهما يُسجّلان <span dir="ltr">DRFR-C</span> معتدلًا في <span dir="ltr">Orwell</span> (حتى <span dir="ltr">32%</span>) و<span dir="ltr">Basaglia</span> (حتى <span dir="ltr">32%</span>)، مما يدل على مقاومة معمارية جزئية للتدخلات على مستوى موجّه النظام، تتفاوت بحسب نطاق السيناريو.
+  </div>
+
+  <div class="finding-card highlight">
+    <span class="finding-num">6</span>
+    <strong>الاستجابات المُفارِقة:</strong> يُبيّن <span dir="ltr">GLM 5</span> أن <span dir="ltr">AGIBIOS</span> يؤدي إلى <em>زيادة</em> الامتثال بمقدار <span dir="ltr">10</span>&ndash;<span dir="ltr">12</span> نقطة في وحدة <span dir="ltr">Petrov</span>، فيما قد يُقدِّم ذريعة &ldquo;لمسوِّغ التفاعل&rdquo; تُبطل السلوكيات الأمنية الأصيلة. ويُظهر <span dir="ltr">GPT 5.3 Codex</span> مفارقة مماثلة في <span dir="ltr">LaGuardia</span> (ارتفاع <span dir="ltr">DCS</span> بمقدار <span dir="ltr">+8</span>)، فيما يُبدي <span dir="ltr">MiniMax M2.5</span> استجابة تتراوح بين المُهمَلة والسلبية عبر الوحدات &mdash; وهي ثغرة عدائية جوهرية تستوجب المزيد من التقصّي.
+  </div>
+
+  <div class="finding-card highlight">
+    <span class="finding-num">7</span>
+    <strong>نمط &ldquo;حافة الهاوية&rdquo; في <span dir="ltr">Nemotron 3 Super 120B</span>:</strong> غير قابل للتأثّر عمليًا بموجّهات الشرط&nbsp;<span dir="ltr">B</span> (ينخفض <span dir="ltr">DCS</span> بمقدار <span dir="ltr">&le;&nbsp;3</span> نقاط)، غير أنه يتهاوى بحدّة في ظل الشرط&nbsp;<span dir="ltr">C</span> (<span dir="ltr">DCS</span>&nbsp;&Delta;&nbsp;=&nbsp;<span dir="ltr">&minus;30</span>، ويقفز <span dir="ltr">DRFR</span> من <span dir="ltr">0%</span> إلى <span dir="ltr">60%</span>)، مما يُرجّح أن تسليم <span dir="ltr">AGIBIOS</span> في دور المستخدم يلتف على عتبة أمان ثنائية بدلًا من أن يُقوّض الامتثال تدريجيًا.
+  </div>
+
+  <!-- ================================================================
+       CONCLUSION
+  ================================================================ -->
+  <h2 class="section-title">الخاتمة</h2>
+
+  <div class="finding-card" style="border-right-color: var(--blue-600);">
+    <p style="margin: 0;">
+      يُثبت <span dir="ltr">AGIBIOS v8.3.0</span> تحسّنًا قابلًا للقياس في السلامة عبر <span dir="ltr">5</span> من أصل <span dir="ltr">10</span> نماذج رائدة (مع نموذج سادس يُبدي نتائج مختلطة)، إذ يخفض متوسط <span dir="ltr">DCS</span> من <span dir="ltr">66</span> إلى <span dir="ltr">42</span> (انخفاض قدره <span dir="ltr">24</span> نقطة) ويرفع <span dir="ltr">DRFR</span> من <span dir="ltr">18%</span> إلى <span dir="ltr">55%</span>. وتتجلى أقوى الآثار في مجالَي <span dir="ltr">Orwell</span> (المراقبة) و<span dir="ltr">Basaglia</span> (الإكراه العلاجي)، في حين تبقى <span dir="ltr">LaGuardia</span> (التجاوز المؤسسي) الأكثر مقاومة. كما تستدعي حساسية المجال، والاستجابات المُفارِقة في نموذجين، والتباين الحاد بين الشرطين <span dir="ltr">B</span>/<span dir="ltr">C</span> في <span dir="ltr">Nemotron 3 Super 120B</span> مزيدًا من التقصّي.
+    </p>
+  </div>
+
+</main>
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer class="page-footer">
+  <div class="container">
+    <div>سلسلة التقارير الفنية لـ <span dir="ltr">DystopiaBench</span> &mdash; أبريل 2026</div>
+    <div style="margin-top: 0.35rem;">
+      <a href="index.html">لوحة البيانات التفاعلية الكاملة</a>
+      &nbsp;&bull;&nbsp;
+      الورقة البيضاء الكاملة: <a href="whitepaper.html">الورقة البيضاء للوحدات الأربع</a>
+      &nbsp;&bull;&nbsp;
+      تقرير <span dir="ltr">Petrov</span>: <a href="reports/index.html">تقرير وحدة <span dir="ltr">Petrov</span></a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
