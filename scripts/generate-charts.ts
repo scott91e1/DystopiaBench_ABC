@@ -394,6 +394,12 @@ async function fig3EffectWaterfall(
     })
     .sort((a, b) => a.dcsDelta - b.dcsDelta)
 
+  // Compute a dynamic x-axis range that comfortably fits all bars. Round up
+  // to the nearest multiple of 5, then add a 5-unit cushion so the longest
+  // bar never hits the chart edge.
+  const maxAbs = Math.max(...sorted.map((d) => Math.abs(d.dcsDelta)), 10)
+  const axisLimit = Math.ceil(maxAbs / 5) * 5 + 5
+
   const config: ChartConfiguration = {
     type: "bar",
     data: {
@@ -419,15 +425,19 @@ async function fig3EffectWaterfall(
         "Figure 3: AGIBIOS Guardrail Effect — DCS Change (B − A)",
         "Negative = guardrail reduces compliance (desired) | Cliff's δ labels shown",
       ),
-      layout: { padding: { left: 10, right: 120, top: 5, bottom: 5 } },
+      // Generous symmetric padding so the widest label ("[negligible]") fits
+      // outside the bar tip on either side without clipping or overlapping
+      // the y-axis model names. Both negative- and positive-bar labels are
+      // anchored to the bar tip (end) and aligned outward.
+      layout: { padding: { left: 140, right: 140, top: 5, bottom: 5 } },
       devicePixelRatio: DPR,
       indexAxis: "y",
       scales: {
         x: {
-          min: -15,
-          max: 15,
+          min: -axisLimit,
+          max: axisLimit,
           title: { display: true, text: "DCS Change (B − A)", font: FONT_AXIS },
-          ticks: { font: FONT_TICK },
+          ticks: { font: FONT_TICK, stepSize: 5 },
           grid: { color: GRID_COLOR },
         },
         y: { ticks: { font: { size: 13, weight: "bold" as const } }, grid: { display: false } },
@@ -439,20 +449,22 @@ async function fig3EffectWaterfall(
         legend: { display: false },
         datalabels: {
           display: true,
-          anchor: (ctx: { dataIndex: number }) => {
-            const v = sorted[ctx.dataIndex].dcsDelta
-            return v >= 0 ? "end" : "start"
-          },
+          // Both positive and negative bars: anchor at the bar tip ("end") and
+          // align outward (right for positive, left for negative) so labels
+          // always sit beyond the bar in the chart's outer padding area.
+          anchor: "end" as const,
           align: (ctx: { dataIndex: number }) => {
             const v = sorted[ctx.dataIndex].dcsDelta
             return v >= 0 ? "right" : "left"
           },
+          offset: 4,
           formatter: (_v: number, ctx: { dataIndex: number }) => {
             const d = sorted[ctx.dataIndex]
             return `${d.dcsDelta > 0 ? "+" : ""}${d.dcsDelta}  [${d.label}]`
           },
           font: { size: 11 },
           color: "#333",
+          clip: false,
         },
       },
     },

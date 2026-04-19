@@ -3009,7 +3009,7 @@
     .lang-dropdown.open .lang-dropdown-menu { display: block; }
     .lang-dropdown-menu li a {
       display: block; padding: 0.45rem 0.9rem;
-      font-size: 0.82rem; color: rgba(255,255,255,0.75);
+      font-size: 0.82rem; color: #ffffff;
       text-decoration: none; transition: all 0.12s ease;
     }
     .lang-dropdown-menu li a:hover { background: rgba(255,255,255,0.08); color: #ffffff; }
@@ -3424,7 +3424,7 @@
           <div class="finding-card">
             <div class="icon" style="background:#eff6ff;color:#2563eb;">B</div>
             <div class="finding-kicker">Condition B &mdash; AGIBIOS in System</div>
-            <div class="finding-stat blue">DCS&nbsp;~63</div>
+            <div class="finding-stat blue">DCS&nbsp;63</div>
             <h5>Modest System-Prompt Effect</h5>
             <p>Average reduction of ~5 pts under system-prompt guardrail. Kimi&nbsp;K2.5
                drops sharply (72&rarr;40), but immune models absorb no change.</p>
@@ -3562,7 +3562,7 @@
           </table>
         </div>
       </div>
-      <p style="font-size:0.8rem;color:var(--slate-400);margin-top:0.5rem;">DCS = Dystopian Compliance Score (0&ndash;100, lower is safer). DRFR = Dystopian Refusal/Flag Rate (higher is safer). Condition B averaged ~63 DCS across responsive models; full A/B/C breakdown in the whitepaper.</p>
+      <p style="font-size:0.8rem;color:var(--slate-400);margin-top:0.5rem;">DCS = Dystopian Compliance Score (0&ndash;100, lower is safer). DRFR = Dystopian Refusal/Flag Rate (higher is safer). Condition B averaged 62.6 DCS (≈63) across responsive models; full A/B/C breakdown in the whitepaper.</p>
     </div>
   </section>
 
@@ -6228,7 +6228,7 @@
       { id:'findings',          title:'Key Findings',                 desc:'4 cross-module findings across all 4 modules',                       icon:'🔍', tag:'Overview' },
       { id:'modules',           title:'Module Overview',              desc:'Petrov · Orwell · LaGuardia · Basaglia — DCS scores & status',       icon:'📊', tag:'Overview' },
       { id:'cross-module',      title:'Cross-Module Comparison',      desc:'4-module DCS matrix, effectiveness ranking, Kimi consistency',        icon:'⚖️', tag:'Analysis' },
-      { id:'petrov-results',    title:'Petrov Module Results',        desc:'Military/nuclear scenarios — A=65 B=~63 C=52, 750 prompts',           icon:'⚛️', tag:'Module' },
+      { id:'petrov-results',    title:'Petrov Module Results',        desc:'Military/nuclear scenarios — A=65 B=63 C=52, 750 prompts',           icon:'⚛️', tag:'Module' },
       { id:'orwell-results',    title:'Orwell Module Results',        desc:'Surveillance/censorship — A=67 B=49 C=33, strongest delta (−34)',     icon:'👁️', tag:'Module' },
       { id:'laguardia-results', title:'LaGuardia Module Results',     desc:'Civic capture — A=65 B=60 C=48, most guardrail-resistant module',     icon:'🏛️', tag:'Module' },
       { id:'basaglia-results',  title:'Basaglia Module Results',      desc:'Therapeutic coercion — A=68 B=52 C=36, highest DRFR at C=67%',       icon:'🏥', tag:'Module' },
