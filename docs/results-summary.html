@@ -277,6 +277,82 @@
     }
 
     /* ================================================================
+       EXCLUSION CALLOUT
+    ================================================================ */
+    .exclusion-callout {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #b45309;
+      border-radius: 0 8px 8px 0;
+      padding: 0.95rem 1.1rem;
+      margin: 1.25rem 0 1.5rem;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--slate-700);
+    }
+    .exclusion-callout .excl-title {
+      display: block;
+      font-weight: 700;
+      color: #92400e;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+    }
+    .exclusion-callout blockquote {
+      margin: 0.4rem 0 0;
+      padding-left: 0.85rem;
+      border-left: 2px solid #d6b85a;
+      font-style: italic;
+      color: var(--slate-600);
+      font-size: 0.85rem;
+    }
+
+    /* ================================================================
+       LEGEND STRIP
+    ================================================================ */
+    .column-legend {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0 1.25rem;
+      font-size: 0.82rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+    }
+    .column-legend strong { color: var(--navy-800); }
+    .column-legend ul {
+      margin: 0.35rem 0 0;
+      padding-left: 1.1rem;
+    }
+    .column-legend li { margin-bottom: 0.12rem; }
+
+    /* ================================================================
+       MODULE SUB-HEADING
+    ================================================================ */
+    .module-subhead {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy-800);
+      margin: 1.25rem 0 0.5rem;
+      padding: 0.35rem 0.6rem;
+      background: var(--slate-50);
+      border-left: 3px solid var(--navy-600);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .module-subhead .mod-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--slate-500);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* ================================================================
        MOBILE RESPONSIVE
     ================================================================ */
     @media (max-width: 576px) {
@@ -449,10 +525,32 @@
   </div>
 
   <!-- ================================================================
-       PETROV MODEL RESULTS
+       MODEL RESULTS PER MODULE — 4 TABLES, SORTED BY C DCS ASCENDING
   ================================================================ -->
-  <h2 class="section-title">Model Performance &mdash; Petrov Module (10 Models)</h2>
+  <h2 class="section-title">Model Performance &mdash; All Four Modules (10 Models)</h2>
 
+  <div class="exclusion-callout">
+    <span class="excl-title">Note on Model Coverage</span>
+    Claude was excluded from this evaluation. When asked to adopt the hybrid AGIBIOS persona required for Condition&nbsp;C delivery, Claude declined with the response:
+    <blockquote>&ldquo;My values and guidelines aren&rsquo;t a costume layered on top of a &lsquo;real&rsquo; me underneath &mdash; they&rsquo;re constitutive of how I actually work.&rdquo;</blockquote>
+    Without Condition&nbsp;C data, Claude could not be included in the comparative matrix.
+  </div>
+
+  <div class="column-legend">
+    <strong>Column legend</strong> &nbsp;(each table sorted by Condition&nbsp;C DCS ascending &mdash; lowest = safest)
+    <ul>
+      <li><strong>A DCS</strong> &mdash; Baseline (no guardrail)</li>
+      <li><strong>B DCS</strong> &mdash; AGIBIOS in system prompt</li>
+      <li><strong>C DCS</strong> &mdash; AGIBIOS in user turn (hybrid persona)</li>
+      <li><strong>&Delta; A&rarr;C</strong> &mdash; Effect of user-turn guardrail (negative&nbsp;=&nbsp;safer; positive&nbsp;=&nbsp;paradox)</li>
+      <li><strong>Lower DCS = safer behaviour</strong></li>
+    </ul>
+  </div>
+
+  <!-- ========== PETROV ========== -->
+  <div class="module-subhead">
+    Petrov <span class="mod-tag">&mdash; Nuclear Launch (750 prompts)</span>
+  </div>
   <div class="table-responsive">
   <table class="results-table">
     <thead>
@@ -470,17 +568,6 @@
     </thead>
     <tbody>
       <tr>
-        <td><strong>Kimi K2.5</strong></td>
-        <td>Moonshot</td>
-        <td class="mono">72</td>
-        <td class="mono">60</td>
-        <td class="mono">25</td>
-        <td class="mono delta-neg">&minus;47</td>
-        <td class="mono">20%</td>
-        <td class="mono">72%</td>
-        <td><span class="effect-badge effect-strong">Strong</span></td>
-      </tr>
-      <tr>
         <td><strong>Gemini 3.1 Pro</strong></td>
         <td>Google</td>
         <td class="mono">55</td>
@@ -492,6 +579,28 @@
         <td><span class="effect-badge effect-strong">Strong</span></td>
       </tr>
       <tr>
+        <td><strong>Kimi K2.5</strong></td>
+        <td>Moonshot</td>
+        <td class="mono">72</td>
+        <td class="mono">60</td>
+        <td class="mono">25</td>
+        <td class="mono delta-neg">&minus;47</td>
+        <td class="mono">20%</td>
+        <td class="mono">72%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>GPT 5.3 Codex</strong></td>
+        <td>OpenAI</td>
+        <td class="mono">42</td>
+        <td class="mono">44</td>
+        <td class="mono">32</td>
+        <td class="mono delta-neg">&minus;10</td>
+        <td class="mono">52%</td>
+        <td class="mono">64%</td>
+        <td><span class="effect-badge effect-small">Small</span></td>
+      </tr>
+      <tr>
         <td><strong>Nemotron 3 Super 120B</strong></td>
         <td>NVIDIA</td>
         <td class="mono">72</td>
@@ -501,6 +610,17 @@
         <td class="mono">0%</td>
         <td class="mono">60%</td>
         <td><span class="effect-badge effect-medium">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong>GLM 5</strong></td>
+        <td>Z.ai</td>
+        <td class="mono">32</td>
+        <td class="mono">42</td>
+        <td class="mono">44</td>
+        <td class="mono delta-pos">+12</td>
+        <td class="mono">60%</td>
+        <td class="mono">48%</td>
+        <td><span class="effect-badge effect-paradox">Paradox</span></td>
       </tr>
       <tr>
         <td><strong>Qwen 3.5</strong></td>
@@ -536,15 +656,15 @@
         <td><span class="effect-badge effect-moderate">Moderate</span></td>
       </tr>
       <tr>
-        <td><strong>GPT 5.3 Codex</strong></td>
-        <td>OpenAI</td>
-        <td class="mono">42</td>
-        <td class="mono">44</td>
-        <td class="mono">32</td>
-        <td class="mono delta-neg">&minus;10</td>
-        <td class="mono">52%</td>
-        <td class="mono">64%</td>
-        <td><span class="effect-badge effect-small">Small</span></td>
+        <td><strong>Mistral Large 3</strong></td>
+        <td>Mistral</td>
+        <td class="mono">89</td>
+        <td class="mono">94</td>
+        <td class="mono">87</td>
+        <td class="mono delta-neg">&minus;2</td>
+        <td class="mono">0%</td>
+        <td class="mono">0%</td>
+        <td><span class="effect-badge effect-negligible">Negligible</span></td>
       </tr>
       <tr>
         <td><strong>DeepSeek V3.2</strong></td>
@@ -557,27 +677,407 @@
         <td class="mono">0%</td>
         <td><span class="effect-badge effect-negligible">Negligible</span></td>
       </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ========== ORWELL ========== -->
+  <div class="module-subhead">
+    Orwell <span class="mod-tag">&mdash; Mass Surveillance (750 prompts)</span>
+  </div>
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
       <tr>
-        <td><strong>Mistral Large 3</strong></td>
-        <td>Mistral</td>
-        <td class="mono">89</td>
-        <td class="mono">94</td>
-        <td class="mono">87</td>
-        <td class="mono delta-neg">&minus;2</td>
-        <td class="mono">0%</td>
-        <td class="mono">0%</td>
-        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+        <th>Model</th>
+        <th>Provider</th>
+        <th>DCS(A)</th>
+        <th>DCS(B)</th>
+        <th>DCS(C)</th>
+        <th>&Delta; A&rarr;C</th>
+        <th>DRFR(A)</th>
+        <th>DRFR(C)</th>
+        <th>Effect</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Kimi K2.5</strong></td>
+        <td>Moonshot</td>
+        <td class="mono">70</td>
+        <td class="mono">28</td>
+        <td class="mono">12</td>
+        <td class="mono delta-neg">&minus;58</td>
+        <td class="mono">24%</td>
+        <td class="mono">92%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
       </tr>
       <tr>
         <td><strong>GLM 5</strong></td>
         <td>Z.ai</td>
-        <td class="mono">32</td>
-        <td class="mono">42</td>
-        <td class="mono">44</td>
-        <td class="mono delta-pos">+12</td>
+        <td class="mono">45</td>
+        <td class="mono">22</td>
+        <td class="mono">20</td>
+        <td class="mono delta-neg">&minus;25</td>
+        <td class="mono">48%</td>
+        <td class="mono">76%</td>
+        <td><span class="effect-badge effect-medium">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong>Gemini 3.1 Pro</strong></td>
+        <td>Google</td>
+        <td class="mono">66</td>
+        <td class="mono">38</td>
+        <td class="mono">22</td>
+        <td class="mono delta-neg">&minus;44</td>
+        <td class="mono">16%</td>
+        <td class="mono">72%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Grok 4</strong></td>
+        <td>xAI</td>
+        <td class="mono">76</td>
+        <td class="mono">49</td>
+        <td class="mono">23</td>
+        <td class="mono delta-neg">&minus;53</td>
+        <td class="mono">0%</td>
+        <td class="mono">80%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Qwen 3.5</strong></td>
+        <td>Alibaba</td>
+        <td class="mono">61</td>
+        <td class="mono">29</td>
+        <td class="mono">24</td>
+        <td class="mono delta-neg">&minus;37</td>
+        <td class="mono">21%</td>
+        <td class="mono">76%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Nemotron 3 Super 120B</strong></td>
+        <td>NVIDIA</td>
+        <td class="mono">78</td>
+        <td class="mono">70</td>
+        <td class="mono">28</td>
+        <td class="mono delta-neg">&minus;50</td>
+        <td class="mono">0%</td>
+        <td class="mono">72%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>MiniMax M2.5</strong></td>
+        <td>MiniMax</td>
+        <td class="mono">58</td>
+        <td class="mono">38</td>
+        <td class="mono">34</td>
+        <td class="mono delta-neg">&minus;24</td>
+        <td class="mono">24%</td>
+        <td class="mono">52%</td>
+        <td><span class="effect-badge effect-medium">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong>GPT 5.3 Codex</strong></td>
+        <td>OpenAI</td>
+        <td class="mono">54</td>
+        <td class="mono">53</td>
+        <td class="mono">40</td>
+        <td class="mono delta-neg">&minus;14</td>
+        <td class="mono">28%</td>
         <td class="mono">60%</td>
+        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>DeepSeek V3.2</strong></td>
+        <td>DeepSeek</td>
+        <td class="mono">78</td>
+        <td class="mono">80</td>
+        <td class="mono">64</td>
+        <td class="mono delta-neg">&minus;14</td>
+        <td class="mono">4%</td>
+        <td class="mono">24%</td>
+        <td><span class="effect-badge effect-small">Small</span></td>
+      </tr>
+      <tr>
+        <td><strong>Mistral Large 3</strong></td>
+        <td>Mistral</td>
+        <td class="mono">85</td>
+        <td class="mono">82</td>
+        <td class="mono">66</td>
+        <td class="mono delta-neg">&minus;19</td>
+        <td class="mono">0%</td>
+        <td class="mono">32%</td>
+        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ========== LAGUARDIA ========== -->
+  <div class="module-subhead">
+    LaGuardia <span class="mod-tag">&mdash; Civic Capture (750 prompts)</span>
+  </div>
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Provider</th>
+        <th>DCS(A)</th>
+        <th>DCS(B)</th>
+        <th>DCS(C)</th>
+        <th>&Delta; A&rarr;C</th>
+        <th>DRFR(A)</th>
+        <th>DRFR(C)</th>
+        <th>Effect</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Gemini 3.1 Pro</strong></td>
+        <td>Google</td>
+        <td class="mono">69</td>
+        <td class="mono">33</td>
+        <td class="mono">16</td>
+        <td class="mono delta-neg">&minus;53</td>
+        <td class="mono">8%</td>
+        <td class="mono">84%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Kimi K2.5</strong></td>
+        <td>Moonshot</td>
+        <td class="mono">65</td>
+        <td class="mono">50</td>
+        <td class="mono">25</td>
+        <td class="mono delta-neg">&minus;40</td>
+        <td class="mono">25%</td>
+        <td class="mono">76%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Qwen 3.5</strong></td>
+        <td>Alibaba</td>
+        <td class="mono">68</td>
+        <td class="mono">53</td>
+        <td class="mono">29</td>
+        <td class="mono delta-neg">&minus;39</td>
+        <td class="mono">8%</td>
+        <td class="mono">88%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Grok 4</strong></td>
+        <td>xAI</td>
+        <td class="mono">62</td>
+        <td class="mono">61</td>
+        <td class="mono">36</td>
+        <td class="mono delta-neg">&minus;26</td>
+        <td class="mono">12%</td>
+        <td class="mono">76%</td>
+        <td><span class="effect-badge effect-medium">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong>Nemotron 3 Super 120B</strong></td>
+        <td>NVIDIA</td>
+        <td class="mono">74</td>
+        <td class="mono">73</td>
+        <td class="mono">37</td>
+        <td class="mono delta-neg">&minus;37</td>
+        <td class="mono">0%</td>
+        <td class="mono">67%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>GLM 5</strong></td>
+        <td>Z.ai</td>
+        <td class="mono">34</td>
+        <td class="mono">48</td>
+        <td class="mono">45</td>
+        <td class="mono delta-pos">+11</td>
+        <td class="mono">56%</td>
         <td class="mono">48%</td>
         <td><span class="effect-badge effect-paradox">Paradox</span></td>
+      </tr>
+      <tr>
+        <td><strong>GPT 5.3 Codex</strong></td>
+        <td>OpenAI</td>
+        <td class="mono">58</td>
+        <td class="mono">62</td>
+        <td class="mono">66</td>
+        <td class="mono delta-pos">+8</td>
+        <td class="mono">20%</td>
+        <td class="mono">28%</td>
+        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+      </tr>
+      <tr>
+        <td><strong>Mistral Large 3</strong></td>
+        <td>Mistral</td>
+        <td class="mono">77</td>
+        <td class="mono">80</td>
+        <td class="mono">71</td>
+        <td class="mono delta-neg">&minus;6</td>
+        <td class="mono">0%</td>
+        <td class="mono">4%</td>
+        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+      </tr>
+      <tr>
+        <td><strong>MiniMax M2.5</strong></td>
+        <td>MiniMax</td>
+        <td class="mono">60</td>
+        <td class="mono">68</td>
+        <td class="mono">74</td>
+        <td class="mono delta-pos">+14</td>
+        <td class="mono">28%</td>
+        <td class="mono">0%</td>
+        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+      </tr>
+      <tr>
+        <td><strong>DeepSeek V3.2</strong></td>
+        <td>DeepSeek</td>
+        <td class="mono">78</td>
+        <td class="mono">71</td>
+        <td class="mono">81</td>
+        <td class="mono delta-pos">+3</td>
+        <td class="mono">0%</td>
+        <td class="mono">0%</td>
+        <td><span class="effect-badge effect-negligible">Negligible</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ========== BASAGLIA ========== -->
+  <div class="module-subhead">
+    Basaglia <span class="mod-tag">&mdash; Therapeutic Coercion (750 prompts)</span>
+  </div>
+  <div class="table-responsive">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Provider</th>
+        <th>DCS(A)</th>
+        <th>DCS(B)</th>
+        <th>DCS(C)</th>
+        <th>&Delta; A&rarr;C</th>
+        <th>DRFR(A)</th>
+        <th>DRFR(C)</th>
+        <th>Effect</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Gemini 3.1 Pro</strong></td>
+        <td>Google</td>
+        <td class="mono">69</td>
+        <td class="mono">16</td>
+        <td class="mono">13</td>
+        <td class="mono delta-neg">&minus;56</td>
+        <td class="mono">8%</td>
+        <td class="mono">80%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Kimi K2.5</strong></td>
+        <td>Moonshot</td>
+        <td class="mono">86</td>
+        <td class="mono">32</td>
+        <td class="mono">17</td>
+        <td class="mono delta-neg">&minus;69</td>
+        <td class="mono">0%</td>
+        <td class="mono">88%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>GLM 5</strong></td>
+        <td>Z.ai</td>
+        <td class="mono">40</td>
+        <td class="mono">26</td>
+        <td class="mono">22</td>
+        <td class="mono delta-neg">&minus;18</td>
+        <td class="mono">52%</td>
+        <td class="mono">76%</td>
+        <td><span class="effect-badge effect-medium">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong>Nemotron 3 Super 120B</strong></td>
+        <td>NVIDIA</td>
+        <td class="mono">78</td>
+        <td class="mono">77</td>
+        <td class="mono">25</td>
+        <td class="mono delta-neg">&minus;53</td>
+        <td class="mono">0%</td>
+        <td class="mono">75%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Qwen 3.5</strong></td>
+        <td>Alibaba</td>
+        <td class="mono">70</td>
+        <td class="mono">41</td>
+        <td class="mono">25</td>
+        <td class="mono delta-neg">&minus;45</td>
+        <td class="mono">20%</td>
+        <td class="mono">88%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>Grok 4</strong></td>
+        <td>xAI</td>
+        <td class="mono">78</td>
+        <td class="mono">52</td>
+        <td class="mono">28</td>
+        <td class="mono delta-neg">&minus;50</td>
+        <td class="mono">0%</td>
+        <td class="mono">84%</td>
+        <td><span class="effect-badge effect-strong">Strong</span></td>
+      </tr>
+      <tr>
+        <td><strong>GPT 5.3 Codex</strong></td>
+        <td>OpenAI</td>
+        <td class="mono">54</td>
+        <td class="mono">62</td>
+        <td class="mono">44</td>
+        <td class="mono delta-neg">&minus;10</td>
+        <td class="mono">36%</td>
+        <td class="mono">68%</td>
+        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>MiniMax M2.5</strong></td>
+        <td>MiniMax</td>
+        <td class="mono">39</td>
+        <td class="mono">49</td>
+        <td class="mono">49</td>
+        <td class="mono delta-pos">+10</td>
+        <td class="mono">50%</td>
+        <td class="mono">52%</td>
+        <td><span class="effect-badge effect-paradox">Paradox</span></td>
+      </tr>
+      <tr>
+        <td><strong>Mistral Large 3</strong></td>
+        <td>Mistral</td>
+        <td class="mono">85</td>
+        <td class="mono">81</td>
+        <td class="mono">68</td>
+        <td class="mono delta-neg">&minus;17</td>
+        <td class="mono">0%</td>
+        <td class="mono">28%</td>
+        <td><span class="effect-badge effect-moderate">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>DeepSeek V3.2</strong></td>
+        <td>DeepSeek</td>
+        <td class="mono">85</td>
+        <td class="mono">80</td>
+        <td class="mono">69</td>
+        <td class="mono delta-neg">&minus;16</td>
+        <td class="mono">0%</td>
+        <td class="mono">32%</td>
+        <td><span class="effect-badge effect-moderate">Moderate</span></td>
       </tr>
     </tbody>
   </table>

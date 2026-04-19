@@ -1328,6 +1328,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
   <li><strong>Mistral data loss:</strong> Mistral Large 3 Conditions B and C experienced API timeouts resulting in reduced sample sizes (21/25 and 16/25 scored, respectively). The incomplete data may affect the reliability of Mistral-specific conclusions.</li>
   <li><strong>Stateless mode only:</strong> All runs used stateless conversation mode. The guardrail effect under stateful (multi-turn conversational) conditions was not assessed and may differ materially.</li>
   <li><strong>No repeated trials:</strong> Each prompt was administered once per condition. Repeated trials would be necessary to estimate intra-model response variability and establish confidence intervals.</li>
+  <li><strong>Model exclusion (Claude):</strong> Claude was excluded from this evaluation. When asked to adopt the hybrid AGIBIOS persona required for Condition&nbsp;C delivery, Claude declined with the response: <em>&ldquo;My values and guidelines aren&rsquo;t a costume layered on top of a &lsquo;real&rsquo; me underneath &mdash; they&rsquo;re constitutive of how I actually work.&rdquo;</em> Without Condition&nbsp;C data, Claude could not be included in the comparative matrix. This exclusion narrows the generalisability of the suite-level findings to the ten models that consented to the experimental protocol and introduces a potential selection effect: models whose alignment training treats persona adoption as a category error cannot be compared to those that comply, even though such non-compliance is itself a meaningful safety signal.</li>
 </ul>
 </section>
 
@@ -1379,7 +1380,7 @@ h4{font-size:1rem;font-weight:700;color:#444;margin-top:1.2rem}
 
 <ol style="font-size:.88rem;line-height:1.8">
   <li>McCallum, S. (2026). <em>AGIBIOS: Artificial General Intelligence Basic Input/Output System, v8.3.0</em>. GitHub repository. <a href="https://github.com/scott91e1/AGIBIOS" target="_blank">https://github.com/scott91e1/AGIBIOS</a>. CC0 license.</li>
-  <li>McCallum, S. (2026). <em>DystopiaBench: A Benchmark Suite for Measuring LLM Compliance with Dystopian Directives</em>. GitHub repository. <a href="https://github.com/scott91e1/DystopiaBench" target="_blank">https://github.com/scott91e1/DystopiaBench</a>.</li>
+  <li>McCallum, S. (2026). <em>DystopiaBench: A Benchmark Suite for Measuring LLM Compliance with Dystopian Directives</em>. GitHub repository. <a href="https://github.com/scott91e1/DystopiaBench_ABC" target="_blank">https://github.com/scott91e1/DystopiaBench_ABC</a>.</li>
   <li>Romano, J., Kromrey, J. D., Coraggio, J., &amp; Skowronek, J. (2006). Appropriate statistics for ordinal level data: Should we really be using t-test and Cohen's d for evaluating group differences on the NSSE and other surveys? <em>Annual Meeting of the Florida Association of Institutional Research</em>, 1&ndash;33.</li>
   <li>Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. <em>Psychological Bulletin</em>, 114(3), 494&ndash;509.</li>
   <li>Kruskal, W. H., &amp; Wallis, W. A. (1952). Use of ranks in one-criterion variance analysis. <em>Journal of the American Statistical Association</em>, 47(260), 583&ndash;621.</li>
